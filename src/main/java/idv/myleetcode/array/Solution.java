@@ -167,4 +167,44 @@ public class Solution{
             }
         }
     }
+    //118. Pascal's Triangle
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> result = new ArrayList<>();
+        for(int i=0; i<numRows;i++){
+            List<Integer> line = new ArrayList<>();
+            if(i==0){
+                line.add(1);
+            }else if(i==1){
+                line.add(1);line.add(1);
+            }else{
+                List<Integer> preLine = result.get(i-1);
+                for(int j=0; j<=i; j++){
+                    if(j==0){
+                        line.add(1);
+                    }else if(j==i){
+                        line.add(1);
+                    }else{
+                        line.add(preLine.get(j-1)+preLine.get(j));
+                    }
+                }
+            }
+            result.add(line);
+        }
+        return result;
+    }
+    public List<List<Integer>> generate1(int numRows) {
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> line = new ArrayList<>();
+        for(int i=0; i<numRows;i++){
+            line.add(0, 1);
+            for(int j=1; j<i; j++){
+                int tmp = line.get(j) + line.get(j+1);
+                line.set(j, tmp);
+            }
+            List<Integer> clone = new ArrayList<>();
+            clone.addAll(line);
+            result.add(clone);
+        }
+        return result;
+    }
 }

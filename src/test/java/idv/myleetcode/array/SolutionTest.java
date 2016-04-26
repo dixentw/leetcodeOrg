@@ -10,10 +10,6 @@ import java.util.*;
 public class SolutionTest {
     Solution s = new Solution();
     @Test
-    public void testGetNumber(){
-        assertEquals(10, s.get10Num());
-    }
-    @Test
     public void test88(){
         int[] A = new int[6];
         A[0] = 1;
@@ -22,6 +18,11 @@ public class SolutionTest {
         int[] B = new int[]{2,4,6};
         s.merge(A, 3, B, 3);
         System.out.println(Arrays.toString(A));
+    }
+    @Test
+    public void test118(){
+        List<List<Integer>> tri = s.generate1(5);
+        System.out.println(Arrays.deepToString(tri.toArray()));
     }
     @Test
     public void test121(){
