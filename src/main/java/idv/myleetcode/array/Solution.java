@@ -148,4 +148,23 @@ public class Solution{
     public int maxProfit(int[] prices) {
         return secondImpl121(prices);
     }
+    // 88. Merge Sorted Array
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int totalIdx = (n + m)- 1;
+        int i = m-1;
+        int j = n-1;
+        for(int k=totalIdx; k>=0; k--){
+            if(i<0){
+                nums1[k] = nums2[j--];
+            }else if(j<0){
+                nums1[k] = nums1[i--];
+            }else{
+                if(nums2[j] > nums1[i]){
+                    nums1[k] = nums2[j--];
+                }else{
+                    nums1[k] = nums1[i--];
+                }
+            }
+        }
+    }
 }
