@@ -20,6 +20,12 @@ public class SolutionTest {
         System.out.println(Arrays.toString(A));
     }
     @Test
+    public void test26(){
+        int[] B = new int[]{2,3,4,6,6,6,6,6,7};
+        assertEquals(5, s.removeDuplicates(B));
+        System.out.println(Arrays.toString(B));
+    }
+    @Test
     public void test118(){
         List<List<Integer>> tri = s.generate1(5);
         System.out.println(Arrays.deepToString(tri.toArray()));
