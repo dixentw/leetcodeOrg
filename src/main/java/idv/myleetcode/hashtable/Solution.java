@@ -68,4 +68,22 @@ public class Solution{
         }
         return true;
     }
+    //205. Isomorphic Strings
+    public boolean isIsomorphic(String s, String t) {
+        Map<Character, Character> charMap = new HashMap<>();
+        for(int i=0; i<s.length(); i++){
+            Character aMapping = charMap.get(s.charAt(i));
+            if(aMapping==null){
+                if(charMap.containsValue(t.charAt(i))){
+                    return false;
+                }
+                charMap.put(s.charAt(i), t.charAt(i));
+            }else{
+                if(!aMapping.equals(t.charAt(i))){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

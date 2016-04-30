@@ -25,5 +25,12 @@ public class SolutionTest {
         assertFalse(s.wordPattern("abba", "dog dog dog dog"));
         assertFalse(s.wordPattern("jquery", "jquery"));
     }
+    @Test
+    public void test205(){
+        assertTrue(s.isIsomorphic("egg", "add"));
+        assertFalse(s.isIsomorphic("ab", "cc"));
+        assertFalse(s.isIsomorphic("foo", "bar"));
+        assertTrue(s.isIsomorphic("paper", "title"));
+    }
 
 }
