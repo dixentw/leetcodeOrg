@@ -40,4 +40,32 @@ public class Solution{
         }
         return "" + bull + "A" + cow + "B";
     }
+    //290. Word Pattern
+    public boolean wordPattern(String pattern, String str) {
+        String[] words = str.split(" ");
+        if(words.length!= pattern.length()){
+            return false;
+        }
+        Map<Character, String> table = new HashMap<>();
+        for(int i=0; i<pattern.length(); i++){
+            String word = table.get(pattern.charAt(i));
+            if(word==null){//掃一遍之前的
+                if(table.containsValue(words[i])){
+                    return false;
+                }
+                /*
+                for(Character c : table.keySet()){
+                    if(c!=pattern.charAt(i) && table.get(c).equals(words[i])){
+                        return false;
+                    }
+                }*/
+                table.put(pattern.charAt(i), words[i]);
+            }else{
+                if(!word.equals(words[i])){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

@@ -17,5 +17,13 @@ public class SolutionTest {
         result = s.getHint("1123", "0111");
         assertEquals("1A1B", result);
     }
+    @Test
+    public void test290(){
+        assertTrue(s.wordPattern("abba", "dog cat cat dog"));
+        assertFalse(s.wordPattern("abba", "dog cat cat fish"));
+        assertFalse(s.wordPattern("aaaa", "dog cat cat dog"));
+        assertFalse(s.wordPattern("abba", "dog dog dog dog"));
+        assertFalse(s.wordPattern("jquery", "jquery"));
+    }
 
 }
