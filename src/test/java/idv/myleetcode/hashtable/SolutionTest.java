@@ -9,7 +9,6 @@ import java.util.*;
  */
 public class SolutionTest {
     Solution s = new Solution();
-
     @Test
     public void test299(){
         String result = s.getHint("1807", "7810");
@@ -31,6 +30,10 @@ public class SolutionTest {
         assertFalse(s.isIsomorphic("ab", "cc"));
         assertFalse(s.isIsomorphic("foo", "bar"));
         assertTrue(s.isIsomorphic("paper", "title"));
+    }
+    @Test
+    public void test204(){
+        assertEquals(3, s.countPrimes(7));
     }
 
 }

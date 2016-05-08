@@ -76,4 +76,14 @@ public class SolutionTest {
             System.out.println(Arrays.toString(a));
         }
     }
+    @Test
+    public void test46(){
+        s.strperm("abc");
+        int[] A = new int[]{1,2,3,4};
+        List<List<Integer>> r = s.permute(A);
+        for(List<Integer> l : r){
+            System.out.print("@@@");
+            System.out.println(Arrays.toString(l.toArray()));
+        }
+    }
 }

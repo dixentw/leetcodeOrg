@@ -86,4 +86,26 @@ public class Solution{
         }
         return true;
     }
+    //204. Count Primes
+    public int countPrimes(int n) {
+        boolean[] isPrimes = new boolean[n];
+        for(int i=2; i<n; i++){
+            isPrimes[i] = true;
+        }
+        for(int i=2; i * i<=n; i++){
+            if(!isPrimes[i]){
+                continue;
+            }
+            for(int j=i*i; j<n; j+=i){
+                isPrimes[j] = false;
+            }
+        }
+        int result = 0;
+        for(int i=2; i<n; i++){
+            if(isPrimes[i]){
+                result++;
+            }
+        }
+        return result;
+    }
 }

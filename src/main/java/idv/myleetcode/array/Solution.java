@@ -223,4 +223,42 @@ public class Solution{
         }
         return prevIdx;
     }
+    //46. Permutations
+    public void permuteHelper(List<Integer> selected, List<Integer> remainds, List<List<Integer>> result){
+        if(remainds.size()==0){
+            result.add(selected);
+        }else{
+            for(int i=0; i<remainds.size(); i++){
+                List<Integer> sCopy = new ArrayList<>(selected);
+                List<Integer> rCopy = new ArrayList<>(remainds);
+                Integer elem = rCopy.remove(i);
+                sCopy.add(elem);
+                permuteHelper(sCopy, rCopy, result);
+            }
+        }
+    }
+    public List<List<Integer>> permute(int[] nums) {
+        List<Integer> permuted = new ArrayList<>();
+        List<Integer> numsArray = new ArrayList<>();
+        for(int i=0; i<nums.length; i++){
+            numsArray.add(nums[i]);
+        }
+        List<List<Integer>> result = new ArrayList<>();
+        permuteHelper(permuted, numsArray, result);
+        return result;
+    }
+    public void strpermHelp(String prefix, String remainds){
+        int n = remainds.length();
+        if(n==0){
+            System.out.println(prefix);
+        }else{
+            for(int i=0; i< n; i++){
+                strpermHelp(prefix+remainds.charAt(i), remainds.substring(0, i) + remainds.substring(i+1, n));
+            }
+        }
+    }
+    public void strperm(String input){
+        strpermHelp("", input);
+    }
+
 }
