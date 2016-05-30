@@ -20,7 +20,9 @@ public class FloodFillTest {
             {0,0,1,1,1,1,1,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0},
         };
-        FloodFill.fill(data, 4, 4, 0, 1);
+        FloodFill floodFill = new FloodFill();
+        //FloodFill.fill(data, 4, 4, 0, 1);
+        floodFill.fillStack(data, 4, 4, 0, 1);
         for(int i=0; i<data.length; i++){
             System.out.println(Arrays.toString(data[i]));
         }
