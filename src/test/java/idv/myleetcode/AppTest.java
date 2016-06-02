@@ -10,8 +10,10 @@ public class AppTest{
     /**
     * Rigourous Test :-)
     */
+    App a = new App();
     @Test
     public void testApp(){
-        assertTrue( true );
+        assertTrue( a.parlindrome("abcdcba") );
+        assertTrue( a.parlindrome("abccba") );
     }
 }
