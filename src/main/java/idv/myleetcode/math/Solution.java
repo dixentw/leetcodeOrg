@@ -45,11 +45,38 @@ public class Solution{
             reverse = reverse*10 + num%10;
             num = num/10;
         }
-        System.out.println(x + "-" + reverse);
         if(reverse!=x){
             return false;
         }
         return true;
+    }
+
+    // 67. Add Binary
+    public String addBinary(String a, String b) {
+        StringBuffer sb = new StringBuffer();
+        char[] ca = a.toCharArray();
+        char[] cb = b.toCharArray();
+        int i=ca.length-1;
+        int j=cb.length-1;
+        int carry = 0;
+        while(i>=0 || j>=0 || carry > 0){
+            int tmpA, tmpB;
+            if(i<0){
+                tmpA = 0;
+            }else{
+                tmpA = ca[i] - '0';
+            }
+            if(j<0){
+                tmpB = 0;
+            }else{
+                tmpB = cb[j] - '0';
+            }
+            sb.insert(0, (tmpA+tmpB+carry)%2);
+            carry = (tmpA+tmpB+carry)/2;
+            i--;
+            j--;
+        }
+        return sb.toString();
     }
 
 }

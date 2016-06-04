@@ -24,4 +24,9 @@ public class SolutionTest{
         assertFalse(s.isPalindrome2(-1));
         assertFalse(s.isPalindrome2(-2147447412));
     }
+    @Test
+    public void testAddBinary(){
+        assertEquals("10", s.addBinary("1", "1"));
+        assertEquals("100", s.addBinary("11", "1"));
+    }
 }
