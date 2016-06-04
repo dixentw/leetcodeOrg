@@ -78,5 +78,15 @@ public class Solution{
         }
         return sb.toString();
     }
-
+    // 172. Factorial Trailing Zeroes
+    // 要這麼多階乘的結果的0的個數, 0來自於10, 10來自於5, 因為2的個數一定比五多，所以把所有的五collect起來就行了。
+    public int trailingZeroes(int n) {
+        int i = 0;
+        int fives = 5;
+        while(n>fives){
+            i += n/fives;
+            fives = fives * 5;
+        }
+        return i;
+    }
 }

@@ -29,4 +29,8 @@ public class SolutionTest{
         assertEquals("10", s.addBinary("1", "1"));
         assertEquals("100", s.addBinary("11", "1"));
     }
+    @Test
+    public void testTrailingZeroes(){
+        assertEquals(2, s.trailingZeroes(11));
+    }
 }
