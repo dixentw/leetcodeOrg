@@ -10,6 +10,24 @@ public class Solution{
         return 10;
     }
 
+    // 1. two sum
+    public int[] twoSum(int[] nums, int target){
+        Map<Integer, Integer> numbers = new HashMap<>();
+        for(int i=0; i< nums.length; i++){
+            numbers.put(nums[i], i);
+        }
+        for(int i=0; i<nums.length; i++){
+            int search = target - nums[i];
+            Integer idx = numbers.get(search);
+            if(idx == null){
+                continue;
+            }else{
+                return new int[]{idx, i};
+            }
+        }
+        return new int[0];
+    }
+
     // 219. contains duplicate
     public boolean containsNearbyDuplicate(int[] nums, int k) {
 		Set<Integer> c = new HashSet<>();

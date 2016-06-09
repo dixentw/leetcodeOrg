@@ -10,6 +10,13 @@ import java.util.*;
 public class SolutionTest {
     Solution s = new Solution();
     @Test
+    public void test1(){
+        int[] A = new int[]{2, 7, 11, 15};
+        int[] result = s.twoSum(A, 9);
+        assertTrue(result[0]==1||result[0]==0);
+        assertTrue(result[1]==1||result[1]==0);
+    }
+    @Test
     public void test88(){
         int[] A = new int[6];
         A[0] = 1;
