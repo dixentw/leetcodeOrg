@@ -88,9 +88,35 @@ public class SolutionTest {
         s.strperm("abc");
         int[] A = new int[]{1,2,3,4};
         List<List<Integer>> r = s.permute(A);
+        /*
         for(List<Integer> l : r){
-            System.out.print("@@@");
             System.out.println(Arrays.toString(l.toArray()));
-        }
+        }*/
+    }
+    @Test
+    public void test324(){
+        int[] a = new int[]{1,2,3,4};
+        int[] b = new int[]{1,2,5,6};
+        int[] c = s.intersection(a, b);
+        System.out.println(Arrays.toString(c));
+    }
+    @Test
+    public void testAddDigit(){
+        System.out.println(s.isAnagram("cat", "tac"));
+        System.out.println(s.isAnagram("cat", "sac"));
+    }
+    @Test
+    public void testAddOne(){
+        int[] numb = new int[]{9,9,9,9};
+        int[] numb1 = new int[]{9,9,8,9};
+        System.out.println(Arrays.toString(s.plusOne(numb)));
+        System.out.println(Arrays.toString(s.plusOne(numb1)));
+    }
+    @Test
+    public void testDuplicate(){
+        int[] nums1 = {0,1,3,2,4,6,6,7};
+        int[] nums2 = {0,1,3,2,4,6,5,7};
+        assertTrue(s.containsDuplicate(nums1));
+        assertFalse(s.containsDuplicate(nums2));
     }
 }

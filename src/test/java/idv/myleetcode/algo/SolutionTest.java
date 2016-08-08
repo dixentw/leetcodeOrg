@@ -8,11 +8,22 @@ import java.util.*;
  * Unit test for simple App.
  */
 public class SolutionTest {
+    private Solution s = new Solution();
+
+    @Test
+    public void testAddDigit(){
+        System.out.println(s.addDigit(1990));
+    }
+
+    @Test
+    public void testBinarySearch(){
+        int n = s.firstBadVersion(2);
+        System.out.println("fffffff : " +n);
+    }
 
     @Test
     public void testMultiThread(){
         try{
-            Solution s = new Solution();
             assertEquals(18, s.computeArea(0,0,3,3,3,0,6,3));
             assertEquals(28, s.computeArea(0,0,4,4,3,0,7,4));
             assertEquals(4, s.computeArea(0,0,0,0,-1,-1,1,1));

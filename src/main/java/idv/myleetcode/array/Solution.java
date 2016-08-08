@@ -5,11 +5,6 @@ import java.util.*;
  * Hello world!
  */
 public class Solution{
-
-    public int get10Num(){
-        return 10;
-    }
-
     // 1. two sum
     public int[] twoSum(int[] nums, int target){
         Map<Integer, Integer> numbers = new HashMap<>();
@@ -85,18 +80,6 @@ public class Solution{
             }
         }
     }
-    // 217. contains duplicate 1
-    public boolean containsDuplicate(int[] nums) {
-        Arrays.sort(nums);
-        for(int i=0; i<nums.length; i++){
-            if(i>0){
-                if(nums[i]==nums[i-1]){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
     // 189. Rotate Array
     public void rotate(int[] nums, int k) {
         List<Integer> tmp = new ArrayList<>();
@@ -133,8 +116,25 @@ public class Solution{
         Arrays.sort(nums);
         return nums[nums.length/2];
     }
+    private int thirdImpl(int[] nums){
+        int top = 0;
+        int num = 0;
+        for(int i=0; i<nums.length;i++){
+            if(num==0){
+                top = nums[i];
+            }else{
+                if(top==nums[i]){
+                    num++;
+                }else{
+                    num--;
+                }
+            }
+        }
+        return top;
+    }
     public int majorityElement(int[] nums) {
-        return secondImpl(nums);
+        //return secondImpl(nums);
+        return thirdImpl(nums);
     }
     // 121. Best Time to Buy and Sell Stock
     //cannot pass time limit
@@ -278,5 +278,92 @@ public class Solution{
     public void strperm(String input){
         strpermHelp("", input);
     }
-
+    //349 intersection
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> result = new HashSet<Integer>();
+        Set<Integer> tmp1 = new HashSet<Integer>();
+        for(Integer i : nums1){
+            tmp1.add(i);
+        }
+        for(Integer i : nums2){
+            if(tmp1.contains(i)){
+                result.add(i);
+            }
+        }
+        int[] rt = new int[result.size()];
+        int i=0;
+        for(Integer e : result){
+            rt[i] = e;
+            i++;
+        }
+        return rt;
+    }
+    // anagram
+    public boolean isAnagram(String s, String t){
+        char[] schars = s.replaceAll("\\s", "").toCharArray();
+        char[] tchars = t.replaceAll("\\s", "").toCharArray();
+        Arrays.sort(schars);
+        Arrays.sort(tchars);
+        if(schars.length != tchars.length){
+            return false;
+        }else{
+            for(int i=0; i<schars.length; i++){
+                if(schars[i]!=tchars[i]){
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+    //plus one
+    public int[] plusOne(int[] digits){
+        for(int i=digits.length-1; i>=0; i--){
+            if(digits[i]+1==10){
+                digits[i]=0;
+                if(i==0){
+                    int[] result = new int[digits.length+1];
+                    result[0]=1;
+                    return result;
+                }
+            }else{
+                digits[i] += 1;
+                break;
+            }
+        }
+        return digits;
+    }
+    // 217 contains duplicate
+    public boolean containsDuplicate(int[] nums) {
+        Arrays.sort(nums);
+        for(int i=0; i< nums.length-1; i++){
+            if(nums[i]==nums[i+1]){
+                return true;
+            }
+        }
+        return false;
+    }
+    //283 move Zeroes
+    public void moveZeros(int[] nums){
+        int head = 0;
+        int tmp = 0;
+        for(int i=0; i<nums.length; i++){
+            if(nums[i]!=0){
+                tmp = nums[head];
+                nums[head] = nums[i];
+                nums[i] = tmp;
+                head++;
+            }
+        }
+    }
+    // 171
+    public int columnNumber(String s){
+        int result = 0;
+        int counter = 0;
+        for(int i=s.length()-1; i>=0; i++){
+            int diff = s.charAt(i) - 'A' + 1;
+            result += diff * Math.pow(26, counter);
+            counter++;
+        }
+        return result;
+    }
 }

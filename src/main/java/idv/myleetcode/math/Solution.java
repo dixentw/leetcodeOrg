@@ -89,4 +89,18 @@ public class Solution{
         }
         return i;
     }
+    // 191. Number of 1 bits
+    // 把所有的1 都收集起來，這題的重點在於要可以先把input轉成unsigned number, 所以開了一個long的型態
+    // 去交集N, 0就還會是0,數值不變，但不會被整數的upper bound整到
+    public int hammingWeight(int n) {
+        long tmp = 0xffffffffL & n;
+        int result = 0;
+        while(tmp>0){
+            if(tmp%2==1){
+                result++;
+            }
+            tmp = tmp/2;
+        }
+        return result;
+    }
 }
