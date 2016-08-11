@@ -366,4 +366,62 @@ public class Solution{
         }
         return result;
     }
+    //90. Subsets II
+    private void helper(List<List<Integer>> res, List<Integer> tmp, int[] S, int pos){
+        res.add(tmp);
+        for(int i=pos; i<S.length; i++){
+            List<Integer> p = new ArrayList<>(tmp);
+            p.add(S[i]);
+            helper(res, p, S, i+1);
+        }
+    }
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+		List<Integer> tmp = new ArrayList<>();
+        helper(res, tmp, nums, 0);
+        return res;
+    }
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (nums == null || nums.length == 0) {
+            return result;
+        }
+        Arrays.sort(nums);
+        result.add(new ArrayList<Integer>());
+        for (int n : nums) {
+            int size = result.size();
+            for (int i = 0; i < size; i++) {
+                List<Integer> l = new ArrayList<>(result.get(i));
+                l.add(n);
+                result.add(l);
+            }
+        }
+        return result;
+    }
+    //153 find minimum in rotated sorted array
+    public int findMin(int[] nums) {
+        int low = 0, high = nums.length - 1;
+        while (low < high && nums[low] >= nums[high]) {
+            int mid = (low + high) / 2;
+            if (nums[mid] > nums[high])
+                low = mid + 1;
+            else
+                high = mid;
+            }
+            return nums[low];
+    }
+    public String reverse(String s){
+        char[] arrayc = s.toCharArray();
+        int start = 0;
+        int end = arrayc.length-1;
+        while(start<end){
+            char tmp;
+            tmp = arrayc[end];
+            arrayc[end] = arrayc[start];
+            arrayc[start] = tmp;
+            start++;
+            end--;
+        }
+        return new String(arrayc);
+    }
 }

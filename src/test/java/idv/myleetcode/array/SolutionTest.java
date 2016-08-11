@@ -119,4 +119,20 @@ public class SolutionTest {
         assertTrue(s.containsDuplicate(nums1));
         assertFalse(s.containsDuplicate(nums2));
     }
+    @Test
+    public void testReverse(){
+        System.out.println("fefefe");
+        System.out.println(s.reverse("abcdefghijk"));
+        System.out.println(s.reverse("abcd"));
+        System.out.println(s.reverse("abcde"));
+    }
+    @Test
+    public void testSubsets(){
+        int[] nums = {1,2,3};
+        List<List<Integer>> ret = s.subsets(nums);
+        System.out.println("=============================");
+        for(List<Integer> sub : ret){
+			System.out.println(sub);
+		}
+    }
 }
