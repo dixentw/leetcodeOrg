@@ -34,4 +34,18 @@ public class SolutionTest {
             System.out.println("exception");
         }
     }
+    @Test
+    public void testNumOfIsland(){
+        int[][] data = new int[][]{
+            {0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0},
+            {0,0,0,0,0,1,1,0,0,0,0},
+            {0,0,1,0,0,1,1,0,0,0,0},
+            {0,0,1,0,0,0,0,0,0,0,0},
+            {0,0,1,0,0,1,0,0,0,0,0},
+            {0,0,1,0,1,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0,0,0,0,0},
+        };
+        assertEquals(4, s.numberOfIsland(data));
+    }
 }

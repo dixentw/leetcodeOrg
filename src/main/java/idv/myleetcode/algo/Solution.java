@@ -26,22 +26,6 @@ public class Solution{
         }
         return start;
     }
-    public int firstBadVersion_o(int n) {
-        int start = 0;
-        int end = n;
-        while(start<end){
-            System.out.println(start);
-            System.out.println(end);
-            int mid = start + (end-start) / 2;
-            System.out.println(mid);
-            if(isBadVersion(mid)){
-                end = mid;
-            }else{
-                start = mid+1;
-            }
-        }
-        return start;
-    }
 
     public int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
         //if R1, R2 overlap, contains, or separate?
@@ -76,6 +60,32 @@ public class Solution{
             return sum;
         }
     }
-    
+    public int numberOfIsland(int[][] map){
+        int m = map.length;
+        if(m==0){
+            return 0;
+        }
+        int result = 0;
+        for(int i=0; i<m; i++){
+            for(int j=0; j<m; j++){
+                if(map[i][j]==0){
+                    continue;
+                }
+                result++;
+                markAround(map, i, j);
+            }
+        }
+        return result;
+    }
+    private void markAround(int[][] map, int x, int y){
+        if(map[x][y]==0){
+            return;
+        }
+        map[x][y] = 0;
+        markAround(map, x-1,y);
+        markAround(map, x,y-1);
+        markAround(map, x+1,y);
+        markAround(map, x,y+1);
+    }
 
 }

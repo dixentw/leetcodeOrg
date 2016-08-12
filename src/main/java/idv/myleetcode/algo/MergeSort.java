@@ -35,4 +35,32 @@ public class MergeSort{
         idx++;
         return result;
     }
+    class Heap{
+        int[] stores;
+        Heap(int k){
+            stores = new int[k];
+        }
+        int getMin(){
+            return stores[0];
+        }
+        int insert(int i){
+            return 0;
+        }
+    }
+
+    public static int[] mergeKArrays(int[][] arrs){
+        int[] result = new int[arrs.length * arrs[0].length];
+        int[] heapStore = new int[arrs.length];
+        //create heap
+        for(int i=0; i<arrs.length; i++){
+
+        }
+        //create main loop for insert
+        for(int i=0; i< arrs.length * arrs[0].length; i++){
+            //result[i++] = heap.getMin();
+            //2. get next element from Arrays with same array
+            //3. place this element into heap
+        }
+        return new int[]{1,2};
+    }
 }
