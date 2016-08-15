@@ -6,6 +6,12 @@ public class Solution{
     public void hello(){
         System.out.println("Hellow");
     }
+    private List<String> getDirectFriendsForUser(String u){
+        return new ArrayList<String>();
+    }
+    private List<String> getAttendedCoursesForUser(String u){
+        return new ArrayList<String>();
+    }
     public List<String> getRankedCourses(String user) {
         List<String> friends = getDirectFriendsForUser(user);
         List<String> attended = getAttendedCoursesForUser(user);

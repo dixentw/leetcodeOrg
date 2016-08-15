@@ -166,6 +166,40 @@ public class Solution{
     public int maxProfit(int[] prices) {
         return secondImpl121(prices);
     }
+    // 122. Best Time to Buy and Sell Stock II
+    public int maxProfit2(int[] prices){
+        if(prices.length<2){
+            return 0;
+        }
+        if(prices.length==2){
+            if(prices[1] > prices[0]){
+                return prices[1] - prices[0];
+            }else{
+                return 0;
+            }
+        }
+        int profit = 0;
+        int i=0;
+        while(i<prices.length-2){
+            int buy=0, sell=0;
+            while(i<prices.length-1 && prices[i+1] < prices[i]){
+                i++;
+            }
+            buy = i;
+            System.out.println("sssss : "+buy);
+            if(buy==prices.length-1){
+                return profit;
+            }
+            i++;
+            while(i<prices.length-1 && prices[i+1]> prices[i]){
+                i++;
+            }
+            sell = i;
+            System.out.println("buy : "+buy + ", sell:"+sell);
+            profit += prices[sell] - prices[buy];
+        }
+        return profit;
+    }
     // 88. Merge Sorted Array
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         int totalIdx = (n + m)- 1;

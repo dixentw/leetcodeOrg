@@ -24,18 +24,21 @@ public class SolutionTest {
         A[2] = 5;
         int[] B = new int[]{2,4,6};
         s.merge(A, 3, B, 3);
-        System.out.println(Arrays.toString(A));
+        int[] result = {1,2,3,4,5,6};
+        assertTrue(Arrays.equals(A, result));
     }
     @Test
     public void test26(){
         int[] B = new int[]{2,3,4,6,6,6,6,6,7};
         assertEquals(5, s.removeDuplicates(B));
-        System.out.println(Arrays.toString(B));
     }
     @Test
     public void test118(){
         List<List<Integer>> tri = s.generate1(5);
-        System.out.println(Arrays.deepToString(tri.toArray()));
+        int[][] result = {{1}, {1, 1}, {1, 2, 1}, {1, 3, 3, 1}, {1, 4, 6, 4, 1}};
+        for(List<Integer> line : tri){
+            assertTrue(line.contains(1));
+        }
     }
     @Test
     public void test121(){
@@ -53,8 +56,7 @@ public class SolutionTest {
     public void test189(){
         int[] A = new int[]{1,2,3,4,5,6,7};
         s.rotate(A, 3);
-        System.out.println(Arrays.toString(A));
-
+        Arrays.equals(new int[]{5, 6, 7, 1, 2, 3, 4}, A);
     }
     @Test
     public void test217(){
@@ -79,9 +81,10 @@ public class SolutionTest {
             {0,0,0,0,0}
         };
         s.gameOfLife(data);
+        /*
         for(int[] a : data){
             System.out.println(Arrays.toString(a));
-        }
+        }*/
     }
     @Test
     public void test46(){
@@ -98,19 +101,19 @@ public class SolutionTest {
         int[] a = new int[]{1,2,3,4};
         int[] b = new int[]{1,2,5,6};
         int[] c = s.intersection(a, b);
-        System.out.println(Arrays.toString(c));
+        assertTrue(Arrays.equals(new int[]{1,2}, c));
     }
     @Test
     public void testAddDigit(){
-        System.out.println(s.isAnagram("cat", "tac"));
-        System.out.println(s.isAnagram("cat", "sac"));
+        assertTrue(s.isAnagram("cat", "tac"));
+        assertFalse(s.isAnagram("cat", "sac"));
     }
     @Test
     public void testAddOne(){
         int[] numb = new int[]{9,9,9,9};
         int[] numb1 = new int[]{9,9,8,9};
-        System.out.println(Arrays.toString(s.plusOne(numb)));
-        System.out.println(Arrays.toString(s.plusOne(numb1)));
+        Arrays.equals(new int[]{1,0,0,0,0}, s.plusOne(numb));
+        Arrays.equals(new int[]{9,9,9,9}, s.plusOne(numb1));
     }
     @Test
     public void testDuplicate(){
@@ -120,13 +123,6 @@ public class SolutionTest {
         assertFalse(s.containsDuplicate(nums2));
     }
     @Test
-    public void testReverse(){
-        System.out.println("fefefe");
-        System.out.println(s.reverse("abcdefghijk"));
-        System.out.println(s.reverse("abcd"));
-        System.out.println(s.reverse("abcde"));
-    }
-    @Test
     public void testSubsets(){
         int[] nums = {1,2,3};
         List<List<Integer>> ret = s.subsets(nums);
@@ -134,5 +130,18 @@ public class SolutionTest {
         for(List<Integer> sub : ret){
 			System.out.println(sub);
 		}
+    }
+    @Test
+    public void testProfile122(){
+        int[] A = {5,4,3,6,10,32,31,30,45,3};
+        assertEquals(44, s.maxProfit2(A));
+        A = new int[]{5,4,3,6,10,32,31,30,45,46};
+        assertEquals(45, s.maxProfit2(A));
+        A = new int[]{4,2,1};
+        assertEquals(0, s.maxProfit2(A));
+        A = new int[]{1,2};
+        assertEquals(1, s.maxProfit2(A));
+        A = new int[]{1,7,4,2};
+        assertEquals(6, s.maxProfit2(A));
     }
 }
