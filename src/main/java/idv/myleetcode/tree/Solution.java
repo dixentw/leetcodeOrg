@@ -107,4 +107,34 @@ public class Solution{
         }
         return 1+ Math.max(maxDepth(root.left), maxDepth(root.right));
     }
+    // traversal
+    public void preOrder(TreeNode root){
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode tmp = root;
+        stack.push(tmp);
+        while(!stack.empty()){
+            TreeNode n = stack.pop();
+            System.out.println(n.val);
+            if(n.right!=null){
+                stack.push(n.right);
+            }
+            if(n.left!=null){
+                stack.push(n.left);
+            }
+        }
+    }
+    public void inOrder(TreeNode root){
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode tmp = root;
+        while(!stack.empty() || tmp!=null){
+            if(tmp!=null){
+                stack.push(tmp);
+                tmp = tmp.left;
+            }else{
+                tmp = stack.pop();
+                System.out.println(tmp.val);
+                tmp = tmp.right;
+            }
+        }
+    }
 }

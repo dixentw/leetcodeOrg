@@ -48,4 +48,8 @@ public class SolutionTest {
         };
         assertEquals(4, s.numberOfIsland(data));
     }
+    @Test
+    public void testStairCase(){
+        s.stairCase(6);
+    }
 }
