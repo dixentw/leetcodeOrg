@@ -108,4 +108,58 @@ public class Solution{
         }
         return result;
     }
+    //36. Valid Sudoku
+    public boolean isValidSudoku(char[][] board) {
+        //check for row
+        for(int i=0; i<board.length; i++){
+            boolean[] visited = new boolean[10];
+            Arrays.fill(visited, Boolean.FALSE);
+            for(int j=0; j<board[i].length; j++){
+                if(board[i][j]=='.'){
+                    continue;
+                }
+                int num = board[i][j] - '0';
+                if(!visited[num]){
+                    visited[num] = true;
+                }else{
+                    return false;
+                }
+            }
+        }
+        //check for column
+        for(int i=0; i<board.length; i++){
+            boolean[] visited = new boolean[10];
+            Arrays.fill(visited, Boolean.FALSE);
+            for(int j=0; j<board[i].length; j++){
+                if(board[j][i]=='.'){
+                    continue;
+                }
+                int num = board[j][i] - '0';
+                if(!visited[num]){
+                    visited[num] = true;
+                }else{
+                    return false;
+                }
+            }
+        }
+        //check for subgrid, hard
+        for(int i=0; i<board.length; i++){
+            boolean[] visited = new boolean[10];
+            Arrays.fill(visited, Boolean.FALSE);
+            for(int j=i/3*3; j<i/3*3+3; j++){
+                for(int k=(i%3)*3; k<(i%3)*3+3; k++){
+                    if(board[j][k]=='.'){
+                        continue;
+                    }
+                    int num = board[j][k] - '0';
+                    if(!visited[num]){
+                        visited[num] = true;
+                    }else{
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
 }
