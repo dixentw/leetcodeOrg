@@ -55,10 +55,19 @@ public class SolutionTest {
         int[] a = {1,2,2,1};
         int[] b = {2,2};
         int[] result = s.intersect(a, b);
-        System.out.println(Arrays.toString(result));
+        Arrays.equals(new int[]{2,2}, result);
         int[] c = {3,1,2};
         int[] d = {1,1};
         result = s.intersect(c, d);
-        System.out.println(Arrays.toString(result));
+        Arrays.equals(new int[]{1}, result);
+    }
+    @Test
+    public void test3(){
+        assertEquals(3, s.lengthOfLongestSubstring("pwwkew"));
+        assertEquals(1, s.lengthOfLongestSubstring("c"));
+        assertEquals(2, s.lengthOfLongestSubstring("au"));
+        assertEquals(1, s.lengthOfLongestSubstring("aa"));
+        assertEquals(3, s.lengthOfLongestSubstring("aabc"));
+        assertEquals(3, s.lengthOfLongestSubstring("dvdf"));
     }
 }
