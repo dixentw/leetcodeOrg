@@ -162,4 +162,40 @@ public class Solution{
         }
         return true;
     }
+    //350. Intersection of Two Arrays II
+    public int[] intersect(int[] nums1, int[] nums2) {
+        Map<Integer, Integer> table = new HashMap<>();
+        int[] longArr;
+        int[] shortArr;
+        List<Integer> result = new ArrayList<>();
+        if(nums1.length>nums2.length){
+            longArr = nums1;
+            shortArr = nums2;
+        }else{
+            longArr = nums2;
+            shortArr = nums1;
+        }
+        for(int i=0; i<longArr.length; i++){
+            Integer count = table.get(longArr[i]);
+            if(count!=null){
+                count++;
+            }else{
+                count = new Integer(1);
+            }
+            table.put(longArr[i], count);
+        }
+        for(int i=0; i<shortArr.length; i++){
+            Integer count = table.get(shortArr[i]);
+            if(count!=null&& count > 0){
+                count--;
+                result.add(shortArr[i]);
+                table.put(shortArr[i], count);
+            }
+        }
+        int[] rt = new int[result.size()];
+        for(int i=0; i<result.size(); i++){
+            rt[i] = result.get(i);
+        }
+        return rt;
+    }
 }

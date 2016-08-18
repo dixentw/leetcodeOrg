@@ -50,5 +50,15 @@ public class SolutionTest {
         };
         assertTrue(s.isValidSudoku(A));
     }
-
+    @Test
+    public void test350(){
+        int[] a = {1,2,2,1};
+        int[] b = {2,2};
+        int[] result = s.intersect(a, b);
+        System.out.println(Arrays.toString(result));
+        int[] c = {3,1,2};
+        int[] d = {1,1};
+        result = s.intersect(c, d);
+        System.out.println(Arrays.toString(result));
+    }
 }
