@@ -13,4 +13,35 @@ public class App{
         }
         return true;
     }
+    public int getSingle(int[] A){
+        int[] count = new int[32];
+        int result = 0;
+        for (int i = 0; i < 32; i++) {
+            for (int j = 0; j < A.length; j++) {
+                int num = A[j];
+                if (((num >> i) & 1) == 1) {
+                    count[i]++;
+                }
+            }
+            result = result | ((count[i] % 3) << i);
+        }
+        return result;
+    }
+
+    public int getSingle2(int[] A){
+        int ones = 0;
+        int twos = 0;
+        int threes = 0;
+        for(int i=0; i<A.length; i++){
+            twos = twos | (ones & A[i]);
+            System.out.println(twos);
+            ones = ones ^ A[i];
+            System.out.println(ones);
+            threes = ~ (twos & ones);
+            System.out.println(threes);
+            ones = ones & threes;
+            twos = twos & threes;
+        }
+        return ones;
+    }
 }
