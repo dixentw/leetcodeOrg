@@ -13,6 +13,10 @@ public class SolutionTest {
     @Test
     public void test1(){
         int[] B = {2,2,2,4};
-        System.out.println(s.getAppear1(B));
+        assertEquals(4, s.getAppear1(B));
+    }
+    @Test
+    public void test2(){
+        assertEquals(1073741824, s.reverseBit(2));
     }
 }
