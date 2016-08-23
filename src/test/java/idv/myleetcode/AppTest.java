@@ -7,13 +7,15 @@ import org.junit.*;
  * Unit test for simple App.
  */
 public class AppTest{
-    /**
-    * Rigourous Test :-)
-    */
     App a = new App();
     @Test
     public void testApp(){
         assertTrue( a.parlindrome("abcdcba") );
         assertTrue( a.parlindrome("abccba") );
+    }
+    @Test
+    public void testBits(){
+        int b = a.getSingle(new int[]{3,2,3,3});
+        assertEquals(2,b);
     }
 }
