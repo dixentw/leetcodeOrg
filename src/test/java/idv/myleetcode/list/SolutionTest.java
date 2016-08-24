@@ -46,4 +46,21 @@ public class SolutionTest {
         m4.next = m5;
         assertTrue(s.isPalindromeO1(m1));
     }
+    @Test
+    public void testlalala(){
+        ListNode m1 = new ListNode(1);
+        ListNode m2 = new ListNode(2);
+        ListNode m3 = new ListNode(3);
+        ListNode m4 = new ListNode(4);
+        ListNode m5 = new ListNode(5);
+        m1.next = m2;
+        m2.next = m3;
+        m3.next = m4;
+        m4.next = m5;
+        ListNode h = s.reverse(m1);
+        while(h!=null){
+            System.out.println(h.val);
+            h = h.next;
+        }
+    }
 }

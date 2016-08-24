@@ -36,6 +36,7 @@ public class SolutionTest {
     }
     @Test
     public void testNumOfIsland(){
+        /*
         int[][] data = new int[][]{
             {0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0},
@@ -47,9 +48,21 @@ public class SolutionTest {
             {0,0,0,0,0,0,0,0,0,0,0},
         };
         assertEquals(4, s.numberOfIsland(data));
+        */
+        char[][] ddd = new char[][]{
+            {'1','1','1','1','0'},
+            {'1','1','0','1','0'},
+            {'1','1','0','0','0'},
+            {'0','0','0','0','0'}
+        };
+        assertEquals(1, s.numberOfIsland(ddd));
     }
     @Test
     public void testStairCase(){
         s.stairCase(6);
+    }
+    @Test
+    public void testInversion(){
+        assertEquals(5, s.countInversion(new int[]{1, 20, 6, 4, 5}));
     }
 }

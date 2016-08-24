@@ -60,32 +60,35 @@ public class Solution{
             return sum;
         }
     }
-    public int numberOfIsland(int[][] map){
-        int m = map.length;
+    //200. Number of Islands
+    public int numberOfIsland(char[][] grid){
+        int m = grid.length;
         if(m==0){
             return 0;
         }
         int result = 0;
         for(int i=0; i<m; i++){
             for(int j=0; j<m; j++){
-                if(map[i][j]==0){
+                if(grid[i][j]=='0'){
                     continue;
                 }
                 result++;
-                markAround(map, i, j);
+                markAround(grid, i, j);
             }
         }
         return result;
     }
-    private void markAround(int[][] map, int x, int y){
-        if(map[x][y]==0){
+    private void markAround(char[][] map, int x, int y){
+        if(x<0 || y<0 || x>=map.length||y>=map[0].length){
             return;
         }
-        map[x][y] = 0;
-        markAround(map, x-1,y);
-        markAround(map, x,y-1);
-        markAround(map, x+1,y);
-        markAround(map, x,y+1);
+        if(map[x][y]=='1'){
+            map[x][y] = '0';
+            markAround(map, x-1,y);
+            markAround(map, x,y-1);
+            markAround(map, x+1,y);
+            markAround(map, x,y+1);
+        }
     }
     public void stairCase(int n){
         for(int i=0;i<n; i++){
@@ -97,6 +100,50 @@ public class Solution{
             }
             System.out.println("");
         }
+    }
+    // count inversion
+    private int merge(int[] a, int[] tmp, int left, int mid, int right){
+        int idxLeft = left;
+        int idxRight = mid;
+        int idx = left;
+        int invert = 0 ;
+        while(idxLeft<mid && idxRight<=right){
+            if(a[idxLeft] < a[idxRight]){
+                tmp[idx++] = a[idxLeft++];
+            }else{
+                tmp[idx++] = a[idxRight++];
+                invert = invert + mid-idxLeft;
+            }
+        }
+        // add remaind array
+        while(idxLeft<mid){
+            tmp[idx++] = a[idxLeft++];
+        }
+        while(idxRight<=right){
+            tmp[idx++] = a[idxRight++];
+        }
+        for(int i=left; i<=right; i++){
+            a[i] = tmp[i];
+        }
+        return invert;
+    }
+    private int mergeSort(int[] array, int[] tmp, int left, int right){
+        int invert = 0;
+        int mid = 0;
+        if(right>left){
+            mid = (right+left)/2;
+            System.out.println(left+", "+right+", "+mid);
+            invert = mergeSort(array, tmp, left, mid);
+            invert += mergeSort(array, tmp, mid+1, right);
+            invert += merge(array, tmp, left, mid+1, right);
+        }
+        return invert;
+    }
+    public int countInversion(int[] A){
+        int[] tmp = new int[A.length];
+        int result = mergeSort(A, tmp, 0, A.length-1);
+        System.out.println(Arrays.toString(A));
+        return result;
     }
 
 }
