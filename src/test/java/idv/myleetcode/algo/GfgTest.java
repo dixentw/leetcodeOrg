@@ -57,4 +57,11 @@ public class GfgTest {
         int[] expect = new int[]{1,2,9,12,23,30,50};
         assertTrue(Arrays.equals(expect, ori));
     }
+    @Test
+    public void test8(){
+        float[] ori = new float[]{0.897f, 0.565f, 0.656f, 0.1234f, 0.665f, 0.3434f};
+        float[] expect = new float[]{0.1234f, 0.3434f, 0.565f, 0.656f, 0.665f, 0.897f};
+        g.bucketSort(ori, ori.length);
+        assertTrue(Arrays.equals(expect, ori));
+    }
 }

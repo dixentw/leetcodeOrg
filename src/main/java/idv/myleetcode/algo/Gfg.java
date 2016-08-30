@@ -111,4 +111,29 @@ public class Gfg{
             quickSort(A, mid+1, end);
         }
     }
+    public void bucketSort(float[] A, int n){
+        List<List<Float>> buckets = new ArrayList<>();
+        for(int i=0; i<n; i++){
+            buckets.add(new ArrayList<Float>());
+        }
+        for(int i=0; i<A.length; i++){
+            // assume that all elements distributed in 0~1
+            int bi = (int)(n * A[i]);
+            buckets.get(bi).add(A[i]);
+        }
+        for(int i=0; i<n; i++){
+            List<Float> tmp = buckets.get(i);
+            Collections.sort(tmp);
+        }
+        for(int i=0; i<n; i++){
+            List<Float> tmp = buckets.get(i);
+        }
+        int j=0;
+        for(int i=0; i<n; i++){
+            List<Float> tmp = buckets.get(i);
+            for(Float f : tmp){
+                A[j++] = f;
+            }
+        }
+    }
 }
