@@ -53,4 +53,62 @@ public class Gfg{
         }
         return result;
     }
+    public void bubbleSort(int[] A){
+        for(int i=0; i<A.length-1; i++){
+            for(int j=0; j<A.length-1-i;j++){
+                if(A[j]>A[j+1]){
+                    int tmp = A[j+1];
+                    A[j+1] = A[j];
+                    A[j] = tmp;
+                }
+            }
+        }
+    }
+    public void insertionSort(int[] A){
+        for(int i=1; i<A.length-1; i++){
+            int key = A[i];
+            int j = i-1;
+            while(j>=0 && A[j]> key){
+                A[j+1] = A[j];
+                j--;
+            }
+            A[j+1] = key;
+        }
+    }
+    public void selectionSort(int[] A){
+        for(int i=0; i<A.length; i++){
+            int minIdx = i;
+            for(int j=i+1; j<A.length; j++){
+                if(A[j] < A[minIdx]){
+                    minIdx = j;
+                }
+            }
+            int tmp = A[minIdx];
+            A[minIdx] = A[i];
+            A[i] = tmp;
+        }
+    }
+    private int qHelper(int[] A, int start, int end){
+        int pivot = A[end];
+        int i = start;
+        for(int j=start; j<end; j++){
+            if(A[j] < pivot){
+                int tmp = A[j];
+                A[j] = A[i];
+                A[i] = tmp;
+                i++;
+            }
+        }
+        int tmp = A[i];
+        A[i] = A[end];
+        A[end] = tmp;
+        return i;
+    }
+    public void quickSort(int[] A, int start, int end){
+        if(start < end){
+            int mid = qHelper(A, start, end);
+            quickSort(A, start, mid-1);
+            quickSort(A, mid+1, end);
+        }
+    }
 }
