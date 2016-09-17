@@ -20,7 +20,7 @@ public class GfgTest {
     public void test2(){
         int[] A = new int[]{4, 1, 3, 2, 16, 9, 10, 14, 8, 7};
         g.buildMaxHeap(A);
-        System.out.println(Arrays.toString(A));
+        //System.out.println(Arrays.toString(A));
     }
     @Test
     public void test3(){
