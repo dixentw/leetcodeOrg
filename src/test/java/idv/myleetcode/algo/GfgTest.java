@@ -28,4 +28,40 @@ public class GfgTest {
         int[] expect = new int[]{50,30,23,12};
         assertTrue(Arrays.equals(expect, result));
     }
+    @Test
+    public void test4(){
+        int[] ori = new int[]{1, 23, 12, 9, 30, 2, 50};
+        g.bubbleSort(ori);
+        int[] expect = new int[]{1,2,9,12,23,30,50};
+        assertTrue(Arrays.equals(expect, ori));
+    }
+    @Test
+    public void test5(){
+        int[] ori = new int[]{1, 23, 12, 9, 30, 2, 50};
+        g.insertionSort(ori);
+        int[] expect = new int[]{1,2,9,12,23,30,50};
+        assertTrue(Arrays.equals(expect, ori));
+    }
+    @Test
+    public void test6(){
+        int[] ori = new int[]{1, 23, 12, 9, 30, 2, 50};
+        g.selectionSort(ori);
+        int[] expect = new int[]{1,2,9,12,23,30,50};
+        assertTrue(Arrays.equals(expect, ori));
+    }
+    @Test
+    public void test7(){
+        int[] ori = new int[]{1, 23, 12, 9, 30, 2, 50};
+        g.quickSort(ori,0, ori.length-1);
+        System.out.println(Arrays.toString(ori));
+        int[] expect = new int[]{1,2,9,12,23,30,50};
+        assertTrue(Arrays.equals(expect, ori));
+    }
+    @Test
+    public void test8(){
+        float[] ori = new float[]{0.897f, 0.565f, 0.656f, 0.1234f, 0.665f, 0.3434f};
+        float[] expect = new float[]{0.1234f, 0.3434f, 0.565f, 0.656f, 0.665f, 0.897f};
+        g.bucketSort(ori, ori.length);
+        assertTrue(Arrays.equals(expect, ori));
+    }
 }
