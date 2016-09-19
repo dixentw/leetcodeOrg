@@ -13,7 +13,7 @@ public class BackTrackTest {
     }
     @Test
     public void test3(){
-        List<String> result = bt.strperm2("aba");
+        List<String> result = bt.strperm2("abc");
         System.out.println("----------------");
         for(String s : result){
             System.out.println(s);
