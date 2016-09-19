@@ -71,4 +71,21 @@ public class Solution{
         }
         return s.pop();
     }
+    public int[] nextGreatE(int[] A){
+        int[] result = new int[A.length];
+        for(int i=0; i<A.length; i++){
+            boolean isTraversed = false;
+            for(int j=i+1; j<A.length; j++){
+                if(A[j]>A[i]){
+                    result[i] = A[j];
+                    isTraversed = true;
+                    break;
+                }
+            }
+            if(!isTraversed){
+                result[i] = -1;
+            }
+        }
+        return result;
+    }
 }

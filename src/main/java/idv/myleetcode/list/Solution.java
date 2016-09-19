@@ -99,4 +99,28 @@ public class Solution{
         }
         return prev;
     }
+    //merge sorted list
+    public ListNode merge(ListNode head1, ListNode head2){
+        ListNode dummy = new ListNode(-1);
+        ListNode tail = dummy;
+        while(true){
+            if(head1==null){
+                tail.next = head2;
+                break;
+            }
+            if(head2==null){
+                tail.next = head1;
+                break;
+            }
+            if(head1.val < head2.val){
+                tail.next = head1;
+                head1 = head1.next;
+            }else{
+                tail.next = head2;
+                head2 = head2.next;
+            }
+            tail = tail.next;
+        }
+        return dummy.next;
+    }
 }

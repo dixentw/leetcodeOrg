@@ -63,4 +63,30 @@ public class SolutionTest {
             h = h.next;
         }
     }
+    @Test
+    public void test12(){
+        ListNode m1 = new ListNode(1);
+        ListNode m2 = new ListNode(2);
+        ListNode m3 = new ListNode(3);
+        ListNode m4 = new ListNode(4);
+        ListNode m5 = new ListNode(5);
+        m1.next = m2;
+        m2.next = m3;
+        m3.next = m4;
+        m4.next = m5;
+        ListNode m11 = new ListNode(6);
+        ListNode m21 = new ListNode(7);
+        ListNode m31 = new ListNode(8);
+        ListNode m41 = new ListNode(9);
+        ListNode m51 = new ListNode(10);
+        m11.next = m21;
+        m21.next = m31;
+        m31.next = m41;
+        m41.next = m51;
+        ListNode h = s.merge(m1, m11);
+        while(h!=null){
+            System.out.println(h.val);
+            h = h.next;
+        }
+    }
 }
