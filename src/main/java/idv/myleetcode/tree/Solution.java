@@ -137,4 +137,27 @@ public class Solution{
             }
         }
     }
+    public TreeNode constructTree(int[] pre, int[] in){
+        int preStart = 0;
+        int preEnd = pre.length-1;
+        int inStart = 0;
+        int inEnd = in.length-1;
+        return construct(pre, preStart, preEnd, in, inStart, inEnd);
+    }
+    public TreeNode construct(int[] pre, int ps, int pe, int[] in, int is, int ie){
+        if(ps>pe||is>ie){
+            return null;
+        }
+        TreeNode p = new TreeNode(pre[ps]);
+        int k = 0;
+        for(int i=0; i<in.length; i++){
+            if(pre[ps]==in[i]){
+                k=i;
+                break;
+            }
+        }
+        p.left = construct(pre, ps+1, ps+(k-is), in, is, k-1);
+        p.right=construct(pre, ps+(k-is)+1, pe, in, k+1, ie);
+        return p;
+    }
 }

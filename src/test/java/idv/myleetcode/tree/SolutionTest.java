@@ -46,4 +46,13 @@ public class SolutionTest {
         r.right = rrr;
         s.inOrder(root);
     }
+    @Test
+    public void test4(){
+        int[] pre = new int[]{1,2,4,5,3,7,6,8};
+        int[] in = new int[]{4,2,5,1,6,7,3,8};
+        TreeNode root = s.constructTree(pre, in);
+        assertEquals(1, root.val);
+        assertEquals(2, root.left.val);
+        assertEquals(3, root.right.val);
+    }
 }

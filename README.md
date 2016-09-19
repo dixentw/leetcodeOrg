@@ -1,3 +1,3 @@
 # leetcodeOrg
 
-put all my java solution here, with maven.
+Put all my java solution here, with maven.

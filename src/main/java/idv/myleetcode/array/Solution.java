@@ -299,19 +299,59 @@ public class Solution{
         permuteHelper(permuted, numsArray, result);
         return result;
     }
-    public void strpermHelp(String prefix, String remainds){
-        int n = remainds.length();
-        if(n==0){
-            System.out.println(prefix);
-        }else{
-            for(int i=0; i< n; i++){
-                strpermHelp(prefix+remainds.charAt(i), remainds.substring(0, i) + remainds.substring(i+1, n));
+    //46. Permutations 2
+    public void permuteHelper2(int[] nums,List<Integer> path, List<List<Integer>> result){
+        int len = nums.length;
+        if(path.size()==len){// meet final, copy path and output
+            result.add(new ArrayList<Integer>(path));
+            return;
+        }
+        for(int i=0; i<len; i++){
+            if(path.contains(nums[i])){
+                continue;
             }
+            path.add(nums[i]);
+            permuteHelper2(nums, path, result);
+            path.remove(path.size()-1);
         }
     }
-    public void strperm(String input){
-        strpermHelp("", input);
+    public List<List<Integer>> permute2(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        if(nums==null||nums.length==0){
+            return result;
+        }
+        permuteHelper2(nums, new ArrayList<Integer>(), result);
+        return result;
     }
+    //47. Permutations 2
+    public void permuteUniqueHelper(int[] nums, List<Integer> path, List<List<Integer>> result, boolean[] visited){
+        int len = nums.length;
+        if(path.size()==len){
+            result.add(new ArrayList<Integer>(path));
+            return;
+        }
+        for(int i=0; i<len; i++){
+            if(visited[i] || (i!=0 && visited[i-1] && nums[i]==nums[i-1])){
+                continue;
+            }
+            visited[i] = true;
+            path.add(nums[i]);
+            permuteUniqueHelper(nums, path, result, visited);
+            path.remove(path.size()-1);
+            visited[i] = false;
+        }
+    }
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        if(nums==null||nums.length==0){
+            return result;
+        }
+        Arrays.sort(nums);
+        boolean[] visited = new boolean[nums.length];
+        permuteUniqueHelper(nums, new ArrayList<Integer>(), result, visited);
+        return result;
+    }
+
     //349 intersection
     public int[] intersection(int[] nums1, int[] nums2) {
         Set<Integer> result = new HashSet<Integer>();

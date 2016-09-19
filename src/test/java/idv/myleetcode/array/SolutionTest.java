@@ -88,13 +88,34 @@ public class SolutionTest {
     }
     @Test
     public void test46(){
-        s.strperm("abc");
+        //s.strperm("abca");
         int[] A = new int[]{1,2,3,4};
         List<List<Integer>> r = s.permute(A);
         /*
+        System.out.println("------------------");
         for(List<Integer> l : r){
             System.out.println(Arrays.toString(l.toArray()));
         }*/
+    }
+    @Test
+    public void test46_2(){
+        //s.strperm("abca");
+        int[] A = new int[]{1,2,3,4};
+        List<List<Integer>> r = s.permute2(A);
+        System.out.println("------------------");
+        for(List<Integer> l : r){
+            System.out.println(Arrays.toString(l.toArray()));
+        }
+    }
+    @Test
+    public void test47(){
+        int[] A = new int[]{1,2,2,3};
+        //List<List<Integer>> r = s.permuteUnique(A);
+        System.out.println("--------------");
+        List<List<Integer>> r = s.permute2(A);
+        for(List<Integer> l : r){
+            System.out.println(Arrays.toString(l.toArray()));
+        }
     }
     @Test
     public void test324(){
