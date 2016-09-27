@@ -67,7 +67,6 @@ public class Solution{
             for(int j=0; j<cityLength; j++){
                 int minDistance = Integer.MAX_VALUE;
                 for(int k=0; k<lockerXCoordinates.length;k++){
-                    System.out.println(k);
                     int distance = Math.abs(i - point[k][0]) + Math.abs(j - point[k][1]);
                     if(distance < minDistance){
                         minDistance = distance;
@@ -77,6 +76,33 @@ public class Solution{
             }
         }
         return result;
+    }
+    public int maxIsland(int[][] map){
+        int mapSize = map.length;
+        int max = 0;
+        for(int i=0; i<mapSize; i++){
+            for(int j=0; j<mapSize; j++){
+                if(map[i][j]==1){
+                    List<Integer> counter = new ArrayList<>();
+                    markaround(map, i, j, counter);
+                    if(max < counter.size()){
+                        max = counter.size();
+                    }
+                }
+            }
+        }
+        return max;
+    }
+    private void markaround(int[][] map, int i, int j, List<Integer> iSize){
+        if(i<0||j<0||i>=map.length||j>=map.length||map[i][j]==0){
+            return;
+        }
+        iSize.add(1);
+        map[i][j] = 0;
+        markaround(map, i+1, j, iSize);
+        markaround(map, i, j+1, iSize);
+        markaround(map, i-1, j, iSize);
+        markaround(map, i, j-1, iSize);
     }
 
 }

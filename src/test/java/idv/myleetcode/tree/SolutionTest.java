@@ -55,4 +55,20 @@ public class SolutionTest {
         assertEquals(2, root.left.val);
         assertEquals(3, root.right.val);
     }
+    @Test
+    public void test5(){
+        TreeNode root = new TreeNode(3);
+        root.left = new TreeNode(9);
+        root.right = new TreeNode(20);
+        root.right.left = new TreeNode(15);
+        root.right.right = new TreeNode(7);
+        List<List<Integer>> result = s.zigzagLevelOrder0(root);
+        List<Integer> flat = new ArrayList<>();
+        for(List<Integer> l : result){
+            for(Integer i : l){
+                flat.add(i);
+            }
+        }
+        assertEquals("[3, 20, 9, 15, 7]", Arrays.toString(flat.toArray()));
+    }
 }

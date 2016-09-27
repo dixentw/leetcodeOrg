@@ -160,4 +160,37 @@ public class Solution{
         p.right=construct(pre, ps+(k-is)+1, pe, in, k+1, ie);
         return p;
     }
+    // 103. Binary Tree Zigzag Level Order Traversal
+    private void traverseZigzag(TreeNode node, int level, List<List<Integer>> result){
+        if(node==null){
+            return;
+        }
+        if(level > result.size()){
+            result.add(new ArrayList<Integer>());
+        }
+        if(level%2!=0){ // left to rigth
+            result.get(level-1).add(node.val);
+        }else{
+            result.get(level-1).add(0, node.val);
+        }
+        traverseZigzag(node.left, level+1, result);
+        traverseZigzag(node.right, level+1, result);
+    }
+    public List<List<Integer>> zigzagLevelOrder0(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        traverseZigzag(root, 1, result);
+        return result;
+    }
+    /*
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        Vector<TreeNode> queue = new Vector<>();
+        queue.add(root);
+        while(!queue.isEmpty()){
+            TreeNode node = queue.removeElementAt(0);
+            if(node.left!=null){
+
+            }
+        }
+        return null;
+    }*/
 }
