@@ -89,4 +89,35 @@ public class SolutionTest {
             h = h.next;
         }
     }
+    @Test
+    public void test2(){
+        ListNode n1 = new ListNode(2);
+        ListNode n2 = new ListNode(4);
+        ListNode n3 = new ListNode(3);
+        n1.next = n2;
+        n2.next = n3;
+        ListNode m1 = new ListNode(5);
+        ListNode m2 = new ListNode(6);
+        ListNode m3 = new ListNode(4);
+        m1.next = m2;
+        m2.next = m3;
+        ListNode h = s.addTwoNumbers(n1, m1);
+        while(h!=null){
+            System.out.print(h.val+", ");
+            h = h.next;
+        }
+        System.out.println();
+        ListNode a = new ListNode(5);
+        ListNode b = new ListNode(5);
+        h = s.addTwoNumbers(a, b);
+        assertEquals(0, h.val);
+        assertEquals(1, h.next.val);
+        a = new ListNode(9);
+        a.next = new ListNode(8);
+        b = new ListNode(1);
+        h = s.addTwoNumbers(a, b);
+        assertEquals(0, h.val);
+        assertEquals(9, h.next.val);
+
+    }
 }
