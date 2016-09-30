@@ -4,21 +4,11 @@ import static org.junit.Assert.*;
 import org.junit.*;
 import java.util.*;
 
-/**
- * Unit test for simple App.
- */
 public class SolutionTest {
     Solution s = new Solution();
-    private void printList(ListNode head){
-        while(head!=null){
-            System.out.print(head.val + " => ");
-            head = head.next;
-        }
-    }
     @Test
     public void test203(){
         ListNode n1 = new ListNode(1);
-
         ListNode n2 = new ListNode(2);
         ListNode n3 = new ListNode(3);
         ListNode n4 = new ListNode(2);
@@ -27,7 +17,14 @@ public class SolutionTest {
         n2.next = n3;
         n3.next = n4;
         n4.next = n5;
-        printList(s.removeElements(n1, 1));
+        ListNode h = s.removeElements(n1, 1);
+        int[] r = new int[4];
+        int i=0;
+        while(h!=null){
+            r[i++] = h.val;
+            h = h.next;
+        }
+        assertEquals(Arrays.toString(new int[]{2,3,2,5}), Arrays.toString(r));
     }
     @Test
     public void test234(){
@@ -59,7 +56,7 @@ public class SolutionTest {
         m4.next = m5;
         ListNode h = s.reverse(m1);
         while(h!=null){
-            System.out.println(h.val);
+            //System.out.println(h.val);
             h = h.next;
         }
     }
@@ -85,7 +82,7 @@ public class SolutionTest {
         m41.next = m51;
         ListNode h = s.merge(m1, m11);
         while(h!=null){
-            System.out.println(h.val);
+            //System.out.println(h.val);
             h = h.next;
         }
     }
@@ -102,11 +99,13 @@ public class SolutionTest {
         m1.next = m2;
         m2.next = m3;
         ListNode h = s.addTwoNumbers(n1, m1);
+        int[] r = new int[3];
+        int i=0;
         while(h!=null){
-            System.out.print(h.val+", ");
+            r[i++] = h.val;
             h = h.next;
         }
-        System.out.println();
+        assertEquals(Arrays.toString(new int[]{7,0,8}), Arrays.toString(r));
         ListNode a = new ListNode(5);
         ListNode b = new ListNode(5);
         h = s.addTwoNumbers(a, b);
@@ -119,5 +118,34 @@ public class SolutionTest {
         assertEquals(0, h.val);
         assertEquals(9, h.next.val);
 
+    }
+    @Test
+    public void test141(){
+        ListNode node = new ListNode(1);
+        node.next = new ListNode(2);
+        node.next.next = new ListNode(3);
+        node.next.next.next = new ListNode(4);
+        node.next.next.next.next = new ListNode(5);
+        node.next.next.next.next = node.next.next;
+        assertTrue(s.hasCycle(node));
+    }
+    @Test
+    public void test29(){
+        ListNode node = new ListNode(1);
+        node.next = new ListNode(2);
+        node.next.next = new ListNode(3);
+        node.next.next.next = new ListNode(4);
+        node.next.next.next.next = new ListNode(5);
+        ListNode l = s.removeNthFromEnd2(node, 2);
+        int[] r = new int[4];
+        int i=0;
+        while(l!=null){
+            r[i++] = l.val;
+            l = l.next;
+        }
+        assertEquals(Arrays.toString(new int[]{1,2,3,5}), Arrays.toString(r));
+        node = new ListNode(1);
+        l = s.removeNthFromEnd2(node, 1);
+        assertEquals(null, l);
     }
 }

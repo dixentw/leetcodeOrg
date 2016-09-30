@@ -159,4 +159,51 @@ public class Solution{
         }
         return dummy.next;
    }
+   //141. Linked List Cycle
+   public boolean hasCycle(ListNode head) {
+       ListNode step1 = head;
+       ListNode step2 = head;
+       while(step1!=null&&step2!=null&&step2.next!=null){
+           step1 = step1.next;
+           step2 = step2.next.next;
+           if(step1==step2){
+               return true;
+           }
+       }
+       return false;
+    }
+    //19. Remove Nth Node From End of List
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        List<ListNode> curs = new ArrayList<>();
+        ListNode tmp = head;
+        while(tmp!=null){
+            curs.add(tmp);
+            tmp = tmp.next;
+        }
+        ListNode dNode= curs.get(curs.size()-n);
+        if(curs.size() - n <= 0){ // remove head
+            return dNode.next;
+        }else{
+            ListNode pNode= curs.get(curs.size()-n-1);
+            pNode.next = dNode.next;
+            dNode = null;
+        }
+        return head;
+    }
+    //19. Remove Nth Node From End of List
+    public ListNode removeNthFromEnd2(ListNode head, int n) {
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode normal = dummy;
+        ListNode slow = dummy;
+        for(int i=0; i<=n; i++){
+            normal = normal.next;
+        }
+        while(normal!=null){
+            slow = slow.next;
+            normal = normal.next;
+        }
+        slow.next = slow.next.next;
+        return dummy.next;
+    }
 }
