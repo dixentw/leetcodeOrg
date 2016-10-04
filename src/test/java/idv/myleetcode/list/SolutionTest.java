@@ -148,4 +148,106 @@ public class SolutionTest {
         l = s.removeNthFromEnd2(node, 1);
         assertEquals(null, l);
     }
+    @Test
+    public void test24(){
+        ListNode node = new ListNode(1);
+        node.next = new ListNode(2);
+        node.next.next = new ListNode(3);
+        node.next.next.next = new ListNode(4);
+        ListNode result = s.swapPairs(node);
+        int[] r = new int[4];
+        int i=0;
+        while(result!=null){
+            r[i++] = result.val;
+            result = result.next;
+        }
+        assertEquals(Arrays.toString(new int[]{2,1,4,3}), Arrays.toString(r));
+    }
+    @Test
+    public void test61(){
+        ListNode node = new ListNode(1);
+        node.next = new ListNode(2);
+        node.next.next = new ListNode(3);
+        node.next.next.next = new ListNode(4);
+        node.next.next.next.next = new ListNode(5);
+        ListNode result = s.rotateRight(node, 2);
+        int[] r = new int[5];
+        int i=0;
+        while(result!=null){
+            r[i++] = result.val;
+            result = result.next;
+        }
+        assertEquals(Arrays.toString(new int[]{4,5,1,2,3}), Arrays.toString(r));
+
+        node = new ListNode(1);
+        node.next = new ListNode(2);
+        node.next.next = new ListNode(3);
+        node.next.next.next = new ListNode(4);
+        node.next.next.next.next = new ListNode(5);
+        result = s.rotateRight(node, 3);
+        r = new int[5];
+        i=0;
+        while(result!=null){
+            r[i++] = result.val;
+            result = result.next;
+        }
+        assertEquals(Arrays.toString(new int[]{3,4,5,1,2}), Arrays.toString(r));
+
+        node = new ListNode(1);
+        node.next = new ListNode(2);
+        result = s.rotateRight(node, 1);
+        r = new int[2];
+        i=0;
+        while(result!=null){
+            r[i++] = result.val;
+            result = result.next;
+        }
+        assertEquals(Arrays.toString(new int[]{2,1}), Arrays.toString(r));
+
+        node = new ListNode(1);
+        node.next = new ListNode(2);
+        result = s.rotateRight(node, 2);
+        r = new int[2];
+        i=0;
+        while(result!=null){
+            r[i++] = result.val;
+            result = result.next;
+        }
+        assertEquals(Arrays.toString(new int[]{1,2}), Arrays.toString(r));
+
+        node = new ListNode(1);
+        node.next = new ListNode(2);
+        result = s.rotateRight(node, 3);
+        r = new int[2];
+        i=0;
+        while(result!=null){
+            r[i++] = result.val;
+            result = result.next;
+        }
+        assertEquals(Arrays.toString(new int[]{2,1}), Arrays.toString(r));
+
+        node = new ListNode(1);
+        node.next = new ListNode(2);
+        result = s.rotateRight(node, 4);
+        r = new int[2];
+        i=0;
+        while(result!=null){
+            r[i++] = result.val;
+            result = result.next;
+        }
+        assertEquals(Arrays.toString(new int[]{1,2}), Arrays.toString(r));
+
+        node = new ListNode(1);
+        node.next = new ListNode(2);
+        node.next.next = new ListNode(3);
+        result = s.rotateRight(node, 2000000000);//shold be 2
+        r = new int[3];
+        i=0;
+        while(result!=null){
+            r[i++] = result.val;
+            result = result.next;
+        }
+        assertEquals(Arrays.toString(new int[]{2,3,1}), Arrays.toString(r));
+
+    }
 }

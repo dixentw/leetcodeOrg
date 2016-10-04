@@ -206,4 +206,49 @@ public class Solution{
         slow.next = slow.next.next;
         return dummy.next;
     }
+    //24. Swap Nodes in Pairs
+    public ListNode swapPairs(ListNode head) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode curr = dummy;
+        while(curr.next!=null&&curr.next.next!=null){
+            ListNode x = curr.next;
+            ListNode y = curr.next.next;
+            x.next = y.next;
+            curr.next = y;
+            y.next = x;
+            curr = x;
+        }
+        return dummy.next;
+    }
+    //61. Rotate List
+    public ListNode rotateRight(ListNode head, int k) {
+        if(head==null||head.next==null){
+            return head;
+        }
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode normal = dummy;
+        ListNode slow = dummy;
+        for(int i=0; i<k; i++){
+            normal = normal.next;
+            if(normal==null){
+                normal = dummy;
+                k = k%i;
+                i = -1;
+            }
+        }
+        while(normal.next!=null){
+            normal = normal.next;
+            slow = slow.next;
+        }
+        //slow not move, return origin
+        if(slow==dummy){
+            return slow.next;
+        }
+        normal.next = dummy.next;
+        dummy.next = slow.next;
+        slow.next = null;
+        return dummy.next;
+    }
 }
