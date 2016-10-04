@@ -253,21 +253,23 @@ public class Solution{
     }
     //92. Reverse Linked List II
     public ListNode reverseBetween(ListNode head, int m, int n) {
-        ListNode curr = head;
-        ListNode prev = null;
-        int index = 1;
-        while(curr!=null){
-            if(index>=m&&index<=n){ // in range
-                ListNode nx = curr.next;
-                curr.next = prev;
-                prev = curr;
-                curr = nx;
-            }else{
-                System.out.println(index+", "+curr.val);
-                curr = curr.next;
-            }
-            index++;
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode curr = dummy;
+        for(int i=0; i<m-1; i++){
+            curr = curr.next;
         }
-        return head;
+        ListNode prev = null;
+        ListNode nx = null;
+        ListNode tmp = curr.next;
+        for(int i=0; i<=n-m; i++){
+            nx = tmp.next;
+            tmp.next = prev;
+            prev = tmp;
+            tmp = nx;
+        }
+        curr.next.next = tmp;
+        curr.next = prev;
+        return dummy.next;
     }
 }
