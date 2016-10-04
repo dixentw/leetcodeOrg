@@ -251,4 +251,23 @@ public class Solution{
         slow.next = null;
         return dummy.next;
     }
+    //92. Reverse Linked List II
+    public ListNode reverseBetween(ListNode head, int m, int n) {
+        ListNode curr = head;
+        ListNode prev = null;
+        int index = 1;
+        while(curr!=null){
+            if(index>=m&&index<=n){ // in range
+                ListNode nx = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = nx;
+            }else{
+                System.out.println(index+", "+curr.val);
+                curr = curr.next;
+            }
+            index++;
+        }
+        return head;
+    }
 }

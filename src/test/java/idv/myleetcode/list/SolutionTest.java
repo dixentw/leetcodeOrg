@@ -248,6 +248,21 @@ public class SolutionTest {
             result = result.next;
         }
         assertEquals(Arrays.toString(new int[]{2,3,1}), Arrays.toString(r));
-
+    }
+    @Test
+    public void test92(){
+        ListNode node = new ListNode(1);
+        node.next = new ListNode(2);
+        node.next.next = new ListNode(3);
+        node.next.next.next = new ListNode(4);
+        node.next.next.next.next = new ListNode(5);
+        ListNode result = s.reverseBetween(node, 2, 4);
+        int[] r = new int[5];
+        int i=0;
+        while(result!=null){
+            r[i++] = result.val;
+            result = result.next;
+        }
+        assertEquals(Arrays.toString(new int[]{1,4,3,2,5}), Arrays.toString(r));
     }
 }
