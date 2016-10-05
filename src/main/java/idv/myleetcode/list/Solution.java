@@ -272,4 +272,78 @@ public class Solution{
         curr.next = prev;
         return dummy.next;
     }
+    //160. Intersection of Two Linked Lists
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode pa = headA;
+        ListNode pb = headB;
+        if(pa==null||pb==null){
+            return null;
+        }
+        boolean exchangedA = false;
+        boolean exchangedB = false;
+        while(pa!=pb){
+            pa = pa.next;
+            if(pa==null){
+                if(exchangedA){
+                    pa = headA;
+                }else{
+                    pa = headB;
+                    exchangedA = true;
+                }
+            }
+            pb = pb.next;
+            if(pb==null){
+                if(exchangedB){
+                    pb = headB;
+                }else{
+                    pb = headA;
+                    exchangedB = true;
+                }
+            }
+            if(pa==headA&&pb==headB){
+                return null;
+            }
+        }
+        return pa;
+    }
+    //148. Sort List
+    public ListNode sortList(ListNode head) {
+        if(head==null||head.next==null){
+            return head;
+        }
+        ListNode fast = head;
+        ListNode slow = head;
+        while(fast.next!=null&&fast.next.next!=null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        ListNode newHead = slow.next;
+        slow.next = null;
+        ListNode l1 = sortList(head);
+        ListNode l2 = sortList(newHead);
+        return mergeList(l1, l2);
+    }
+    private ListNode mergeList(ListNode h1, ListNode h2){
+        ListNode dummy = new ListNode(0);
+        ListNode p1 = h1;
+        ListNode p2 = h2;
+        ListNode cur = dummy;
+        while(p1!=null && p2!=null){
+            if(p1.val > p2.val){
+                cur.next = p2;
+                p2 = p2.next;
+            }else{
+                cur.next = p1;
+                p1 = p1.next;
+            }
+            cur = cur.next;
+        }
+        if(p1==null){
+            cur.next = p2;
+        }
+        if(p2==null){
+            cur.next = p1;
+        }
+        return dummy.next;
+    }
 }

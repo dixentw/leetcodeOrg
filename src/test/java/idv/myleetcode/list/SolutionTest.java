@@ -265,4 +265,51 @@ public class SolutionTest {
         }
         assertEquals(Arrays.toString(new int[]{1,4,3,2,5}), Arrays.toString(r));
     }
+    @Test
+    public void test160(){
+        ListNode node = new ListNode(1);
+        node.next = new ListNode(2);
+        node.next.next = new ListNode(3);
+        node.next.next.next = new ListNode(4);
+        node.next.next.next.next = new ListNode(5);
+
+        ListNode node1 = new ListNode(11);
+        node1.next = new ListNode(12);
+        node1.next = new ListNode(13);
+        node1.next.next = node.next.next;
+
+        ListNode result = s.getIntersectionNode(node, node1);
+        assertEquals(3, result.val);
+
+        node = new ListNode(1);
+        node.next = new ListNode(2);
+        node.next.next = new ListNode(3);
+        node.next.next.next = new ListNode(4);
+        node.next.next.next.next = new ListNode(5);
+
+        node1 = new ListNode(11);
+        node1.next = new ListNode(12);
+        node1.next = new ListNode(13);
+
+
+        result = s.getIntersectionNode(node, node1);
+        assertNull(result);
+
+    }
+    @Test
+    public void test148(){
+        ListNode node = new ListNode(4);
+        node.next = new ListNode(3);
+        node.next.next = new ListNode(1);
+        node.next.next.next = new ListNode(2);
+        node.next.next.next.next = new ListNode(5);
+        ListNode result = s.sortList(node);
+        int[] r = new int[5];
+        int i=0;
+        while(result!=null){
+            r[i++] = result.val;
+            result = result.next;
+        }
+        assertEquals(Arrays.toString(new int[]{1,2,3,4,5}), Arrays.toString(r));
+    }
 }
