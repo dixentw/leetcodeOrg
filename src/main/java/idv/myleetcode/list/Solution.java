@@ -346,4 +346,74 @@ public class Solution{
         }
         return dummy.next;
     }
+    //147. Insertion Sort List
+    public ListNode insertionSortList(ListNode head) {
+        ListNode d = new ListNode(0);
+        ListNode i = d;
+        ListNode j = head;
+        ListNode n = null;
+        while(j!=null){
+            n = j.next;
+            while(i.next !=null && i.next.val < j.val){
+                i = i.next;
+            }
+            j.next = i.next;
+            i.next = j;
+            //reset
+            i = d;
+            j = n;
+        }
+        return d.next;
+    }
+    //82. Remove Duplicates from Sorted List II
+    public ListNode deleteDuplicates2(ListNode head) {
+        ListNode d = new ListNode(0);
+        d.next = head;
+        ListNode tmp = d;
+        while(tmp.next!=null){
+            ListNode x = tmp.next;
+            if(x==null){
+                break;
+            }
+            while(x.next!=null&& x.val==x.next.val){
+                x = x.next;
+            }
+            if(tmp.next!=x){ // x move, so there is some duplication
+                tmp.next = x.next;
+                x = tmp.next;
+            }else{
+                tmp = tmp.next;
+            }
+        }
+        return d.next;
+    }
+    //143. Reorder List
+    public void reorderList(ListNode head) {
+        if(head==null){
+            return;
+        }
+        ListNode slow = head;
+        ListNode fast = head;
+        while(fast.next!=null&&fast.next.next!=null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        ListNode c = slow.next;
+        slow.next = null;
+        ListNode p = null;
+        while(c!=null){
+            ListNode n = c.next;
+            c.next = p;
+            p = c;
+            c = n;
+        }
+        ListNode p1 = head;
+        ListNode p2 = p;
+        while(p1!=null){
+            ListNode tmp = p1.next;
+            p1 = p1.next = p2;
+            p2 = tmp;
+        }
+        //return head;
+    }
 }

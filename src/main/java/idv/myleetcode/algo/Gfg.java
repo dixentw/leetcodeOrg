@@ -79,7 +79,7 @@ public class Gfg{
         }
     }
     public void insertionSort(int[] A){
-        for(int i=1; i<A.length-1; i++){
+        for(int i=1; i<A.length; i++){
             int key = A[i];
             int j = i-1;
             while(j>=0 && A[j]> key){

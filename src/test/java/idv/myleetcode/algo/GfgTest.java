@@ -37,9 +37,13 @@ public class GfgTest {
     }
     @Test
     public void test5(){
-        int[] ori = new int[]{1, 23, 12, 9, 30, 2, 50};
+        int[] ori = new int[]{5,4};
         g.insertionSort(ori);
-        int[] expect = new int[]{1,2,9,12,23,30,50};
+        int[] expect = new int[]{4,5};
+        assertTrue(Arrays.equals(expect, ori));
+        ori = new int[]{1, 23, 12, 9, 30, 2, 50};
+        g.insertionSort(ori);
+        expect = new int[]{1,2,9,12,23,30,50};
         assertTrue(Arrays.equals(expect, ori));
     }
     @Test

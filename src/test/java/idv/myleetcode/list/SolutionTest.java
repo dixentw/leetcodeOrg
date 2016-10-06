@@ -312,4 +312,59 @@ public class SolutionTest {
         }
         assertEquals(Arrays.toString(new int[]{1,2,3,4,5}), Arrays.toString(r));
     }
+    @Test
+    public void test147(){
+        ListNode node = new ListNode(4);
+        node.next = new ListNode(3);
+        node.next.next = new ListNode(1);
+        node.next.next.next = new ListNode(2);
+        node.next.next.next.next = new ListNode(5);
+        ListNode result = s.insertionSortList(node);
+        int[] r = new int[5];
+        int i=0;
+        while(result!=null){
+            r[i++] = result.val;
+            result = result.next;
+        }
+        assertEquals(Arrays.toString(new int[]{1,2,3,4,5}), Arrays.toString(r));
+    }
+    @Test
+    public void test82(){
+        ListNode h = new ListNode(4);
+        h.next = new ListNode(4);
+        h.next.next = new ListNode(4);
+        ListNode r = s.deleteDuplicates2(h);
+        assertNull(r);
+        h = new ListNode(1);
+        h.next = new ListNode(2);
+        h.next.next = new ListNode(2);
+        h.next.next.next = new ListNode(3);
+        h.next.next.next.next = new ListNode(4);
+        r = s.deleteDuplicates2(h);
+        int[] ra = new int[3];
+        int i=0;
+        while(r!=null){
+            ra[i++] = r.val;
+            r = r.next;
+        }
+        assertEquals(Arrays.toString(new int[]{1,3,4}), Arrays.toString(ra));
+    }
+    @Test
+    public void test143(){
+        ListNode h = new ListNode(1);
+        h.next = new ListNode(2);
+        h.next.next = new ListNode(3);
+        h.next.next.next = new ListNode(4);
+        s.reorderList(h);
+        int[] r = new int[4];
+        int i=0;
+        while(h!=null){
+            r[i++] = h.val;
+            h = h.next;
+        }
+        assertEquals(Arrays.toString(new int[]{1,4,2,3}), Arrays.toString(r));
+        s.reorderList(null);
+        s.reorderList(new ListNode(1));
+    }
+
 }
