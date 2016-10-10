@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 import org.junit.*;
 import java.util.*;
 
+import idv.myleetcode.tree.TreeNode;
+
 public class SolutionTest {
     Solution s = new Solution();
     @Test
@@ -366,5 +368,37 @@ public class SolutionTest {
         s.reorderList(null);
         s.reorderList(new ListNode(1));
     }
-
+    @Test
+    public void test109(){
+        ListNode h = new ListNode(1);
+        h.next = new ListNode(2);
+        h.next.next = new ListNode(3);
+        h.next.next.next = new ListNode(4);
+        TreeNode t = s.sortedListToBST(h);
+        assertEquals(3, t.val);
+        assertEquals(2, t.left.val);
+        assertEquals(1, t.left.left.val);
+        assertEquals(4, t.right.val);
+    }
+    @Test
+    public void test86(){
+        ListNode n = new ListNode(1);
+        n.next = new ListNode(4);
+        n.next.next = new ListNode(3);
+        n.next.next.next = new ListNode(2);
+        n.next.next.next.next = new ListNode(5);
+        n.next.next.next.next.next = new ListNode(2);
+        ListNode h = s.partition(n, 3);
+        int[] r = new int[6];
+        int i=0;
+        while(h!=null){
+            r[i++] = h.val;
+            h = h.next;
+        }
+        assertEquals(Arrays.toString(new int[]{1,2,2,4,3,5}), Arrays.toString(r));
+    }
+    @Test
+    public void test142(){
+        
+    }
 }

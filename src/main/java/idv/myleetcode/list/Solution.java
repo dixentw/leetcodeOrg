@@ -1,6 +1,7 @@
 package idv.myleetcode.list;
 
 import java.util.*;
+import idv.myleetcode.tree.TreeNode;
 /**
  * Hello world!
  */
@@ -414,6 +415,69 @@ public class Solution{
             p1 = p1.next = p2;
             p2 = tmp;
         }
-        //return head;
+    }
+    //109. Convert Sorted List to Binary Search Tree
+    public TreeNode sortedListToBST(ListNode head) {
+        if(head==null){
+            return null;
+        }
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode fast = dummy;
+        ListNode slow = dummy;
+        while(fast.next!=null && fast.next.next!=null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        ListNode second = slow.next;
+        slow.next = null;
+        TreeNode node = new TreeNode(second.val);
+        node.left = sortedListToBST(dummy.next);
+        node.right = sortedListToBST(second.next);
+        return node;
+    }
+    //86. Partition List
+    public ListNode partition(ListNode head, int x) {
+        if(head==null){
+            return null;
+        }
+        ListNode leftDummy = new ListNode(0);
+        ListNode rightDummy = new ListNode(0);
+        ListNode left = leftDummy;
+        ListNode right = rightDummy;
+        while(head!=null){
+            if(head.val < x){
+                left.next = head;
+                left = left.next;
+            }else{
+                right.next =head;
+                right = right.next;
+            }
+            head = head.next;
+        }
+        right.next = null;
+        left.next = rightDummy.next;
+        return leftDummy.next;
+    }
+    //142. Linked List Cycle II
+    public ListNode detectCycle(ListNode head) {
+        if(head==null||head.next==null){
+            return null;
+        }
+        ListNode slow = head;
+        ListNode fast = head;
+        ListNode entry = head;
+        while(fast.next!=null && fast.next.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow==fast){
+                while(slow!=entry){
+                    slow = slow.next;
+                    entry = entry.next;
+                }
+                return entry;
+            }
+        }
+        return null;
     }
 }
