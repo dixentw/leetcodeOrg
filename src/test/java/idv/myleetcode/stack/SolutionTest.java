@@ -22,4 +22,13 @@ public class SolutionTest{
         int[] result = s.nextGreatE(A);
         System.out.println(Arrays.toString(result));
     }
+    @Test
+    public void test4(){
+        String str = "{}()[";
+        assertFalse(s.isValid(str));
+        str = "{([])}";
+        assertTrue(s.isValid(str));
+        str = "{([])}";
+        assertTrue(s.isValid(str));
+    }
 }
