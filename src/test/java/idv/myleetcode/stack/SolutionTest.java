@@ -31,4 +31,15 @@ public class SolutionTest{
         str = "{([])}";
         assertTrue(s.isValid(str));
     }
+    @Test
+    public void test5(){
+        String str = "/home/";
+        assertEquals("/home", s.simplifyPath(str));
+        str = "/a/./b/../../c/";
+        assertEquals("/c", s.simplifyPath(str));
+        str = "/";
+        assertEquals("/", s.simplifyPath(str));
+        str = "/..";
+        assertEquals("/", s.simplifyPath(str));
+    }
 }

@@ -105,4 +105,32 @@ public class Solution{
         }
         return stack.empty();
     }
+    //71. Simplify Path
+    public String simplifyPath(String path) {
+        Stack<String> st = new Stack<>();
+        String[] folders = path.split("/");
+        for(String f : folders){
+            if(f.equals("..") && !st.empty()){
+                st.pop();
+            }
+            if(f.length()>0 && !f.equals("..") && !f.equals(".")){
+                st.push(f);
+            }
+        }
+        Stack<String> ret = new Stack<>();
+        while(!st.empty()){
+            ret.push(st.pop());
+        }
+        String result = "/";
+        boolean in = false;
+        while(!ret.empty()){
+            result += ret.pop() + "/";
+            in = true;
+        }
+        if(in){
+            return result.substring(0, result.length()-1);
+        }else{
+            return result;
+        }
+    }
 }
