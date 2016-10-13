@@ -352,6 +352,28 @@ public class SolutionTest {
         assertEquals(Arrays.toString(new int[]{1,3,4}), Arrays.toString(ra));
     }
     @Test
+    public void test83(){
+        ListNode h = new ListNode(4);
+        h.next = new ListNode(4);
+        h.next.next = new ListNode(4);
+        ListNode r = s.deleteDuplicates(h);
+        assertEquals(4, r.val);
+        assertNull(r.next);
+        h = new ListNode(1);
+        h.next = new ListNode(2);
+        h.next.next = new ListNode(2);
+        h.next.next.next = new ListNode(3);
+        h.next.next.next.next = new ListNode(4);
+        r = s.deleteDuplicates(h);
+        int[] ra = new int[4];
+        int i=0;
+        while(r!=null){
+            ra[i++] = r.val;
+            r = r.next;
+        }
+        assertEquals(Arrays.toString(new int[]{1,2, 3,4}), Arrays.toString(ra));
+    }
+    @Test
     public void test143(){
         ListNode h = new ListNode(1);
         h.next = new ListNode(2);
@@ -398,7 +420,19 @@ public class SolutionTest {
         assertEquals(Arrays.toString(new int[]{1,2,2,4,3,5}), Arrays.toString(r));
     }
     @Test
-    public void test142(){
-        
+    public void test328(){
+        ListNode n = new ListNode(1);
+        n.next = new ListNode(2);
+        n.next.next = new ListNode(3);
+        n.next.next.next = new ListNode(4);
+        n.next.next.next.next = new ListNode(5);
+        ListNode h = s.oddEvenList(n);
+        int[] r = new int[5];
+        int i=0;
+        while(h!=null){
+            r[i++] = h.val;
+            h = h.next;
+        }
+        assertEquals(Arrays.toString(new int[]{1,3,5,2,4}), Arrays.toString(r));
     }
 }
