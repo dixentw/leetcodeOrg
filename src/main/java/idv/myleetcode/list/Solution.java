@@ -2,28 +2,22 @@ package idv.myleetcode.list;
 
 import java.util.*;
 import idv.myleetcode.tree.TreeNode;
-/**
- * Hello world!
- */
+
 public class Solution{
     // 83
     public ListNode deleteDuplicates(ListNode head) {
-        ListNode tmpHead = head;
+        ListNode curr = head;
 		ListNode prev = null;
-		while(head!=null){
-			ListNode theNext = head.next;
-			if(prev==null){
-				prev = head;
+		while(curr!=null){
+			ListNode tmp = curr.next;
+			if(prev!=null && prev.val==curr.val){
+			    prev.next = tmp;
 			}else{
-			    if(prev.val==head.val){
-				    prev.next = theNext;
-			    }else{
-				    prev = head;
-			    }
-			}
-			head = theNext;
+                prev = curr;
+            }
+			curr = curr.next;
 		}
-        return tmpHead;
+        return head;
     }
 
     //203. Remove Linked List Elements
@@ -479,5 +473,27 @@ public class Solution{
             }
         }
         return null;
+    }
+    //328. Odd Even Linked List
+    public ListNode oddEvenList(ListNode head) {
+        ListNode oddDummy = new ListNode(0);
+        ListNode evenDummy = new ListNode(0);
+        ListNode odd = oddDummy;
+        ListNode even = evenDummy;
+        int counter = 1;
+        while(head!=null){
+            if(counter%2==0){
+                even.next = head;
+                even = even.next;
+            }else{
+                odd.next = head;
+                odd = odd.next;
+            }
+            head = head.next;
+            counter++;
+        }
+        even.next = null;
+        odd.next = evenDummy.next;
+        return oddDummy.next;
     }
 }
