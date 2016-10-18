@@ -57,11 +57,11 @@ public class SolutionTest{
     @Test
     public void test8(){
         String str = "3[a]2[bc]";
-        //assertEquals("aaabcbc", s.decodeString2(str));
+        assertEquals("aaabcbc", s.decodeString2(str));
         str = "ef";
-        //assertEquals("ef", s.decodeString2(str));
+        assertEquals("ef", s.decodeString2(str));
         str = "2[abc]3[cd]ef";
-        //assertEquals("abcabccdcdcdef", s.decodeString2(str));
+        assertEquals("abcabccdcdcdef", s.decodeString2(str));
         str = "3[a2[c]]";
         assertEquals("accaccacc", s.decodeString2(str));
     }

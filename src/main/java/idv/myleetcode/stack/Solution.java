@@ -193,18 +193,20 @@ public class Solution{
             for(int i=0; i<s.length(); i++){
                 char c = s.charAt(i);
                 if(Character.isDigit(c)){
-                    k=k*10+c-'0';
+                    if(st.empty()){
+                        k=k*10+c-'0';
+                    }
                 }else if(c=='['){
                     st.push(i);
                 }else if(c==']'){
                     int left = st.pop()+1;
-                    System.out.println(s.substring(left, i));
-                    String inner = decodeString2(s.substring(left, i));
-                    for(int j=0; j<k; j++){
-                        result += inner;
+                    if(st.empty()){//meet outside of parentheses
+                        String inner = decodeString2(s.substring(left, i));
+                        for(int j=0; j<k; j++){
+                            result += inner;
+                        }
+                        k=0;
                     }
-                    System.out.println(result);
-                    k = 0;
                 }else{
                     if(st.empty()){
                         result += c;
