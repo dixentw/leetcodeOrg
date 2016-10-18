@@ -42,4 +42,12 @@ public class SolutionTest{
         str = "/..";
         assertEquals("/", s.simplifyPath(str));
     }
+    @Test
+    public void test6(){
+        String[] strs = {"2", "1", "+", "3", "*"};
+        assertEquals(9, s.evalRPN(strs));
+        String[] strs1 = {"4", "13", "5", "/", "+"};
+        assertEquals(6, s.evalRPN(strs1));
+    }
+
 }
