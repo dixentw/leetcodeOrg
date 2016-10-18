@@ -49,5 +49,20 @@ public class SolutionTest{
         String[] strs1 = {"4", "13", "5", "/", "+"};
         assertEquals(6, s.evalRPN(strs1));
     }
-
+    @Test
+    public void test7(){
+        String str = "3[a]2[bc]";
+        assertEquals("aaabcbc", s.decodeString(str));
+    }
+    @Test
+    public void test8(){
+        String str = "3[a]2[bc]";
+        //assertEquals("aaabcbc", s.decodeString2(str));
+        str = "ef";
+        //assertEquals("ef", s.decodeString2(str));
+        str = "2[abc]3[cd]ef";
+        //assertEquals("abcabccdcdcdef", s.decodeString2(str));
+        str = "3[a2[c]]";
+        assertEquals("accaccacc", s.decodeString2(str));
+    }
 }

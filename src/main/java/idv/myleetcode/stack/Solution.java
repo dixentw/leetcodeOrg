@@ -157,4 +157,61 @@ public class Solution{
         }
         return stack.pop();
     }
+    //394. Decode String
+    public String decodeString(String s) {
+        Stack<Integer> intStack = new Stack<>();
+        Stack<StringBuilder> strStack = new Stack<>();
+        StringBuilder cur = new StringBuilder();
+        int k=0;
+        for(char c : s.toCharArray()){
+            if(Character.isDigit(c)){
+                k=k*10+c-'0';
+            }else if(c=='['){
+                intStack.push(k);
+                strStack.push(cur);
+                cur = new StringBuilder();
+                k = 0;
+            }else if(c==']'){
+                StringBuilder tmp = cur;
+                cur = strStack.pop();
+                for(k= intStack.pop(); k>0; k--){
+                    cur.append(tmp);
+                }
+            }else{
+                cur.append(c);
+            }
+        }
+        return cur.toString();
+    }
+    public String decodeString2(String s) {
+        String result = "";
+        if(!s.contains("]")){
+            return s;
+        }else{
+            Stack<Integer> st = new Stack<>();
+            int k = 0;
+            for(int i=0; i<s.length(); i++){
+                char c = s.charAt(i);
+                if(Character.isDigit(c)){
+                    k=k*10+c-'0';
+                }else if(c=='['){
+                    st.push(i);
+                }else if(c==']'){
+                    int left = st.pop()+1;
+                    System.out.println(s.substring(left, i));
+                    String inner = decodeString2(s.substring(left, i));
+                    for(int j=0; j<k; j++){
+                        result += inner;
+                    }
+                    System.out.println(result);
+                    k = 0;
+                }else{
+                    if(st.empty()){
+                        result += c;
+                    }
+                }
+            }
+        }
+        return result;
+    }
 }
