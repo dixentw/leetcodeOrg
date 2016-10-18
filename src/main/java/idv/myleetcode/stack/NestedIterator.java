@@ -4,9 +4,14 @@ import java.util.*;
 public class NestedIterator implements Iterator<Integer>{
     private Stack<NestedInteger> data = new Stack<>();
 
-    public NestedIterator(List<NestedInteger> nestedList) {
-        for(int i=nestedList.size()-1; i>=0; i--){
-            data.push(nestedList.get(i));
+    public NestedIterator(NestedInteger nestedList) {
+        if(nestedList.isInteger()){
+            data.push(nestedList);
+        }else{
+            List<NestedInteger> tmp = nestedList.getList();
+            for(int i=tmp.size()-1; i>=0; i--){
+                data.push(tmp.get(i));
+            }
         }
     }
 
