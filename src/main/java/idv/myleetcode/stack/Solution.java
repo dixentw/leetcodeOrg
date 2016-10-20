@@ -216,4 +216,191 @@ public class Solution{
         }
         return result;
     }
+    //402. Remove K Digits
+    public String removeKdigits(String num, int k) {
+        Stack<Character> stack = new Stack<>();
+        if(k==num.length()){
+            return "0";
+        }
+        int i=0;
+        while(i<num.length()){
+            while(k>0&&!stack.empty()&&stack.peek()>num.charAt(i)){
+                stack.pop();
+                k--;
+            }
+            stack.push(num.charAt(i));
+            i++;
+        }
+        while(k>0){
+            stack.pop();
+            k--;
+        }
+        StringBuffer sb = new StringBuffer();
+        while(!stack.empty()){
+            sb.insert(0, stack.pop());
+        }
+        for(i=0; i<sb.length(); i++){
+            if(sb.charAt(i)!='0'){
+                sb.delete(0, i);
+                break;
+            }
+        }
+        if(sb.toString().matches("[0]+")){
+            return "0";
+        }
+        return sb.toString();
+    }
+    //42. Trapping Rain Water
+    //can improved to merge vally?
+    public int trap_old(int[] height) {
+        if(height.length <=2){
+            return 0;
+        }
+        int result = 0;
+        List<Integer> peaks = new ArrayList<>();
+        for(int i=0; i<height.length; i++){
+            //if(i+1==height.length && height[i-1]<height[i]){
+            //    peaks.add(i);
+            if(i<height.length-1 && height[i]!=height[i+1]){
+                peaks.add(i);
+            }
+        }
+        List<Integer> remove = new ArrayList<>();
+        //merge top
+        for(int i=0; i<peaks.size(); i++){
+            boolean left = false;
+            boolean right = false;
+            for(int j=0; j<i; j++){ //left
+                if(height[peaks.get(j)]>height[peaks.get(i)]){
+                    left = true;
+                }
+            }
+            for(int j=i+1; j<peaks.size(); j++){ //right
+                if(height[peaks.get(j)]>height[peaks.get(i)]){
+                    right = true;
+                }
+            }
+            if(left&&right){
+                remove.add(peaks.get(i));
+            }
+        }
+        System.out.println(Arrays.toString(remove.toArray()));
+        peaks.removeAll(remove);
+        System.out.println("=============");
+        System.out.println(Arrays.toString(peaks.toArray()));
+        for(int i=0; i<peaks.size()-1; i++){
+            Integer a = peaks.get(i);
+            Integer b = peaks.get(i+1);
+            int min = Math.min(height[a],height[b]);
+            for(int j=a+1; j<b; j++){
+                int df = min - height[j];
+                if(df > 0 ){
+                    result += df;
+                }
+            }
+        }
+        return result;
+    }
+    public int trap(int[] height) {
+        if(height.length<3){
+            return 0;
+        }
+        int result = 0;
+        int l=0;
+        int r=height.length-1;
+        //find the leftmost and rightmost edge
+        while(l<r && height[l] <= height[l+1]){
+            l++;
+        }
+        while(l<r && height[r] <= height[r-1]){
+            r--;
+        }
+        while(l<r){
+            int left = height[l];
+            int right = height[r];
+            if(left<=right){
+                while (l<r && left >= height[++l]) { //remove most
+                    result += left - height[l];
+                }
+            }else{
+                while(l<r && height[--r] <= right){
+                    result += right - height[r];
+                }
+            }
+        }
+        return result;
+    }
+    //84. Largest Rectangle in Histogram
+    private int largestRectangleArea_impl1(int[] heights){
+        int maxArea = 0;
+        for(int i=0; i<heights.length; i++){
+            //go right
+            int j=i+1;
+            if(j==heights.length||heights[i]>heights[j]){
+                j=i;
+            }else{
+                while(j<heights.length&& heights[j] >= heights[i]){
+                    j++;
+                }
+                j--;
+            }
+            //go left
+            int k = i-1;
+            if(k<0 || heights[k] < heights[i]){
+                k=i;
+            }else{
+                while(k>=0 && heights[k] >= heights[i]){
+                    k--;
+                }
+                k++;
+            }
+            int area = heights[i] * (j-k+1);
+            maxArea = Math.max(maxArea, area);
+        }
+        return maxArea;
+    }
+    private int largestRectangleArea_impl3(int[] heights){
+        int n = heights.length;
+        int maxArea = 0, i = 0;
+        Stack<Integer> stack = new Stack<>();
+        while(i <= n) {
+            int h = (i == n) ? 0 : heights[i];
+            if(stack.isEmpty() || h >= heights[stack.peek()]) {
+                stack.push(i++);
+            } else {
+                int j = stack.pop();
+                int area = (stack.isEmpty() ? i : i-1-stack.peek()) * heights[j];
+                maxArea = Math.max(maxArea, area);
+            }
+        }
+        return maxArea;
+    }
+    private int largestRectangleArea_impl2(int[] heights){
+        Stack<Integer> s = new Stack<>();
+        int maxArea = 0;
+        for(int i=0; i<=heights.length; i++){
+            int high = 0;
+            if(i!=heights.length){
+                high = heights[i];
+            }
+            if(s.empty() || high >= heights[s.peek()]){
+                s.push(i);
+            }else{
+                int currHigh = heights[s.peek()];
+                s.pop();
+                int width = 0;
+                if(s.empty()){
+                    width = i;
+                }else{
+                    width = i - s.peek() - 1;
+                }
+                maxArea = Math.max(maxArea, width*currHigh);
+                i--;
+            }
+        }
+        return maxArea;
+    }
+    public int largestRectangleArea(int[] heights) {
+        return largestRectangleArea_impl2(heights);
+    }
 }
