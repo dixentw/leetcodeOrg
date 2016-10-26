@@ -114,7 +114,6 @@ public class Solution{
         stack.push(tmp);
         while(!stack.empty()){
             TreeNode n = stack.pop();
-            System.out.println(n.val);
             if(n.right!=null){
                 stack.push(n.right);
             }
@@ -132,7 +131,6 @@ public class Solution{
                 tmp = tmp.left;
             }else{
                 tmp = stack.pop();
-                System.out.println(tmp.val);
                 tmp = tmp.right;
             }
         }
@@ -181,16 +179,142 @@ public class Solution{
         traverseZigzag(root, 1, result);
         return result;
     }
-    /*
-    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        Vector<TreeNode> queue = new Vector<>();
-        queue.add(root);
-        while(!queue.isEmpty()){
-            TreeNode node = queue.removeElementAt(0);
-            if(node.left!=null){
-
-            }
+    //101. Symmetric Tree
+    private boolean isSymmetricHelp(TreeNode left, TreeNode right){
+        if(left==null&&right==null){
+            return true;
+        }else if(left!=null&&right!=null){
+            return isSymmetricHelp(left.left, right.right) && isSymmetricHelp(left.right, right.left) && left.val==right.val;
+        }else{
+            return false;
         }
-        return null;
-    }*/
+    }
+    public boolean isSymmetric(TreeNode root) {
+        if(root==null){
+            return true;
+        }else{
+            return isSymmetricHelp(root.left, root.right);
+        }
+    }
+    //102. Binary Tree Level Order Traversal
+    private void levelOrderHelper(TreeNode node, int level, List<List<Integer>> result){
+        if(node==null){
+            return;
+        }
+        if(level>result.size()){
+            result.add(new ArrayList<Integer>());
+        }
+        result.get(level-1).add(node.val);
+        levelOrderHelper(node.left, level+1, result);
+        levelOrderHelper(node.right, level+1, result);
+    }
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        levelOrderHelper(root, 1, result);
+        return result;
+    }
+    //107. Binary Tree Level Order Traversal II
+    private void levelOrderHelper2(TreeNode node, int level, List<List<Integer>> result){
+        if(node==null){
+            return;
+        }
+        if(level>result.size()){
+            result.add(0, new ArrayList<Integer>());
+        }
+        int len = result.size();
+        result.get(len - level).add(node.val);
+        levelOrderHelper2(node.left, level+1, result);
+        levelOrderHelper2(node.right, level+1, result);
+    }
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        levelOrderHelper2(root, 1, result);
+        return result;
+    }
+    //257. Binary Tree Paths
+    private void getPath(TreeNode node, String path, List<String> paths){
+        if(node == null){
+            return;
+        }
+        if(node.left==null&&node.right==null){
+            paths.add(path+String.valueOf(node.val));
+        }
+        if(node.left!=null){
+            getPath(node.left, path+node.val+"->", paths);
+        }
+        if(node.right!=null){
+            getPath(node.right, path+node.val+"->", paths);
+        }
+    }
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<String> result = new ArrayList<>();
+        getPath(root, "", result);
+        return result;
+    }
+    //404. Sum of Left Leaves
+    private void leftLeave(TreeNode node, boolean isLeft, List<Integer> rs){
+        if(node.right==null&&node.left==null&&isLeft){ // hit left leaves
+            rs.add(node.val);
+        }
+        if(node.left!=null){
+            leftLeave(node.left, true, rs);
+        }
+        if(node.right!=null){
+            leftLeave(node.right, false, rs);
+        }
+    }
+    public int sumOfLeftLeaves(TreeNode root) {
+        if(root==null){
+            return 0;
+        }
+        List<Integer> rs = new ArrayList<Integer>();
+        if(root.left!=null){
+            leftLeave(root.left, true, rs);
+        }
+        if(root.right!=null){
+            leftLeave(root.right, false, rs);
+        }
+        int sum = 0;
+        for(Integer i : rs){
+            sum += i;
+        }
+        return sum;
+    }
+    //437. Path Sum III
+    private int goPath(TreeNode node, int sum){
+        int result = 0;
+        if(node==null){
+            return result;
+        }
+        if(sum==node.val){
+            result++;
+        }
+        result += goPath(node.left, sum-node.val);
+        result += goPath(node.right, sum-node.val);
+        return result;
+    }
+    public int pathSum(TreeNode root, int sum) {
+        if(root==null){
+            return 0;
+        }
+        return goPath(root,sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
+    }
+    //110. Balanced Binary Tree
+    public boolean isBalanced(TreeNode root) {
+        if(root ==null){
+            return true;
+        }
+        return depth(root)!=-1;
+    }
+    private int depth(TreeNode node){
+        if(node==null){
+            return 0;
+        }
+        int left = depth(node.left);
+        int right = depth(node.right);
+        if(left==-1||right==-1||Math.abs(left-right)>1){
+            return -1;
+        }
+        return Math.max(left, right)+1;
+    }
 }
