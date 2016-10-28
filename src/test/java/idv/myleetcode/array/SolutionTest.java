@@ -165,4 +165,11 @@ public class SolutionTest {
         A = new int[]{1,7,4,2};
         assertEquals(6, s.maxProfit2(A));
     }
+    @Test
+    public void test15(){
+        int[] S = {-1, 0, 1, 2, -1, -4};
+        List<List<Integer>> result = s.threeSum_old(S);
+        assertEquals("[-1, -1, 2]", Arrays.toString(result.get(0).toArray()));
+        assertEquals("[-1, 0, 1]", Arrays.toString(result.get(1).toArray()));
+    }
 }

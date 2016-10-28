@@ -46,6 +46,7 @@ public class SolutionTest {
         r.right = rrr;
         s.inOrder(root);
     }
+    /*
     @Test
     public void test4(){
         int[] pre = new int[]{1,2,4,5,3,7,6,8};
@@ -54,7 +55,7 @@ public class SolutionTest {
         assertEquals(1, root.val);
         assertEquals(2, root.left.val);
         assertEquals(3, root.right.val);
-    }
+    }*/
     @Test
     public void test5(){
         TreeNode root = new TreeNode(3);
@@ -155,7 +156,7 @@ public class SolutionTest {
         root.right = new TreeNode(20);
         root.right.left = new TreeNode(15);
         root.right.right = new TreeNode(7);
-        List<List<Integer>> r = s.levelOrder2(root);
+        List<List<Integer>> r = s.levelOrderBottom(root);
         List<Integer> flat = new ArrayList<>();
         for(List<Integer> l : r){
             for(Integer i : l){
@@ -164,6 +165,69 @@ public class SolutionTest {
         }
         assertEquals("[15, 7, 9, 20, 3]", Arrays.toString(flat.toArray()));
     }
-
+    @Test
+    public void test12(){
+        TreeNode root = new TreeNode(1);
+        root.right = new TreeNode(2);
+        root.right.left = new TreeNode(3);
+        List<Integer> ttt = s.preorderTraversal(root);
+        assertEquals("[1, 2, 3]", Arrays.toString(ttt.toArray()));
+    }
+    @Test
+    public void test13(){
+        TreeNode root = new TreeNode(1);
+        root.right = new TreeNode(2);
+        root.right.left = new TreeNode(3);
+        List<Integer> ttt = s.postorderTraversal(root);
+        assertEquals("[3, 2, 1]", Arrays.toString(ttt.toArray()));
+    }
+    @Test
+    public void test14(){
+        assertEquals(5, s.numTrees(3));
+    }
+    @Test
+    public void test15(){
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        assertFalse(s.isValidBST_1(root));
+        root = new TreeNode(2);
+        root.left = new TreeNode(1);
+        root.right = new TreeNode(3);
+        assertTrue(s.isValidBST_1(root));
+        root = new TreeNode(1);
+        root.left = new TreeNode(1);
+        assertFalse(s.isValidBST_1(root));
+    }
+    @Test
+    public void test16(){
+        int[] preorder = {1, 2, 4, 5, 3, 7, 6, 8};
+        int[] inorder = {4, 2, 5, 1, 6, 7, 3, 8};
+        TreeNode test = s.buildTree(preorder, inorder);
+        assertEquals(1, test.val);
+        assertEquals(2, test.left.val);
+        assertEquals(3, test.right.val);
+        assertEquals(4, test.left.left.val);
+        assertEquals(5, test.left.right.val);
+        assertEquals(6, test.right.left.left.val);
+        assertEquals(7, test.right.left.val);
+        assertEquals(8, test.right.right.val);
+    }
+    @Test
+    public void test17(){
+        int[] preorder = {1, 2};
+        int[] inorder = {1, 2};
+        TreeNode test = s.buildTree(preorder, inorder);
+        assertEquals(1, test.val);
+        assertEquals(2, test.right.val);
+    }
+    @Test
+    public void test18(){
+        int[] inorder = {1, 2};
+        int[] postorder = {2, 1};
+        TreeNode test = s.buildTree2(inorder, postorder);
+        assertEquals(1, test.val);
+        assertEquals(2, test.right.val);
+    }
 
 }

@@ -135,6 +135,7 @@ public class Solution{
             }
         }
     }
+    /*
     public TreeNode constructTree(int[] pre, int[] in){
         int preStart = 0;
         int preEnd = pre.length-1;
@@ -157,7 +158,7 @@ public class Solution{
         p.left = construct(pre, ps+1, ps+(k-is), in, is, k-1);
         p.right=construct(pre, ps+(k-is)+1, pe, in, k+1, ie);
         return p;
-    }
+    }*/
     // 103. Binary Tree Zigzag Level Order Traversal
     private void traverseZigzag(TreeNode node, int level, List<List<Integer>> result){
         if(node==null){
@@ -316,5 +317,179 @@ public class Solution{
             return -1;
         }
         return Math.max(left, right)+1;
+    }
+    //144. Binary Tree Preorder Traversal
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if(root!=null){
+            result.add(root.val);
+            result.addAll(preorderTraversal(root.left));
+            result.addAll(preorderTraversal(root.right));
+        }
+        return result;
+    }
+    //145. Binary Tree Postorder Traversal
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if(root!=null){
+            result.addAll(postorderTraversal(root.left));
+            result.addAll(postorderTraversal(root.right));
+            result.add(root.val);
+        }
+        return result;
+    }
+    //96. Unique Binary Search Trees
+    public int numTrees(int n) {
+        int[] G = new int[n+1];
+        G[0] = G[1] = 1;
+        for(int i=2; i<=n; i++){
+            for(int j=1; j<=i; j++){
+                G[i] += G[j-1]*G[i-j];
+            }
+        }
+        return G[n];
+    }
+    //95. Unique Binary Search Trees II
+    // this is dynamic programming method
+    public List<TreeNode> generateTrees(int n) {
+        List<TreeNode>[] result = new List[n+1];
+        result[0] = new ArrayList<TreeNode>();
+        if(n==0){
+            return result[0];
+        }
+        result[0].add(null);
+        for(int i=1; i<=n; i++){
+            result[i] = new ArrayList<TreeNode>();
+            for(int j=1; j<=i; j++){
+                for(TreeNode nodeL : result[j-1]){
+                    for(TreeNode nodeR : result[i-j]){
+                        TreeNode root = new TreeNode(j);
+                        root.left = nodeL;
+                        root.right = clone(nodeR, j);
+                        result[i].add(root);
+                    }
+                }
+            }
+        }
+        return result[n];
+    }
+    private TreeNode clone(TreeNode n, int offset){
+        if(n==null){
+            return null;
+        }
+        TreeNode node = new TreeNode(n.val+offset);
+        node.left = clone(n.left, offset);
+        node.right = clone(n.right, offset);
+        return node;
+    }
+    // this is divied and conquire method
+    public List<TreeNode> generateTrees2(int n){
+        if(n<=0){
+            return new ArrayList<TreeNode>();
+        }else{
+            return generateSubTree(1, n);
+        }
+    }
+    private List<TreeNode> generateSubTree(int start, int end){
+        List<TreeNode> res = new ArrayList<TreeNode>();
+        if(end<start){ //why?
+            res.add(null);
+            return res;
+        }
+        for(int i=start; i<=end; i++){
+            for(TreeNode l : generateSubTree(start, i-1)){
+                for(TreeNode r : generateSubTree(i+1, end)){
+                    TreeNode node = new TreeNode(i);
+                    node.left = l;
+                    node.right = r;
+                    res.add(node);
+                }
+            }
+        }
+        return res;
+    }
+    //98. Validate Binary Search Tree
+    // to inorder method
+    public boolean isValidBST(TreeNode root) {
+        List<Integer> inOrder = new ArrayList<>();
+        inorder(root, inOrder);
+        for(int i=1; i<inOrder.size(); i++){
+            if(inOrder.get(i-1) >= inOrder.get(i)){
+                return false;
+            }
+        }
+        return true;
+    }
+    private void inorder(TreeNode root, List<Integer> rs){
+        if(root==null){
+            return;
+        }
+        inorder(root.left, rs);
+        rs.add(root.val);
+        inorder(root.right, rs);
+    }
+    public boolean isValidBST_1(TreeNode root) {
+        return validBSTHelper(root, Integer.MIN_VALUE, Integer.MIN_VALUE);
+    }
+    private boolean validBSTHelper(TreeNode node, int min, int max){
+        if(node==null){
+            return true;
+        }else if(node.left==null&&node.right==null){
+            return node.val > min && node.val < max;
+        }else if(node.left!=null){
+            return validBSTHelper(node.left, min, node.val);
+        }else if(node.right!=null){
+            return validBSTHelper(node.right, node.val, max);
+        }else{
+            return validBSTHelper(node.left, min, node.val) && validBSTHelper(node.right, node.val, max);
+        }
+
+    }
+    //105. Construct Binary Tree from Preorder and Inorder Traversal
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        int pstart =0;
+        int pend = preorder.length-1;
+        int istart = 0;
+        int iend = inorder.length-1;
+        return constructTree(preorder, inorder, pstart, pend, istart, iend);
+
+    }
+    private TreeNode constructTree(int[] preorder, int[] inorder, int pstart, int pend, int istart, int iend){
+        if(pstart>pend || istart>iend){
+            return null;
+        }
+        TreeNode root = new TreeNode(preorder[pstart]);
+        int i=istart;
+        for(i=istart; i<=iend; i++){
+            if(inorder[i]==preorder[pstart]){
+                break;
+            }
+        }
+        root.left = constructTree(preorder, inorder, pstart+1, pstart+i-istart, istart, i-1);
+        root.right = constructTree(preorder, inorder, pstart+i-istart+1, pend, i+1, iend);
+        return root;
+    }
+    //106. Construct Binary Tree from Inorder and Postorder Traversal
+    public TreeNode buildTree2(int[] inorder, int[] postorder) {
+        int istart = 0;
+        int iend = inorder.length-1;
+        int pstart =0;
+        int pend = postorder.length-1;
+        return constructTree2(inorder, postorder, istart, iend, pstart, pend);
+    }
+    private TreeNode constructTree2(int[] inorder, int[] postorder, int istart, int iend, int pstart, int pend){
+        if(pstart>pend || istart>iend){
+            return null;
+        }
+        TreeNode root = new TreeNode(postorder[pend]);
+        int i=istart;
+        for(i=istart; i<=iend; i++){
+            if(inorder[i]==postorder[pend]){
+                break;
+            }
+        }
+        root.left = constructTree2(inorder, postorder, istart, i-1, pstart, pstart+(i-istart)-1);
+        root.right = constructTree2(inorder, postorder, i+1, iend, pstart+(i-istart), pend-1);
+        return root;
     }
 }

@@ -498,4 +498,39 @@ public class Solution{
         }
         return new String(arrayc);
     }
+    //15. 3Sum
+    public List<List<Integer>> threeSum_old(int[] nums) {
+        List<List<Integer>> result = new LinkedList<>();
+        if(nums.length<3){
+            return result;
+        }
+        Arrays.sort(nums);
+        for(int i=0; i<nums.length-2; i++){
+            if(i>0&&nums[i]==nums[i-1]){
+                continue;
+            }
+            int begin = i+1;
+            int end = nums.length-1;
+            int sum = 0 - nums[i];
+            while(begin<end){
+                if(nums[begin]+ nums[end] ==sum){
+                    result.add(Arrays.asList(nums[i], nums[begin], nums[end]));
+                    begin++;
+                    end--;
+                    //skip duplicate
+                    while(begin<end&&nums[begin]==nums[begin-1]){
+                        begin++;
+                    }
+                    while(begin<end&&nums[end]==nums[end+1]){
+                        end--;
+                    }
+                }else if(nums[begin]+nums[end] > sum){
+                    end--;
+                }else{
+                    begin++;
+                }
+            }
+        }
+        return result;
+    }
 }
