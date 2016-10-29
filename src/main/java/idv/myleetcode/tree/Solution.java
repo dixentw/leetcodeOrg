@@ -492,4 +492,77 @@ public class Solution{
         root.right = constructTree2(inorder, postorder, i+1, iend, pstart+(i-istart), pend-1);
         return root;
     }
+    //113. Path Sum II
+    public List<List<Integer>> pathSum2(TreeNode root, int sum) {
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> path = new ArrayList<>();
+        if(root==null){
+            return result;
+        }
+        runPath(root, sum, path, result);
+        return result;
+    }
+    private void runPath(TreeNode root, int currSum, List<Integer> path, List<List<Integer>> result){
+        //System.out.println(Arrays.toString(path.toArray()));
+        if(root==null){
+            return;
+        }
+        if(root.left==null&&root.right==null){//hit leaf
+            if(root.val==currSum){
+                path.add(root.val);
+                result.add(path);
+            }
+        }else{
+            path.add(root.val);
+            List<Integer> leftPath = new ArrayList<>();
+            leftPath.addAll(path);
+            List<Integer> rightPath = new ArrayList<>();
+            rightPath.addAll(path);
+            runPath(root.left, currSum - root.val, leftPath, result);
+            runPath(root.right, currSum - root.val, rightPath, result);
+        }
+    }
+    //129. Sum Root to Leaf Numbers
+    public int sumNumbers_s(TreeNode root) {
+        return countPath(root, 0);
+    }
+    private int countPath(TreeNode n, int sum){
+        if(n==null){
+            return 0;
+        }
+        if(n.left==null&&n.right==null){
+            return sum*10 + n.val;
+        }
+        return countPath(n.left, sum*10+n.val) + countPath(n.rigth, sum*10+n.val);
+    }
+    public int sumNumbers(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> path = new ArrayList<>();
+        sumNumbersHelper(root, path, result);
+        int sum = 0;
+        for(List<Integer> number : result){
+            int part = 0;
+            for(int i=0;i<number.size();i++){
+                part += number.get(i) * Math.pow(10, number.size()-i-1);
+            }
+            sum+=part;
+        }
+        return sum;
+    }
+    private void sumNumbersHelper(TreeNode node, List<Integer> path, List<List<Integer>> result){
+        if(node==null){
+            return;
+        }
+        path.add(node.val);
+        if(node.left==null&&node.right==null){
+            result.add(path);
+        }else{
+            List<Integer> leftPath = new ArrayList<>();
+            List<Integer> rightPath = new ArrayList<>();
+            leftPath.addAll(path);
+            rightPath.addAll(path);
+            sumNumbersHelper(node.left, leftPath, result);
+            sumNumbersHelper(node.right, rightPath, result);
+        }
+    }
 }
