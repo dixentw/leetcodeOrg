@@ -46,16 +46,6 @@ public class SolutionTest {
         r.right = rrr;
         s.inOrder(root);
     }
-    /*
-    @Test
-    public void test4(){
-        int[] pre = new int[]{1,2,4,5,3,7,6,8};
-        int[] in = new int[]{4,2,5,1,6,7,3,8};
-        TreeNode root = s.constructTree(pre, in);
-        assertEquals(1, root.val);
-        assertEquals(2, root.left.val);
-        assertEquals(3, root.right.val);
-    }*/
     @Test
     public void test5(){
         TreeNode root = new TreeNode(3);
@@ -307,5 +297,17 @@ public class SolutionTest {
         root.right = new TreeNode(2);
         assertEquals(3, s.countNodes(root));
 
+    }
+    @Test
+    public void test26(){
+        TreeNode root = new TreeNode(4);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(5);
+        root.left.left = new TreeNode(1);
+        root.left.right = new TreeNode(3);
+        BSTIterator bitr = new BSTIterator(root);
+        while(bitr.hasNext()){
+            System.out.println(bitr.next());
+        }
     }
 }
