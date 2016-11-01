@@ -229,5 +229,54 @@ public class SolutionTest {
         assertEquals(1, test.val);
         assertEquals(2, test.right.val);
     }
+    @Test
+    public void test19(){
+        int[] A = {1,2,3};
+        TreeNode result = s.sortedArrayToBST(A);
+        assertEquals(2, result.val);
+        assertEquals(1, result.left.val);
+        assertEquals(3, result.right.val);
+    }
+    @Test
+    public void test20(){
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(5);
+        root.left.left = new TreeNode(3);
+        root.left.right = new TreeNode(4);
+        root.right.right = new TreeNode(6);
+        s.flatten_org(root);
 
+        assertEquals(1, root.val);
+        assertEquals(2, root.right.val);
+        assertEquals(3, root.right.right.val);
+        assertEquals(4, root.right.right.right.val);
+        assertEquals(5, root.right.right.right.right.val);
+        assertEquals(6, root.right.right.right.right.right.val);
+
+    }
+    @Test
+    public void test21(){
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        s.flatten_org(root);
+
+        assertEquals(1, root.val);
+        assertNull(root.left);
+        assertEquals(2, root.right.val);
+        assertEquals(3, root.right.right.val);
+    }
+    @Test
+    public void test22(){
+        TreeLinkNode root = new TreeLinkNode(1);
+        root.left = new TreeLinkNode(2);
+        root.right = new TreeLinkNode(3);
+        root.left.left = new TreeLinkNode(4);
+        root.left.right = new TreeLinkNode(5);
+        root.right.left = new TreeLinkNode(6);
+        root.right.right = new TreeLinkNode(7);
+        s.connect(root);
+        assertEquals(root.left.next, root.right);
+    }
 }

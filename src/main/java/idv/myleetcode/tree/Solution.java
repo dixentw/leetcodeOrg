@@ -107,7 +107,7 @@ public class Solution{
         }
         return 1+ Math.max(maxDepth(root.left), maxDepth(root.right));
     }
-    // traversal
+    // traversal, iteration
     public void preOrder(TreeNode root){
         Stack<TreeNode> stack = new Stack<>();
         TreeNode tmp = root;
@@ -135,30 +135,6 @@ public class Solution{
             }
         }
     }
-    /*
-    public TreeNode constructTree(int[] pre, int[] in){
-        int preStart = 0;
-        int preEnd = pre.length-1;
-        int inStart = 0;
-        int inEnd = in.length-1;
-        return construct(pre, preStart, preEnd, in, inStart, inEnd);
-    }
-    public TreeNode construct(int[] pre, int ps, int pe, int[] in, int is, int ie){
-        if(ps>pe||is>ie){
-            return null;
-        }
-        TreeNode p = new TreeNode(pre[ps]);
-        int k = 0;
-        for(int i=0; i<in.length; i++){
-            if(pre[ps]==in[i]){
-                k=i;
-                break;
-            }
-        }
-        p.left = construct(pre, ps+1, ps+(k-is), in, is, k-1);
-        p.right=construct(pre, ps+(k-is)+1, pe, in, k+1, ie);
-        return p;
-    }*/
     // 103. Binary Tree Zigzag Level Order Traversal
     private void traverseZigzag(TreeNode node, int level, List<List<Integer>> result){
         if(node==null){
@@ -491,5 +467,97 @@ public class Solution{
         root.left = constructTree2(inorder, postorder, istart, i-1, pstart, pstart+(i-istart)-1);
         root.right = constructTree2(inorder, postorder, i+1, iend, pstart+(i-istart), pend-1);
         return root;
+    }
+    //108. Convert Sorted Array to Binary Search Tree
+    public TreeNode sortedArrayToBST(int[] nums) {
+        if(nums==null||nums.length==0){
+            return null;
+        }
+        if(nums.length==1){
+            return new TreeNode(nums[0]);
+        }
+        int middle = nums.length / 2;
+        TreeNode node = new TreeNode(nums[middle]);
+        int[] leftA = Arrays.copyOfRange(nums, 0, middle);
+        int[] rightA = Arrays.copyOfRange(nums, middle+1, nums.length);
+        node.left = sortedArrayToBST(leftA);
+        node.right = sortedArrayToBST(rightA);
+        return node;
+    }
+    //114. Flatten Binary Tree to Linked List
+    private TreeNode prev = null;
+    public void flatten(TreeNode root){
+        if(root==null){
+            return;
+        }
+        flatten(root.right);
+        flatten(root.left);
+        root.right = prev;
+        root.left = null;
+        prev = root;
+    }
+    public void flatten_org(TreeNode root){
+        if(root==null){
+            return;
+        }
+        if(root.right!=null&&root.left!=null){
+            flatten_org(root.left);
+            flatten_org(root.right);
+            TreeNode tmp = root.right;
+            root.right = root.left;
+            TreeNode curr = root.left;
+            while(curr.right!=null){
+                curr = curr.right;
+            }
+            curr.right = tmp;
+            root.left = null;
+        }else if(root.right!=null){
+            flatten_org(root.right);
+        }else if(root.left!=null){
+            flatten_org(root.left);
+            root.right = root.left;
+            root.left = null;
+        }
+    }
+    public void flatten_non_recursive(TreeNode root) {
+        if(root==null){
+            return;
+        }
+        if(root.left==null&&root.right==null){
+            return;
+        }
+        while(root!=null){
+            if(root.left==null){
+                root = root.right;
+                continue;
+            }
+            TreeNode left = root.left;
+            while(left.right!=null){
+                left = left.right;
+            }
+            left.right = root.right;
+            root.right = root.left;
+            root.left = null;
+            root = root.right;
+        }
+    }
+    //116. Populating Next Right Pointers in Each Node
+    public void connect(TreeLinkNode root) {
+        if(root==null){
+            return;
+        }
+        TreeLinkNode pre = root;
+        TreeLinkNode cur = null;
+        while(pre.left!=null){
+            cur = pre;
+            while(cur!=null){
+                cur.left.next = cur.right;
+                if(cur.next!=null){
+                    cur.right.next = cur.next.left;
+                }
+                cur = cur.next;
+            }
+            pre = pre.left;
+        }
     }
 }
