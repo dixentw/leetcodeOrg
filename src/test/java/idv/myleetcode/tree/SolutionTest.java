@@ -239,24 +239,30 @@ public class SolutionTest {
     }
     @Test
     public void test20(){
-        TreeNode root = new TreeNode(1);
-        root.left = new TreeNode(2);
-        root.right = new TreeNode(5);
-        root.left.left = new TreeNode(3);
-        root.left.right = new TreeNode(4);
-        root.right.right = new TreeNode(6);
-        s.flatten_org(root);
-
-        assertEquals(1, root.val);
-        assertEquals(2, root.right.val);
-        assertEquals(3, root.right.right.val);
-        assertEquals(4, root.right.right.right.val);
-        assertEquals(5, root.right.right.right.right.val);
-        assertEquals(6, root.right.right.right.right.right.val);
-
+        TreeNode tmp = new TreeNode(5);
+        tmp.left = new TreeNode(4);
+        tmp.right = new TreeNode(8);
+        tmp.left.left = new TreeNode(11);
+        tmp.left.left.left = new TreeNode(7);
+        tmp.left.left.right = new TreeNode(2);
+        tmp.right.left = new TreeNode(13);
+        tmp.right.right = new TreeNode(4);
+        tmp.right.right.left = new TreeNode(5);
+        tmp.right.right.right = new TreeNode(1);
+        List<List<Integer>> result =  s.pathSum2(tmp, 22);
+        assertEquals("[5, 4, 11, 2]", Arrays.toString(result.get(0).toArray()));
+        assertEquals("[5, 8, 4, 5]", Arrays.toString(result.get(1).toArray()));
     }
     @Test
     public void test21(){
+        TreeNode tmp = new TreeNode(1);
+        tmp.left = new TreeNode(2);
+        tmp.right = new TreeNode(3);
+        assertEquals(25, s.sumNumbers(tmp));
+    }
+
+    @Test
+    public void test22(){
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
         root.right = new TreeNode(3);
@@ -268,7 +274,7 @@ public class SolutionTest {
         assertEquals(3, root.right.right.val);
     }
     @Test
-    public void test22(){
+    public void test23(){
         TreeLinkNode root = new TreeLinkNode(1);
         root.left = new TreeLinkNode(2);
         root.right = new TreeLinkNode(3);
