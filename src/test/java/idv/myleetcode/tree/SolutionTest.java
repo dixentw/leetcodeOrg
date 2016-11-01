@@ -285,4 +285,27 @@ public class SolutionTest {
         s.connect(root);
         assertEquals(root.left.next, root.right);
     }
+    @Test
+    public void test24(){
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        List<Integer> result = s.rightSideView(root);
+        assertEquals("[1, 3]", Arrays.toString(result.toArray()));
+
+        root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        result = s.rightSideView(root);
+        assertEquals("[1, 2]", Arrays.toString(result.toArray()));
+    }
+    @Test
+    public void test25(){
+        TreeNode root = new TreeNode(1);
+        assertEquals(1, s.countNodes(root));
+        root.left = new TreeNode(2);
+        assertEquals(2, s.countNodes(root));
+        root.right = new TreeNode(2);
+        assertEquals(3, s.countNodes(root));
+
+    }
 }

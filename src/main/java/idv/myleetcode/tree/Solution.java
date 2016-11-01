@@ -633,4 +633,77 @@ public class Solution{
             sumNumbersHelper(node.right, rightPath, result);
         }
     }
+    //199. Binary Tree Right Side View
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        if(root==null){
+            return res;
+        }
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            int preLevelCnt = q.size();
+            for(int i=0; i<preLevelCnt; i++){
+                TreeNode tmp = q.poll();
+                if(tmp.left!=null){
+                    q.add(tmp.left);
+                }
+                if(tmp.right!=null){
+                    q.add(tmp.right);
+                }
+                if(i==preLevelCnt-1){
+                    res.add(tmp.val);
+                }
+            }
+        }
+        return res;
+    }
+    //222. Count Complete Tree Nodes
+    public int countNodes1(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+        int level = helperLeft(root);
+        int completeNodes = (int) Math.pow(2, level-1) - 1;
+        //find leaves
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        int levelCnt = 0;
+        while(!q.isEmpty()){
+            levelCnt = q.size();
+            for(int i=0; i<levelCnt; i++){
+                TreeNode tmp = q.poll();
+                if(tmp.left!=null){
+                    q.add(tmp.left);
+                }
+                if(tmp.right!=null){
+                    q.add(tmp.right);
+                }
+            }
+        }
+        return completeNodes + levelCnt;
+    }
+    public int countNodes(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+        int levelLeft = helperLeft(root.left);
+        int count = 1;
+        int middle = helperLeft(root.right);
+        if(levelLeft==middle){
+            count += (1<< levelLeft) - 1;
+            count += countNodes(root.right);
+        }else{
+            count += (1<< middle) - 1;
+            count += countNodes(root.left);
+        }
+        return count;
+    }
+    private int helperLeft(TreeNode root){
+        if(root==null){
+            return 0;
+        }else{
+            return 1 + helperLeft(root.left);
+        }
+    }
 }
