@@ -706,4 +706,39 @@ public class Solution{
             return 1 + helperLeft(root.left);
         }
     }
+    //230. Kth Smallest Element in a BST
+    public int kthSmallest(TreeNode root, int k) {
+        if(root==null){
+            return 0;
+        }
+        TreeNode cur = root;
+        while(cur!=null){
+            if(cur.left==null){//visit, and check the k
+                if(k==1){
+                    return cur.val;
+                }
+                k--;
+                cur = cur.right;
+            }else{
+                TreeNode prev = cur.left;
+                while(prev.right!=null&&prev.right!=cur){
+                    prev = prev.right;
+                }
+                //two case left  :
+                //1. prev.right==null
+                if(prev.right==null){
+                    prev.right = cur;
+                    cur = cur.left;
+                }else{ // met before, print it
+                    if(k==1){
+                        return cur.val;
+                    }
+                    k--;
+                    prev.right = null;
+                    cur = cur.right;
+                }
+            }
+        }
+        return 0;
+    }
 }

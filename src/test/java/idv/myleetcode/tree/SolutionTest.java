@@ -306,8 +306,16 @@ public class SolutionTest {
         root.left.left = new TreeNode(1);
         root.left.right = new TreeNode(3);
         BSTIterator bitr = new BSTIterator(root);
-        while(bitr.hasNext()){
-            System.out.println(bitr.next());
-        }
+        assertEquals(1, bitr.next());
+        assertEquals(2, bitr.next());
+        assertEquals(3, bitr.next());
+        assertEquals(4, bitr.next());
+        assertEquals(5, bitr.next());
+        assertFalse(bitr.hasNext());
+    }
+    @Test
+    public void test27(){
+        TreeNode root = new TreeNode(4);
+        assertEquals(4, s.kthSmallest(root, 1));
     }
 }
