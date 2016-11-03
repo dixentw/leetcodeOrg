@@ -94,6 +94,47 @@ public class Solution{
         result.addAll(inorderTraversal(root.right));
         return result;
     }
+    public List<Integer> inorderTraversal_s(TreeNode root){
+        List<Integer> result = new ArrayList<Integer>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode tmp = root;
+        while(!stack.empty() || tmp!=null){
+            if(tmp!=null){
+                stack.push(tmp);
+                tmp = tmp.left;
+            }else{
+                tmp = stack.pop();
+                result.add(tmp.val);
+                tmp = tmp.right;
+            }
+        }
+        return result;
+    }
+
+    public List<Integer> inorderTraversal_m(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        TreeNode cur = root;
+        while(cur!=null){
+            if(cur.left==null){
+                result.add(cur.val);
+                cur = cur.right;
+            }else{
+                TreeNode pre = cur.left;
+                while(pre.right!=null && pre.right!=cur){
+                    pre = pre.right;
+                }
+                if(pre.right==null){
+                    pre.right = cur;
+                    cur = cur.left;
+                }else{
+                    result.add(cur.val);
+                    pre.right = null;
+                    cur = cur.right;
+                }
+            }
+        }
+        return result;
+    }
     //104. Maximum Depth of Binary Tree
     public int maxDepth(TreeNode root) {
         if(root==null){
@@ -106,34 +147,6 @@ public class Solution{
             return 1 + Math.max(maxDepth(root.right), maxDepth(root.left));
         }
         return 1+ Math.max(maxDepth(root.left), maxDepth(root.right));
-    }
-    // traversal, iteration
-    public void preOrder(TreeNode root){
-        Stack<TreeNode> stack = new Stack<>();
-        TreeNode tmp = root;
-        stack.push(tmp);
-        while(!stack.empty()){
-            TreeNode n = stack.pop();
-            if(n.right!=null){
-                stack.push(n.right);
-            }
-            if(n.left!=null){
-                stack.push(n.left);
-            }
-        }
-    }
-    public void inOrder(TreeNode root){
-        Stack<TreeNode> stack = new Stack<>();
-        TreeNode tmp = root;
-        while(!stack.empty() || tmp!=null){
-            if(tmp!=null){
-                stack.push(tmp);
-                tmp = tmp.left;
-            }else{
-                tmp = stack.pop();
-                tmp = tmp.right;
-            }
-        }
     }
     // 103. Binary Tree Zigzag Level Order Traversal
     private void traverseZigzag(TreeNode node, int level, List<List<Integer>> result){
@@ -304,6 +317,47 @@ public class Solution{
         }
         return result;
     }
+    public List<Integer> preorderTraversal_s(TreeNode root){
+        List<Integer> result = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode tmp = root;
+        stack.push(tmp);
+        while(!stack.empty()){
+            TreeNode n = stack.pop();
+            result.add(n.val);
+            if(n.right!=null){
+                stack.push(n.right);
+            }
+            if(n.left!=null){
+                stack.push(n.left);
+            }
+        }
+        return result;
+    }
+    public List<Integer> preorderTraversal_m(TreeNode root){
+        List<Integer> result = new ArrayList<>();
+        TreeNode cur = root;
+        while(cur!=null){
+            if(cur.left==null){
+                result.add(cur.val);
+                cur = cur.right;
+            }else{
+                TreeNode pre = cur.left;
+                while(pre.right!=null&&pre.right!=cur){
+                    pre = pre.right;
+                }
+                if(pre.right==null){
+                    pre.right = cur;
+                    result.add(cur.val);
+                    cur = cur.left;
+                }else{
+                    pre.right = null;
+                    cur = cur.right;
+                }
+            }
+        }
+        return result;
+    }
     //145. Binary Tree Postorder Traversal
     public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();
@@ -311,6 +365,50 @@ public class Solution{
             result.addAll(postorderTraversal(root.left));
             result.addAll(postorderTraversal(root.right));
             result.add(root.val);
+        }
+        return result;
+    }
+    public List<Integer> postorderTraversal_s(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Stack<TreeNode> stack1 = new Stack<>();
+        Stack<TreeNode> stack2 = new Stack<>();
+        stack1.push(root);
+        while(!stack1.empty()){
+            TreeNode tmp = stack1.pop();
+            if(tmp.left!=null){
+                stack1.push(tmp.left);
+            }
+            if(tmp.right!=null){
+                stack1.push(tmp.right);
+            }
+            stack2.push(tmp);
+        }
+        while(!stack2.empty()){
+            result.add(stack2.pop().val);
+        }
+        return result;
+    }
+    public List<Integer> postorderTraversal_s1(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode node = root;
+        TreeNode prev = null;
+        stack.push(node);
+        while(!stack.empty()){
+            TreeNode curr = stack.peek();
+            if((curr.left==null&&curr.right==null)
+            || (prev!=null && (prev == curr.left || prev==curr.right))){
+                result.add(curr.val);
+                prev = curr;
+                stack.pop();
+            }else{
+                if(curr.right!=null){
+                    stack.push(curr.right)
+                }
+                if(curr.left != null){
+                    stack.push(curr.left)
+                }
+            }
         }
         return result;
     }

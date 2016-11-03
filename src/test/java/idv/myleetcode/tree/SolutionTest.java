@@ -30,23 +30,6 @@ public class SolutionTest {
         assertTrue(s.hasPathSum(root, 3));
     }
     @Test
-    public void test113(){
-        TreeNode root = new TreeNode(1);
-        TreeNode l = new TreeNode(2);
-        TreeNode r = new TreeNode(3);
-        TreeNode ll = new TreeNode(4);
-        TreeNode rr = new TreeNode(5);
-        TreeNode lll = new TreeNode(6);
-        TreeNode rrr = new TreeNode(7);
-        root.left = l;
-        root.right = r;
-        l.left = ll;
-        l.right = rr;
-        r.left = lll;
-        r.right = rrr;
-        s.inOrder(root);
-    }
-    @Test
     public void test5(){
         TreeNode root = new TreeNode(3);
         root.left = new TreeNode(9);
@@ -162,6 +145,10 @@ public class SolutionTest {
         root.right.left = new TreeNode(3);
         List<Integer> ttt = s.preorderTraversal(root);
         assertEquals("[1, 2, 3]", Arrays.toString(ttt.toArray()));
+        ttt = s.preorderTraversal_s(root);
+        assertEquals("[1, 2, 3]", Arrays.toString(ttt.toArray()));
+        ttt = s.preorderTraversal(root);
+        assertEquals("[1, 2, 3]", Arrays.toString(ttt.toArray()));
     }
     @Test
     public void test13(){
@@ -169,6 +156,8 @@ public class SolutionTest {
         root.right = new TreeNode(2);
         root.right.left = new TreeNode(3);
         List<Integer> ttt = s.postorderTraversal(root);
+        assertEquals("[3, 2, 1]", Arrays.toString(ttt.toArray()));
+        ttt = s.postorderTraversal_s(root);
         assertEquals("[3, 2, 1]", Arrays.toString(ttt.toArray()));
     }
     @Test
@@ -317,5 +306,19 @@ public class SolutionTest {
     public void test27(){
         TreeNode root = new TreeNode(4);
         assertEquals(4, s.kthSmallest(root, 1));
+    }
+    @Test
+    public void test28(){
+        TreeNode root = new TreeNode(4);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(5);
+        root.left.left = new TreeNode(1);
+        root.left.right = new TreeNode(3);
+        List<Integer> result = s.inorderTraversal(root);
+        assertEquals("[1, 2, 3, 4, 5]", Arrays.toString(result.toArray()));
+        result = s.inorderTraversal_m(root);
+        assertEquals("[1, 2, 3, 4, 5]", Arrays.toString(result.toArray()));
+        result = s.inorderTraversal_s(root);
+        assertEquals("[1, 2, 3, 4, 5]", Arrays.toString(result.toArray()));
     }
 }
