@@ -533,4 +533,45 @@ public class Solution{
         }
         return result;
     }
+    //53. Maximum Subarray
+    public int maxSubArray(int[] nums) {
+        int max = Integer.MIN_VALUE;
+        int sum = 0;
+        for(int i=0; i<nums.length; i++){
+            if(sum>0){
+                sum += nums[i];
+            }else{
+                sum = nums[i];
+            }
+            max = Math.max(sum, max);
+        }
+        return max;
+    }
+    public int maxSubArray1(int[] nums) {
+        return helper(nums, 0, nums.length-1);
+    }
+    private int helper(int[] nums, int start, int end){
+        if(start==end){
+            return nums[start];
+        }else{
+            int mid = start + (end - start)/2;
+            return Math.max(helper(nums, start, mid), Math.max(helper(nums, mid+1, end), crossHelper(nums, start, end)));
+        }
+    }
+    private int crossHelper(int[] nums, int start, int end){
+        int mid = start + (end - start)/2;
+        int leftMax = Integer.MIN_VALUE;
+        int rightMax = Integer.MIN_VALUE;
+        int sum = 0;
+        for(int i=mid;i>=start;i--){
+            sum += nums[i];
+            leftMax = Math.max(sum, leftMax);
+        }
+        sum = 0;
+        for(int i=mid+1;i<=end;i++){
+            sum += nums[i];
+            rightMax = Math.max(sum, rightMax);
+        }
+        return leftMax + rightMax;
+    }
 }

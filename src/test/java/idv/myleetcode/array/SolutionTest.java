@@ -172,4 +172,10 @@ public class SolutionTest {
         assertEquals("[-1, -1, 2]", Arrays.toString(result.get(0).toArray()));
         assertEquals("[-1, 0, 1]", Arrays.toString(result.get(1).toArray()));
     }
+    @Test
+    public void test53(){
+        int[] A = {-2,1,-3,4,-1,2,1,-5,4};
+        assertEquals( 6, s.maxSubArray(A));
+        assertEquals( 6, s.maxSubArray1(A));
+    }
 }

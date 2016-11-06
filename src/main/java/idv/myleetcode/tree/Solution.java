@@ -403,10 +403,10 @@ public class Solution{
                 stack.pop();
             }else{
                 if(curr.right!=null){
-                    stack.push(curr.right)
+                    stack.push(curr.right);
                 }
                 if(curr.left != null){
-                    stack.push(curr.left)
+                    stack.push(curr.left);
                 }
             }
         }
