@@ -22,6 +22,21 @@ public class Solution{
         }
         return new int[0];
     }
+    public int[] twoSum_1(int[] nums, int target){
+        Arrays.sort(nums);
+        int start = 0;
+        int end = nums.length-1;
+        while(start<end){
+            if(nums[start]+nums[end]==target){
+                return new int[]{nums[start], nums[end]};
+            }else if(nums[start]+nums[end]>target){
+                end--;
+            }else{
+                start++;
+            }
+        }
+        return new int[]{nums[start], nums[end]};
+    }
 
     // 219. contains duplicate
     public boolean containsNearbyDuplicate(int[] nums, int k) {
@@ -536,14 +551,14 @@ public class Solution{
     //53. Maximum Subarray
     public int maxSubArray(int[] nums) {
         int max = Integer.MIN_VALUE;
-        int sum = 0;
+        int sum = Integer.MIN_VALUE;
         for(int i=0; i<nums.length; i++){
-            if(sum>0){
-                sum += nums[i];
-            }else{
+            if(sum <= 0){
                 sum = nums[i];
+            }else{
+                sum += nums[i];
             }
-            max = Math.max(sum, max);
+            max = Math.max(max, sum);
         }
         return max;
     }
@@ -553,24 +568,23 @@ public class Solution{
     private int helper(int[] nums, int start, int end){
         if(start==end){
             return nums[start];
-        }else{
-            int mid = start + (end - start)/2;
-            return Math.max(helper(nums, start, mid), Math.max(helper(nums, mid+1, end), crossHelper(nums, start, end)));
         }
+        int mid = start + (end-start)/2;
+        return Math.max(helper(nums, start, mid), Math.max(helper(nums, mid+1, end), crossHelper(nums, start, end)));
     }
     private int crossHelper(int[] nums, int start, int end){
-        int mid = start + (end - start)/2;
+        int mid = start + (end-start)/2;
         int leftMax = Integer.MIN_VALUE;
-        int rightMax = Integer.MIN_VALUE;
         int sum = 0;
-        for(int i=mid;i>=start;i--){
+        for(int i=mid; i>=start; i--){
             sum += nums[i];
-            leftMax = Math.max(sum, leftMax);
+            leftMax = Math.max(leftMax, sum);
         }
+        int rightMax = Integer.MIN_VALUE;
         sum = 0;
-        for(int i=mid+1;i<=end;i++){
+        for(int i=mid+1; i<=end; i++){
             sum += nums[i];
-            rightMax = Math.max(sum, rightMax);
+            rightMax = Math.max(rightMax, sum);
         }
         return leftMax + rightMax;
     }

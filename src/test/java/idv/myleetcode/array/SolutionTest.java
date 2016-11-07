@@ -15,6 +15,9 @@ public class SolutionTest {
         int[] result = s.twoSum(A, 9);
         assertTrue(result[0]==1||result[0]==0);
         assertTrue(result[1]==1||result[1]==0);
+        result = s.twoSum_1(A, 9);
+        assertEquals(2, result[0]);
+        assertEquals(7, result[1]);
     }
     @Test
     public void test88(){
