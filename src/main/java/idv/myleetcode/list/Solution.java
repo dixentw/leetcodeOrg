@@ -250,21 +250,20 @@ public class Solution{
     public ListNode reverseBetween(ListNode head, int m, int n) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
-        ListNode curr = dummy;
+        ListNode start = dummy;
         for(int i=0; i<m-1; i++){
-            curr = curr.next;
+            start = start.next;
         }
         ListNode prev = null;
-        ListNode nx = null;
-        ListNode tmp = curr.next;
+        ListNode curr = start.next;
         for(int i=0; i<=n-m; i++){
-            nx = tmp.next;
-            tmp.next = prev;
-            prev = tmp;
-            tmp = nx;
+            ListNode tmp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = tmp;
         }
-        curr.next.next = tmp;
-        curr.next = prev;
+        start.next.next = curr;
+        start.next = prev;
         return dummy.next;
     }
     //160. Intersection of Two Linked Lists
