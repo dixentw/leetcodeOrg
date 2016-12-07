@@ -146,4 +146,30 @@ public class Solution{
         return result;
     }
 
+    public String reverseSentence(String s){
+        char[] cs = s.toCharArray();
+        int start = 0;
+        int end = 0;
+        while(true){
+            //System.out.println(Arrays.toString(cs));
+            if(end<cs.length&&cs[end]!=' '){
+                end++;
+            }else{
+                int inner = end-1;
+                while(start<inner){//swap
+                    char tmp = cs[start];
+                    cs[start] = cs[inner];
+                    cs[inner] = tmp;
+                    start++;
+                    inner--;
+                }
+                if(end<cs.length){
+                    start = end= end+1;
+                }else{
+                    break;
+                }
+            }
+        }
+        return new String(cs);
+    }
 }

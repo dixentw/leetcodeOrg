@@ -65,4 +65,9 @@ public class SolutionTest {
     public void testInversion(){
         assertEquals(5, s.countInversion(new int[]{1, 20, 6, 4, 5}));
     }
+    @Test
+    public void testInversionString(){
+        String str = "this is a dog";
+        System.out.println(s.reverseSentence(str));
+    }
 }

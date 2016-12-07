@@ -209,46 +209,12 @@ public class Solution{
         HashSet<Character> set = new HashSet<>();
         while(end<s.length()){
             if(set.contains(s.charAt(end))){
-                if(max < end - start){
-                    max = end - start;
-                }
-                while(s.charAt(start)!=s.charAt(end)){
-                    set.remove(s.charAt(start));
-                    start++;
-                }
-                start++;
+                set.remove(s.charAt(start++));
             }else{
-                set.add(s.charAt(end));
+                set.add(s.charAt(end++));
+                max = Math.max(max, end-start);
             }
-            end++;
         }
-        int result = Math.max(max,end-start);
-        /*
-        char[] cs = s.toCharArray();
-        boolean[] map = new boolean[256];
-        Arrays.fill(map, Boolean.FALSE);
-        List<Integer> tmpRs = new ArrayList<>();
-        for(int i=0; i<cs.length; i++){
-            if(map[cs[i]]){
-                Arrays.fill(map, Boolean.FALSE);
-                tmpRs.add(i);
-            }
-            map[cs[i]] = true;
-        }
-        if(tmpRs.size()==0){
-            return s.length();
-        }
-        if(tmpRs.size()==1){
-            return (s.length() - tmpRs.get(0) > tmpRs.get(0))? s.length() - tmpRs.get(0): tmpRs.get(0);
-        }
-        //System.out.println(Arrays.toString(tmpRs.toArray()));
-        int result = tmpRs.get(0);
-        for(int i=1; i<tmpRs.size(); i++){
-            int diff = tmpRs.get(i)-tmpRs.get(i-1);
-            if(diff > result) {
-                result = diff;
-            }
-        }*/
-        return result;
+        return max;
     }
 }

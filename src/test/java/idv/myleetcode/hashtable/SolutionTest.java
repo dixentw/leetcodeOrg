@@ -64,6 +64,7 @@ public class SolutionTest {
     @Test
     public void test3(){
         assertEquals(3, s.lengthOfLongestSubstring("pwwkew"));
+        System.out.println("ffff");
         assertEquals(1, s.lengthOfLongestSubstring("c"));
         assertEquals(2, s.lengthOfLongestSubstring("au"));
         assertEquals(1, s.lengthOfLongestSubstring("aa"));
