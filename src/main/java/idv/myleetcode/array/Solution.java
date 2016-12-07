@@ -96,7 +96,7 @@ public class Solution{
         }
     }
     // 189. Rotate Array
-    public void rotate(int[] nums, int k) {
+    public void rotate_old(int[] nums, int k) {
         List<Integer> tmp = new ArrayList<>();
         for(int i=0; i<nums.length; i++){
             tmp.add(nums[i]);
@@ -107,6 +107,21 @@ public class Solution{
         }
         for(int i=0; i<tmp.size(); i++){
             nums[i] = tmp.get(i);
+        }
+    }
+    public void rotate(int[] nums, int k) {
+        k = k % nums.length;
+        reverse(nums, 0, nums.length-1);
+        reverse(nums, 0, k-1);
+        reverse(nums, k, nums.length-1);
+    }
+    private void reverse(int[] nums, int start, int end){
+        while(start < end){
+            int tmp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = tmp;
+            start++;
+            end--;
         }
     }
     // 169. Majority Element
@@ -274,6 +289,17 @@ public class Solution{
         }
         return result;
     }
+    //119. Pascal's Triangle II
+    public List<Integer> getRow(int rowIndex) {
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i <= rowIndex; i++) {
+            result.add(0, 1);
+            for (int j = 1; j < result.size() - 1; j++) {
+                result.set(j, result.get(j) + result.get(j + 1));
+            }
+        }
+        return result;
+    }
     //26. Remove Duplicates from Sorted Array
     public int removeDuplicates(int[] nums) {
         if(nums.length==0){
@@ -289,6 +315,23 @@ public class Solution{
             }
         }
         return prevIdx;
+    }
+    //27. Remove Element
+    public int removeElement(int[] nums, int val) {
+        int lastIdx = nums.length - 1;
+        int firstIdx = 0;
+        while(firstIdx <= lastIdx){
+        	if(nums[firstIdx]==val){
+                int tmp = nums[firstIdx];
+                nums[firstIdx] = nums[lastIdx];
+                nums[lastIdx] = tmp;
+                lastIdx--;
+                firstIdx = 0;
+            }else{
+            	firstIdx++;
+            }
+        }
+        return lastIdx+1;
     }
     //46. Permutations
     public void permuteHelper(List<Integer> selected, List<Integer> remainds, List<List<Integer>> result){
