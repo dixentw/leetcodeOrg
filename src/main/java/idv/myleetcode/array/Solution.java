@@ -631,4 +631,28 @@ public class Solution{
         }
         return leftMax + rightMax;
     }
+    //414. Third Maximum Number
+    public int thirdMax(int[] nums) {
+        long max = Long.MIN_VALUE;
+        long second = max;
+        long third = max;
+        for(int i=0; i<nums.length; i++){
+            if(nums[i] > max){
+                third = second;
+                second = max;
+                max = nums[i];
+            }else if(nums[i] > second && nums[i] != max){
+                third = second;
+                second = nums[i];
+            }else if(nums[i] > third && nums[i] != second && nums[i] != max){
+                third= nums[i];
+            }
+        }
+        System.out.println(max+"\t"+second+"\t"+third);
+        if(third!=Long.MIN_VALUE){
+            return (int)third;
+        }else{
+            return (int)max;
+        }
+    }
 }

@@ -181,4 +181,12 @@ public class SolutionTest {
         assertEquals( 6, s.maxSubArray(A));
         assertEquals( 6, s.maxSubArray1(A));
     }
+    @Test
+    public void test414(){
+        assertEquals(1, s.thirdMax(new int[]{3,2,1}));
+        assertEquals(2, s.thirdMax(new int[]{1,2}));
+        assertEquals(1, s.thirdMax(new int[]{2,2,3,1}));
+        assertEquals(5, s.thirdMax(new int[]{5,2,2}));
+        assertEquals(2, s.thirdMax(new int[]{1,2,2,5,3,5}));
+    }
 }
