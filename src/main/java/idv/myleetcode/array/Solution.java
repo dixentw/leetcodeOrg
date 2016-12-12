@@ -216,7 +216,6 @@ public class Solution{
                 i++;
             }
             buy = i;
-            System.out.println("sssss : "+buy);
             if(buy==prices.length-1){
                 return profit;
             }
@@ -225,7 +224,6 @@ public class Solution{
                 i++;
             }
             sell = i;
-            System.out.println("buy : "+buy + ", sell:"+sell);
             profit += prices[sell] - prices[buy];
         }
         return profit;
@@ -648,11 +646,25 @@ public class Solution{
                 third= nums[i];
             }
         }
-        System.out.println(max+"\t"+second+"\t"+third);
         if(third!=Long.MIN_VALUE){
             return (int)third;
         }else{
             return (int)max;
         }
+    }
+    //11. Container With Most Water
+    public int maxArea(int[] height) {
+        int start = 0;
+        int end = height.length-1;
+        int maxArea = 0;
+        while(start < end){
+            maxArea = Math.max(maxArea, Math.min(height[start], height[end])*(end-start));
+            if(height[start]<height[end]){
+                start++;
+            }else{
+                end--;
+            }
+        }
+        return maxArea;
     }
 }

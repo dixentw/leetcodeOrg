@@ -189,4 +189,8 @@ public class SolutionTest {
         assertEquals(5, s.thirdMax(new int[]{5,2,2}));
         assertEquals(2, s.thirdMax(new int[]{1,2,2,5,3,5}));
     }
+    @Test
+    public void test11(){
+        assertEquals(12, s.maxArea(new int[]{2,3,4,5,4,3}));
+    }
 }
