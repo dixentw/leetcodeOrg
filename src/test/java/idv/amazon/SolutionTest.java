@@ -44,4 +44,13 @@ public class SolutionTest{
         int result = s.maxIsland(data);
         assertEquals(8, result);
     }
+    @Test
+    public void testlala(){
+        int[][] grid = new int[][]{
+            {0,0,0,0},
+            {1,0,1,0},
+            {1,1,0,0}
+        };
+        assertEquals(4, s.getExitGrid(grid, 3, 4, 1, 3));
+    }
 }

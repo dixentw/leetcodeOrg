@@ -105,4 +105,30 @@ public class Solution{
         markaround(map, i, j-1, iSize);
     }
 
+    public int getExitGrid(int[][] grid, int gridRow, int gridCol, int exitRow, int exitCol) {
+        for(int i=0; i<gridRow; i++){
+            for(int j=0; j<gridCol; j++){
+                if(grid[i][j]==1){
+                    grid[i][j] = Integer.MIN_VALUE;
+                }
+            }
+        }
+        goGrid(grid, gridRow, gridCol, 0, 0, 0);
+        return grid[exitRow][exitCol];
+    }
+    private void goGrid(int[][] grid, int gridRow, int gridCol, int i, int j, int prev){
+        if(i<0||j<0||i>=gridRow||j>=gridCol||grid[i][j]==Integer.MIN_VALUE){
+            return;
+        }
+        if(grid[i][j]!=0 && grid[i][j] < prev){
+            return;
+        }
+        grid[i][j] = prev;
+        prev++;
+        goGrid(grid, gridRow, gridCol, i+1, j, prev);
+        goGrid(grid, gridRow, gridCol, i, j+1, prev);
+        goGrid(grid, gridRow, gridCol, i-1, j, prev);
+        goGrid(grid, gridRow, gridCol, i, j-1, prev);
+    }
+
 }
