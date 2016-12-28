@@ -95,46 +95,7 @@ public class Solution{
         int result = 0;
         for(int i=0; i<A.length; i++){
             for(int j=0; j<A[i].length; j++){
-                if(!visited[i][j]){
-                    result++;
-                    visited[i][j] = true;
-                }
-                //find left
-                if(j-1>0){
-                    if(A[i][j-1]!=A[i][j]){
-                        if(!visited[i][j-1]){
-                            result++;
-                        }
-                    }
-                    visited[i][j-1] = true;
-                }
-                //find right
-                if(j+1<A[i].length){
-                    if(A[i][j+1]!=A[i][j]){
-                        if(!visited[i][j+1]){
-                            result++;
-                        }
-                    }
-                    visited[i][j+1] = true;
-                }
-                //find bottom
-                if(i+1<A.length){
-                    if(A[i+1][j]!=A[i][j]){
-                        if(!visited[i+1][j]){
-                            result++;
-                        }
-                    }
-                    visited[i+1][j] = true;
-                }
-                //find up
-                if(i-1>0){
-                    if(A[i-1][j]!=A[i][j]){
-                        if(!visited[i-1][j]){
-                            result++;
-                        }
-                    }
-                    visited[i-1][j] = true;
-                }
+                
             }
         }
         return result;
