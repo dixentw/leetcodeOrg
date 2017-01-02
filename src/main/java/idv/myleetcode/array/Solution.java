@@ -79,7 +79,6 @@ public class Solution{
                     }
                 }else{ // live
                     int liveN = getLiveNeighbor(board, i, j);
-                    System.out.println(liveN + "=" + i + "="+j );
                     if(liveN<2 || liveN>3 ){
                         result[i][j] = 0;
                     }else{
@@ -589,6 +588,61 @@ public class Solution{
         }
         return result;
     }
+    //16. 3Sum Closest
+    public int threeSumClosest(int[] nums, int target) {
+        //init result with a arbitary range
+        int result = nums[0]+nums[1]+nums[nums.length-1];
+        Arrays.sort(nums);
+        for(int i=0; i<nums.length-2; i++){
+            int start = i+1;
+            int end = nums.length-1;
+            while(start<end){
+                int sum = nums[i] + nums[start] + nums[end];
+                if(sum > target){
+                    end--;
+                }else{
+                    start++;
+                }
+                if(Math.abs(sum - target) < Math.abs(result - target)){
+                    result = sum;
+                }
+            }
+        }
+        return result;
+    }
+    //18. 4Sum
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums);
+        for(int i=0; i<nums.length-3; i++){
+            if(i>0&&nums[i]==nums[i-1])continue;
+            for(int j=i+1;j<nums.length-2; j++){
+                if(j>i+1&&nums[j]==nums[j-1])continue;
+                int start = j+1;
+                int end = nums.length-1;
+                while(start<end){
+                    int sum = nums[i]+nums[j]+nums[start]+nums[end];
+                    System.out.println(sum);
+                    if(target==sum){
+                        result.add(Arrays.asList(nums[i], nums[j], nums[start], nums[end]));
+                        while(start<end&&nums[start]==nums[start+1]){
+                            start++;
+                        }
+                        while(start<end&&nums[end]==nums[end-1]){
+                            end--;
+                        }
+                        start++;
+                        end--;
+                    }else if(sum<target){
+                        start++;
+                    }else{
+                        end--;
+                    }
+                }
+            }
+        }
+        return result;
+    }
     //53. Maximum Subarray
     public int maxSubArray(int[] nums) {
         int max = Integer.MIN_VALUE;
@@ -667,4 +721,28 @@ public class Solution{
         }
         return maxArea;
     }
+    //31. Next Permutation
+    public void nextPermutation(int[] nums) {
+        int i = nums.length-1;
+        while(i>0 && nums[i]<=nums[i-1]){
+            i--;
+        }
+        if(i==0){
+            Arrays.sort(nums);
+            return;
+        }
+        int second = Integer.MAX_VALUE;
+        int secondIdx = Integer.MAX_VALUE;
+        for(int j=nums.length-1; j>=i; j--){
+            if(nums[j]> nums[i-1] && nums[j] < second){
+                second = nums[j];
+                secondIdx = j;
+            }
+        }
+        int tmp = nums[i-1];
+        nums[i-1] = nums[secondIdx];
+        nums[secondIdx] = tmp;
+        Arrays.sort(nums, i, nums.length);
+    }
+
 }

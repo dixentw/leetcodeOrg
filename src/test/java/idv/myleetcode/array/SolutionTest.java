@@ -84,10 +84,6 @@ public class SolutionTest {
             {0,0,0,0,0}
         };
         s.gameOfLife(data);
-        /*
-        for(int[] a : data){
-            System.out.println(Arrays.toString(a));
-        }*/
     }
     @Test
     public void test46(){
@@ -105,19 +101,19 @@ public class SolutionTest {
         //s.strperm("abca");
         int[] A = new int[]{1,2,3,4};
         List<List<Integer>> r = s.permute2(A);
-        System.out.println("------------------");
+        //System.out.println("------------------");
         for(List<Integer> l : r){
-            System.out.println(Arrays.toString(l.toArray()));
+            //System.out.println(Arrays.toString(l.toArray()));
         }
     }
     @Test
     public void test47(){
         int[] A = new int[]{1,2,2,3};
         //List<List<Integer>> r = s.permuteUnique(A);
-        System.out.println("--------------");
+        //System.out.println("--------------");
         List<List<Integer>> r = s.permute2(A);
         for(List<Integer> l : r){
-            System.out.println(Arrays.toString(l.toArray()));
+            //System.out.println(Arrays.toString(l.toArray()));
         }
     }
     @Test
@@ -150,9 +146,8 @@ public class SolutionTest {
     public void testSubsets(){
         int[] nums = {1,2,3};
         List<List<Integer>> ret = s.subsets(nums);
-        System.out.println("=============================");
         for(List<Integer> sub : ret){
-			System.out.println(sub);
+			//System.out.println(sub);
 		}
     }
     @Test
@@ -192,5 +187,34 @@ public class SolutionTest {
     @Test
     public void test11(){
         assertEquals(12, s.maxArea(new int[]{2,3,4,5,4,3}));
+    }
+    @Test
+    public void test31(){
+        int[] testArr = new int[]{1,2,3};
+        s.nextPermutation(testArr);
+        assertEquals("[1, 3, 2]", Arrays.toString(testArr));
+        testArr = new int[]{3,2,1};
+        s.nextPermutation(testArr);
+        assertEquals("[1, 2, 3]", Arrays.toString(testArr));
+        testArr = new int[]{1,1,5};
+        s.nextPermutation(testArr);
+        assertEquals("[1, 5, 1]", Arrays.toString(testArr));
+    }
+    @Test
+    public void test16(){
+        int[] A = new int[]{-1, 2, 1, -4};
+        assertEquals(2, s.threeSumClosest(A, 1));
+    }
+    @Test
+    public void test18(){
+        int[] A = new int[]{1, 0, -1, 0, -2, 2};
+        List<List<Integer>> result = s.fourSum(A, 0);
+        assertEquals(3, result.size());
+        for(List<Integer> bb : result){
+            assertEquals(0, Arrays.stream(bb.toArray(new Integer[0])).mapToInt(Integer::intValue).sum());
+        }
+        int[] B = new int[]{-3,-2,-1,0,0,1,2,3};
+        result = s.fourSum(B, 0);
+        assertEquals(8, result.size());
     }
 }
