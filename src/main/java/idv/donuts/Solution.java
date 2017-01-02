@@ -72,22 +72,21 @@ public class Solution{
             return -1;
         }
     }
-    private int goNode(int[][] visited, int[][] A, int i, int j, int neightbor, int result){
-        if(i<0|| j<0||i>A.length||j>A[0].length){
-            return result;
+    private int goNode(boolean[][] visited, int[][] A, int i, int j, int curr){
+        if(i<0|| j<0||i>=A.length||j>=A[0].length){
+            return 0;
         }
         if(visited[i][j]){
-            return result;
+            return 0;
         }
-        if(neightbor!=A[i][j]){
-            return result+1;
-        }else{
+        if(A[i][j]==curr){
             visited[i][j] = true;
-            goNode(visited, A, i, j+1, A[i][j], result);
-            goNode(visited, A, i, j-1), A[i][j], result);
-            goNode(visited, A, i+1, j, A[i][j], result);
-            goNode(visited, A, i-1, j, A[i][j], result);
+            goNode(visited, A, i, j+1, A[i][j]);
+            goNode(visited, A, i, j-1, A[i][j]);
+            goNode(visited, A, i+1, j, A[i][j]);
+            goNode(visited, A, i-1, j, A[i][j]);
         }
+        return 1;
     }
     public int solution4(int[][] A) {
         // write your code in Java SE 8
@@ -95,7 +94,7 @@ public class Solution{
         int result = 0;
         for(int i=0; i<A.length; i++){
             for(int j=0; j<A[i].length; j++){
-                
+                result += goNode(visited, A, i, j, A[i][j]);
             }
         }
         return result;

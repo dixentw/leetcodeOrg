@@ -37,6 +37,7 @@ public class SolutionTest{
             {1, 4, 4},
             {4, 1, 1}
         };
+        //should be 11
         System.out.println(s.solution4(A));
         int[][] B = {
             {5, 5, 5},
