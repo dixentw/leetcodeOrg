@@ -132,7 +132,6 @@ public class Solution{
         int mid = 0;
         if(right>left){
             mid = (right+left)/2;
-            System.out.println(left+", "+right+", "+mid);
             invert = mergeSort(array, tmp, left, mid);
             invert += mergeSort(array, tmp, mid+1, right);
             invert += merge(array, tmp, left, mid+1, right);
@@ -142,7 +141,6 @@ public class Solution{
     public int countInversion(int[] A){
         int[] tmp = new int[A.length];
         int result = mergeSort(A, tmp, 0, A.length-1);
-        System.out.println(Arrays.toString(A));
         return result;
     }
 
@@ -171,5 +169,96 @@ public class Solution{
             }
         }
         return new String(cs);
+    }
+
+    //how many possible way to go n ?
+    public Integer[] goBoard(int n){
+        List<List<Integer>> cal = new LinkedList<>();
+        cal.add(0, new LinkedList<Integer>(Arrays.asList(1)));
+        cal.add(1, new LinkedList<Integer>(Arrays.asList(1)));
+        for(int i=2; i<=n; i++){
+            if(i >= cal.size()){
+                cal.add(i, new LinkedList<Integer>(Arrays.asList(0)));
+            }
+            List<Integer> currentNum = cal.get(i);
+            for(int j=1; j<=6; j++){
+                if(i-j<1){
+                    break;
+                }
+                List<Integer> prevNum = cal.get(i-j);
+                currentNum = addTwoList(currentNum, prevNum);
+            }
+            currentNum = addTwoList(currentNum, new LinkedList<Integer>(Arrays.asList(1)));
+            cal.add(i, currentNum);
+        }
+        return cal.get(n).toArray(new Integer[0]);
+    }
+
+    // fab , 0, 1, 1, 2, 3, 5
+    public int fib(int n){
+        int prev2 = 0;
+        int prev = 1;
+        if(n==0){
+            return prev2;
+        }
+        if(n==1){
+            return prev;
+        }
+        for(int i=2; i<=n; i++){
+            int sum = prev + prev2;
+            prev2 = prev;
+            prev = sum;
+        }
+        return prev;
+    }
+    public Integer[] fib2(int n){
+        List<Integer> prev2 = new LinkedList<>();
+        List<Integer> prev = new LinkedList<>();
+        prev2.add(0);
+        prev.add(1);
+        if(n==0){
+            return prev2.toArray(new Integer[0]);
+        }
+        if(n==1){
+            return prev.toArray(new Integer[0]);
+        }
+        for(int i=2; i<=n; i++){
+            List<Integer> sum = addTwoList(prev2, prev);
+            prev2 = prev;
+            prev = sum;
+        }
+        return prev.toArray(new Integer[0]);
+    }
+    public List<Integer> addTwoList(List<Integer> a, List<Integer> b){
+        List<Integer> tmp = new LinkedList<>();
+        int largeLen = 0;
+        int diff = Math.abs(a.size()-b.size());
+        //pedding zero
+        if(a.size()>b.size()){
+            for(int i=0; i<diff; i++){
+                b.add(0, 0);
+            }
+            largeLen = a.size();
+        }else{
+            for(int i=0; i<diff; i++){
+                a.add(0, 0);
+            }
+            largeLen = b.size();
+        }
+        int carry = 0;
+        for(int i=largeLen-1; i>=0; i--){
+            int sum = a.get(i) + b.get(i) + carry;
+            if(sum>=10){
+                carry = 1;
+                sum = sum % 10;
+            }else{
+                carry = 0;
+            }
+            tmp.add(0, sum);
+        }
+        if(carry==1){
+            tmp.add(0, carry);
+        }
+        return tmp;
     }
 }

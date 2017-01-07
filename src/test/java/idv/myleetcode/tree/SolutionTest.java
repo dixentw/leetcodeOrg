@@ -321,4 +321,22 @@ public class SolutionTest {
         result = s.inorderTraversal_s(root);
         assertEquals("[1, 2, 3, 4, 5]", Arrays.toString(result.toArray()));
     }
+    @Test
+    public void test30(){
+        TreeNode root = new TreeNode(4);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(5);
+        root.left.left = new TreeNode(1);
+        root.left.right = new TreeNode(3);
+        root.right.left = new TreeNode(11);
+        root.right.right = new TreeNode(13);
+        List<List<TreeNode>> result = s.getSameLevelNode(root);
+        for(List<TreeNode> level : result){
+            for(TreeNode node :level){
+                System.out.print(node.val + ", ");
+            }
+            System.out.println("bbb");
+        }
+
+    }
 }

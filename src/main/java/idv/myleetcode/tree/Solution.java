@@ -839,4 +839,28 @@ public class Solution{
         }
         return 0;
     }
+    //List all nodes at the same level
+    public List<List<TreeNode>> getSameLevelNode(TreeNode root){
+        List<List<TreeNode>> result = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while(!queue.isEmpty()){
+            List<TreeNode> level = new ArrayList<>();
+            TreeNode node = queue.poll();
+            while(node != null){
+                level.add(node);
+                node = queue.poll();
+            }
+            for(TreeNode n : level){
+                if(n.left!=null){
+                    queue.add(n.left);
+                }
+                if(n.right!=null){
+                    queue.add(n.right);
+                }
+            }
+            result.add(level);
+        }
+        return result;
+    }
 }
