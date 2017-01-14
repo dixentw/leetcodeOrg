@@ -335,7 +335,7 @@ public class SolutionTest {
             for(TreeNode node :level){
                 System.out.print(node.val + ", ");
             }
-            System.out.println("bbb");
+            System.out.println("");
         }
 
     }

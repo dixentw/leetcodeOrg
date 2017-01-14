@@ -217,4 +217,22 @@ public class SolutionTest {
         result = s.fourSum(B, 0);
         assertEquals(8, result.size());
     }
+    @Test
+    public void test34(){
+        /*
+        int[] A = new int[]{5, 7, 7, 8, 8, 10};
+        int[] result = s.searchRange(A, 8);
+        assertEquals("[3, 4]", Arrays.toString(result));
+        int[] B = new int[]{2, 2};
+        result = s.searchRange(B, 2);
+        assertEquals("[0, 1]", Arrays.toString(result));
+        */
+        int[] C = new int[]{1};
+        int[] result = s.searchRange_old(C, 1);
+        assertEquals("[0, 0]", Arrays.toString(result));
+
+        int[] D = new int[]{1, 4};
+        result = s.searchRange_old(D, 4);
+        assertEquals("[1, 1]", Arrays.toString(result));
+    }
 }

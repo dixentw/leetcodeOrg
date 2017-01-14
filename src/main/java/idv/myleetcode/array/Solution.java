@@ -622,7 +622,6 @@ public class Solution{
                 int end = nums.length-1;
                 while(start<end){
                     int sum = nums[i]+nums[j]+nums[start]+nums[end];
-                    System.out.println(sum);
                     if(target==sum){
                         result.add(Arrays.asList(nums[i], nums[j], nums[start], nums[end]));
                         while(start<end&&nums[start]==nums[start+1]){
@@ -743,6 +742,58 @@ public class Solution{
         nums[i-1] = nums[secondIdx];
         nums[secondIdx] = tmp;
         Arrays.sort(nums, i, nums.length);
+    }
+    //34. Search for a Range
+    public int[] searchRange_old(int[] nums, int target) {
+        int start = 0;
+        int end = nums.length-1;
+        while(start <= end){
+            int mid = start+(end-start)/2;
+            if(target < nums[mid]){
+                end = mid-1;
+            }else if(target > nums[mid]){
+                start = mid+1;
+            }else{ // hit
+                int low = mid;
+                int high = mid;
+                while(low>=0&&nums[low]==nums[mid]){
+                    low--;
+                }
+                while(high<nums.length&&nums[high]==nums[mid]){
+                    high++;
+                }
+                return new int[]{low+1, high-1};
+            }
+        }
+        return new int[]{-1, -1};
+    }
+    public int[] searchRange(int[] nums, int target) {
+        int start = 0;
+        int end = nums.length-1;
+        if(nums.length==1){
+            if(nums[0]==target){
+                return new int[]{0,0};
+            }
+        }
+        while(start <= end){
+            int mid = start+(end-start)/2;
+            if(target < nums[mid]){
+                end = mid-1;
+            }else if(target > nums[mid]){
+                start = mid+1;
+            }else{ // hit
+                int low = mid;
+                int high = mid;
+                while(low>=0&&nums[low]==nums[mid]){
+                    low--;
+                }
+                while(high<nums.length&&nums[high]==nums[mid]){
+                    high++;
+                }
+                return new int[]{low+1, high-1};
+            }
+        }
+        return new int[]{-1, -1};
     }
 
 }
