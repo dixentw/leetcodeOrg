@@ -767,33 +767,20 @@ public class Solution{
         }
         return new int[]{-1, -1};
     }
-    public int[] searchRange(int[] nums, int target) {
+    //35. Search Insert Position
+    public int searchInsert(int[] nums, int target) {
         int start = 0;
         int end = nums.length-1;
-        if(nums.length==1){
-            if(nums[0]==target){
-                return new int[]{0,0};
-            }
-        }
-        while(start <= end){
-            int mid = start+(end-start)/2;
+        while(start<=end){
+            int mid = (start + end)/2;
             if(target < nums[mid]){
-                end = mid-1;
+                end = mid - 1;
             }else if(target > nums[mid]){
-                start = mid+1;
-            }else{ // hit
-                int low = mid;
-                int high = mid;
-                while(low>=0&&nums[low]==nums[mid]){
-                    low--;
-                }
-                while(high<nums.length&&nums[high]==nums[mid]){
-                    high++;
-                }
-                return new int[]{low+1, high-1};
+                start = mid + 1;
+            }else{
+                return mid;
             }
         }
-        return new int[]{-1, -1};
+        return Math.min(start, end)+1;
     }
-
 }

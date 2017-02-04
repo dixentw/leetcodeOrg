@@ -219,20 +219,29 @@ public class SolutionTest {
     }
     @Test
     public void test34(){
-        /*
         int[] A = new int[]{5, 7, 7, 8, 8, 10};
-        int[] result = s.searchRange(A, 8);
+        int[] result = s.searchRange_old(A, 8);
         assertEquals("[3, 4]", Arrays.toString(result));
         int[] B = new int[]{2, 2};
-        result = s.searchRange(B, 2);
+        result = s.searchRange_old(B, 2);
         assertEquals("[0, 1]", Arrays.toString(result));
-        */
         int[] C = new int[]{1};
-        int[] result = s.searchRange_old(C, 1);
+        result = s.searchRange_old(C, 1);
         assertEquals("[0, 0]", Arrays.toString(result));
-
         int[] D = new int[]{1, 4};
         result = s.searchRange_old(D, 4);
         assertEquals("[1, 1]", Arrays.toString(result));
+    }
+    @Test
+    public void test35(){
+        int[] C = new int[]{1,3,5,6};
+        int result = s.searchInsert(C, 5);
+        assertEquals(2, result);
+        result = s.searchInsert(C, 2);
+        assertEquals(1, result);
+        result = s.searchInsert(C, 7);
+        assertEquals(4, result);
+        result = s.searchInsert(C, 0);
+        assertEquals(0, result);
     }
 }
