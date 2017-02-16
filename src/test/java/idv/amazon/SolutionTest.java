@@ -6,10 +6,7 @@ import java.util.*;
 
 public class SolutionTest{
     Solution s = new Solution();
-    @Test
-    public void testAAA(){
-        s.hello();
-    }
+    
     @Test
     public void testDistance(){
         int[] lx = {1};

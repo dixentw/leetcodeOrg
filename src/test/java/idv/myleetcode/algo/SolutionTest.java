@@ -68,7 +68,9 @@ public class SolutionTest {
     @Test
     public void testInversionString(){
         String str = "this is a dog";
-        //System.out.println(s.reverseSentence(str));
+        assertEquals("siht si a god", s.reverseSentence(str));
+        assertEquals("   ", s.reverseSentence("   "));
+        assertEquals(" oS ynam  sraey ", s.reverseSentence(" So many  years "));
     }
     @Test
     public void testCalPossibleMove(){
