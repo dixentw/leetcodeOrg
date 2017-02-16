@@ -3,9 +3,6 @@ package idv.amazon;
 import java.util.*;
 
 public class Solution{
-    public void hello(){
-        System.out.println("Hellow");
-    }
     private List<String> getDirectFriendsForUser(String u){
         return new ArrayList<String>();
     }
