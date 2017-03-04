@@ -3,9 +3,6 @@ package idv.myleetcode.algo;
 import java.util.*;
 
 public class BackTrack {
-    public void greeting(String s){
-        System.out.println("fuck you, " + s);
-    }
     // so simple, didn't know how to map to backtrack
     public void strpermHelp(String prefix, String remainds){
         int n = remainds.length();
@@ -21,7 +18,7 @@ public class BackTrack {
         strpermHelp("", input);
     }
     //more advance with backtrack
-    private void helper(char[] data, boolean[] visited, String temp, List<String> result){
+    private void helper(char[] data, boolean[] visited,  String temp, List<String> result){
         if(temp.length()==data.length){
             result.add(temp);
             return;
@@ -30,7 +27,7 @@ public class BackTrack {
             if(!visited[i]){
                 visited[i] = true;
                 temp += data[i];
-                helper(data, visited, temp, result);
+                helper(data, visited,  temp, result);
                 temp = temp.substring(0, temp.length()-1);
                 visited[i] = false;
             }

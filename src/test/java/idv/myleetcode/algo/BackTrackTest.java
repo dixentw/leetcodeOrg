@@ -13,7 +13,7 @@ public class BackTrackTest {
     }
     @Test
     public void test3(){
-        List<String> result = bt.strperm2("abc");
+        List<String> result = bt.strperm2("112");
         System.out.println("----------------");
         for(String s : result){
             System.out.println(s);
@@ -27,5 +27,14 @@ public class BackTrackTest {
             System.out.println(s);
         }
     }
+    @Test
+    public void test5(){
+        List<String> result = bt.strpermUnique("112");
+        System.out.println("----------------");
+        for(String s : result){
+            System.out.println(s);
+        }
+    }
+
 
 }
