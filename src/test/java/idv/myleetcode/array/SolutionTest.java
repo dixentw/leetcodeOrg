@@ -261,12 +261,10 @@ public class SolutionTest {
     public void test40(){
         int[] C = new int[]{10, 1, 2, 7, 6, 1, 5};
         List<List<Integer>> result = s.combinationSum2(C, 8);
-        System.out.println("-----------");
-        for(List<Integer> l : result){
-            System.out.println(Arrays.toString(l.toArray()));
-        }
-        //assertEquals("[1, 7]", Arrays.toString(result.get(0).toArray()));
-        //assertEquals("[1, 2, 5]", Arrays.toString(result.get(1).toArray()));
+        assertEquals("[1, 1, 6]", Arrays.toString(result.get(0).toArray()));
+        assertEquals("[1, 2, 5]", Arrays.toString(result.get(1).toArray()));
+        assertEquals("[1, 7]", Arrays.toString(result.get(2).toArray()));
+        assertEquals("[2, 6]", Arrays.toString(result.get(3).toArray()));
     }
 
 }
