@@ -811,4 +811,27 @@ public class Solution{
             result.add(new ArrayList<Integer>(cur));
         }
     }
+    //40. Combination Sum II
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(candidates);
+        combinationHelper2(result, new ArrayList<Integer>(), candidates, target, 0);
+        return result;
+    }
+    private void combinationHelper2(List<List<Integer>> result, List<Integer> cur, int[] candidates, int target, int start){
+        if(target > 0){
+            for(int i=start; i<candidates.length && target>=candidates[i]; i++){
+                if(i>start&&candidates[i]==candidates[i-1]){
+                    continue;
+                }
+                cur.add(candidates[i]);
+                combinationHelper2(result, cur, candidates, target-candidates[i], i+1);
+                cur.remove(cur.size()-1);
+            }
+        }
+        if(target==0){
+            result.add(new ArrayList<Integer>(cur));
+        }
+    }
+
 }
