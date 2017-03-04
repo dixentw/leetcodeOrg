@@ -244,4 +244,17 @@ public class SolutionTest {
         result = s.searchInsert(C, 0);
         assertEquals(0, result);
     }
+    @Test
+    public void test268(){
+        int[] C = new int[]{0,1,3};
+        int result = s.missingNumber(C);
+        assertEquals(2, result);
+    }
+    @Test
+    public void test39(){
+        int[] C = new int[]{2, 3, 6, 7};
+        List<List<Integer>> result = s.combinationSum(C, 7);
+        assertEquals("[2, 2, 3]", Arrays.toString(result.get(0).toArray()));
+        assertEquals("[7]", Arrays.toString(result.get(1).toArray()));
+    }
 }

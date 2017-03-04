@@ -783,4 +783,32 @@ public class Solution{
         }
         return Math.min(start, end)+1;
     }
+    //268. Missing Number
+    public int missingNumber(int[] nums) {
+        int sumExpected = (nums.length+1)*(nums.length)/2;
+        int sumActual = 0;
+        for(int i=0; i<nums.length; i++){
+            sumActual += nums[i];
+        }
+        return sumExpected - sumActual;
+    }
+    //39. Combination Sum
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(candidates);
+        combinationHelper(result, new ArrayList<Integer>(), candidates, target, 0);
+        return result;
+    }
+    private void combinationHelper(List<List<Integer>> result, List<Integer> cur, int[] candidates, int target, int start){
+        if(target > 0){
+            for(int i=start; i<candidates.length && target>=candidates[i]; i++){
+                cur.add(candidates[i]);
+                combinationHelper(result, cur, candidates, target-candidates[i], i);
+                cur.remove(cur.size()-1);
+            }
+        }
+        if(target==0){
+            result.add(new ArrayList<Integer>(cur));
+        }
+    }
 }
