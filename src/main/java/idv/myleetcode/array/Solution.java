@@ -833,5 +833,21 @@ public class Solution{
             result.add(new ArrayList<Integer>(cur));
         }
     }
+    //48. Rotate Image
+    public void rotate48(int[][] matrix) {
+        int len = matrix.length;
+        int[][] copy = new int[matrix.length][matrix.length];
+        for(int i=0; i<len; i++){
+            for(int j=0; j<len; j++){
+                //int dest = matrix[j][len-1-i];
+                copy[j][len-1-i] = matrix[i][j];
+            }
+        }
+        for(int i=0; i<len; i++){
+            for(int j=0; j<len; j++){
+                matrix[i][j] = copy[i][j];
+            }
+        }
+    }
 
 }

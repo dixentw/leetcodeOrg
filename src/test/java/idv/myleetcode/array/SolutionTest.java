@@ -266,5 +266,18 @@ public class SolutionTest {
         assertEquals("[1, 7]", Arrays.toString(result.get(2).toArray()));
         assertEquals("[2, 6]", Arrays.toString(result.get(3).toArray()));
     }
+    @Test
+    public void test48(){
+        int[][] C = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+        s.rotate48(C);
+        for(int[] line : C){
+            System.out.println(Arrays.toString(line));
+        }
+
+    }
 
 }
