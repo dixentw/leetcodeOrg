@@ -921,5 +921,33 @@ public class Solution{
         return result;
 
     }
+    //55. Jump Game
+    public boolean canJump(int[] nums) {
+        int maxIdx = 0;
+        for(int i=0; i<nums.length; i++){
+            if(maxIdx<i || maxIdx>=nums.length-1){//can reach, or never reach
+                break;
+            }
+            maxIdx = Math.max(maxIdx, nums[i]+i);
+        }
+        return maxIdx >= nums.length-1;
+    }
+    //45. Jump Game II
+    public int jump(int[] nums) {
+        if(nums.length==1) return 0;
+        int level = 0, currentMax = 0, nextMax = 0, i=0;
+        while(currentMax-i+1>0){
+            level++;
+            for(;i<=currentMax; i++){
+                System.out.println("fff");
+                nextMax = Math.max(nextMax, nums[i]+i);
+                if(nextMax>=nums.length-1){
+                    return level;
+                }
+            }
+            currentMax = nextMax;
+        }
+        return 0;
+    }
 
 }

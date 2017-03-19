@@ -147,8 +147,8 @@ public class SolutionTest {
         int[] nums = {1,2,3};
         List<List<Integer>> ret = s.subsets(nums);
         for(List<Integer> sub : ret){
-			//System.out.println(sub);
-		}
+            //System.out.println(sub);
+        }
     }
     @Test
     public void testProfile122(){
@@ -289,5 +289,18 @@ public class SolutionTest {
         List<Integer> res = s.spiralOrder(C);
         assertEquals("[1, 2, 3, 6, 9, 8, 7, 4, 5]", Arrays.toString(res.toArray()));
     }
-
+    @Test
+    public void test55(){
+        int[] C = {2,3,1,1,4};
+        assertTrue(s.canJump(C));
+        int[] D = {3,2,1,0,4};
+        assertFalse(s.canJump(D));
+    }
+    @Test
+    public void test45(){
+        int[] C = {2,3,1,1,4};
+        assertEquals(2, s.jump(C));
+        int[] D = {0};
+        assertEquals(1, s.jump(D));
+    }
 }
