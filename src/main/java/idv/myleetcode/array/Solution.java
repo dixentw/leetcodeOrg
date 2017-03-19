@@ -40,16 +40,16 @@ public class Solution{
 
     // 219. contains duplicate
     public boolean containsNearbyDuplicate(int[] nums, int k) {
-		Set<Integer> c = new HashSet<>();
-		for(int i=0; i<nums.length; i++){
+        Set<Integer> c = new HashSet<>();
+        for(int i=0; i<nums.length; i++){
             if(i > k){
                 c.remove(nums[i-k-1]);
             }
-			if(!c.add(nums[i])){
-				return true;
-			}
-		}
-	   return false;
+            if(!c.add(nums[i])){
+                return true;
+            }
+        }
+        return false;
     }
 
     // 289. game of life
@@ -318,14 +318,14 @@ public class Solution{
         int lastIdx = nums.length - 1;
         int firstIdx = 0;
         while(firstIdx <= lastIdx){
-        	if(nums[firstIdx]==val){
+            if(nums[firstIdx]==val){
                 int tmp = nums[firstIdx];
                 nums[firstIdx] = nums[lastIdx];
                 nums[lastIdx] = tmp;
                 lastIdx--;
                 firstIdx = 0;
             }else{
-            	firstIdx++;
+                firstIdx++;
             }
         }
         return lastIdx+1;
@@ -506,7 +506,7 @@ public class Solution{
     }
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
-		List<Integer> tmp = new ArrayList<>();
+        List<Integer> tmp = new ArrayList<>();
         helper(res, tmp, nums, 0);
         return res;
     }
@@ -655,6 +655,16 @@ public class Solution{
             max = Math.max(max, sum);
         }
         return max;
+    }
+    public int maxSubArray2(int[] nums) {
+        int[] dp = new int[nums.length];
+        dp[0] = nums[0];
+        int answer = 0;
+        for(int i=1; i<nums.length; i++){
+            dp[i] = Math.max(dp[i-1]+nums[i], nums[i]);
+            answer = Math.max(dp[i], answer);
+        }
+        return answer;
     }
     public int maxSubArray1(int[] nums) {
         return helper(nums, 0, nums.length-1);
@@ -848,6 +858,64 @@ public class Solution{
                 matrix[i][j] = copy[i][j];
             }
         }
+    }
+    public void rotate48_2(int[][] matrix) {
+        int len = matrix.length;
+        for(int i=0; i<len; i++){
+            for(int j=0; j<len; j++){
+                int tmp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = tmp;
+            }
+        }
+        for(int i=0; i<len; i++){
+            for(int j=0; j<len/2; j++){
+                int tmp = matrix[i][j];
+                matrix[i][j] = matrix[i][len-1-j];
+                matrix[i][len-1-j] = tmp;
+            }
+        }
+    }
+    //54. Spiral Matrix
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> result = new ArrayList<>();
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int u = 0;
+        int d = m-1;
+        int l = 0;
+        int r = n-1;
+        while(true){
+            //swipe to right, and line++
+            for(int col=l; col<=r; col++){
+                result.add(matrix[u][col]);
+            }
+            if(++u>m){
+                break;
+            }
+            //swipe down, and col++
+            for(int row=u; row<=d; row++){
+                result.add(matrix[row][r]);
+            }
+            if(--r<l){
+                break;
+            }
+            //swipe left, and d--
+            for(int col=r; col>=l; col--){
+                result.add(matrix[d][col]);
+            }
+            if(--d<u){
+                break;
+            }
+            //swipe up, and l++
+            for(int row=d; row>=u; row--){
+                result.add(matrix[row][l]);
+            }
+            if(++l>r){
+                break;
+            }
+        }
+        return result;
     }
 
 }

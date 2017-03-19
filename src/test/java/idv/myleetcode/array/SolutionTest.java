@@ -175,6 +175,7 @@ public class SolutionTest {
         int[] A = {-2,1,-3,4,-1,2,1,-5,4};
         assertEquals( 6, s.maxSubArray(A));
         assertEquals( 6, s.maxSubArray1(A));
+        assertEquals( 6, s.maxSubArray2(A));
     }
     @Test
     public void test414(){
@@ -274,10 +275,19 @@ public class SolutionTest {
             {7, 8, 9}
         };
         s.rotate48(C);
-        for(int[] line : C){
-            System.out.println(Arrays.toString(line));
-        }
-
+        assertEquals("[7, 4, 1]", Arrays.toString(C[0]));
+        assertEquals("[8, 5, 2]", Arrays.toString(C[1]));
+        assertEquals("[9, 6, 3]", Arrays.toString(C[2]));
+    }
+    @Test
+    public void test54(){
+        int[][] C = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+        List<Integer> res = s.spiralOrder(C);
+        assertEquals("[1, 2, 3, 6, 9, 8, 7, 4, 5]", Arrays.toString(res.toArray()));
     }
 
 }
