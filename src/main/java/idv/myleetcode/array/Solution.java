@@ -936,10 +936,9 @@ public class Solution{
     public int jump(int[] nums) {
         if(nums.length==1) return 0;
         int level = 0, currentMax = 0, nextMax = 0, i=0;
-        while(currentMax-i+1>0){
+        while(currentMax>=i){
             level++;
             for(;i<=currentMax; i++){
-                System.out.println("fff");
                 nextMax = Math.max(nextMax, nums[i]+i);
                 if(nextMax>=nums.length-1){
                     return level;
