@@ -128,4 +128,21 @@ public class Solution{
         goGrid(grid, gridRow, gridCol, i, j-1, prev);
     }
 
+    public void testTreeSet(){
+      TreeMap<Float, String> treeMap = new TreeMap<>(new Comparator<Float>(){
+        @Override
+        public int compare(Float f1, Float f2){
+          return -1 * f1.compareTo(f2);
+        }
+      });
+
+      treeMap.put(new Float(1.4), "fwefwee1");
+      treeMap.put(new Float(3.4),"fwefwee2");
+      treeMap.put(new Float(4.4),"fwefwee3");
+
+      for(Map.Entry<Float, String> e : treeMap.entrySet()){
+        System.out.println(e.getValue());
+      }
+    }
+
 }

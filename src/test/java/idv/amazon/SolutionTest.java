@@ -6,7 +6,7 @@ import java.util.*;
 
 public class SolutionTest{
     Solution s = new Solution();
-    
+
     @Test
     public void testDistance(){
         int[] lx = {1};
@@ -49,5 +49,9 @@ public class SolutionTest{
             {1,1,0,0}
         };
         assertEquals(4, s.getExitGrid(grid, 3, 4, 1, 3));
+    }
+    @Test
+    public void testnew(){
+        s.testTreeSet();
     }
 }
