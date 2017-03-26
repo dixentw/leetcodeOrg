@@ -1,6 +1,8 @@
 package idv.donuts;
 
 import java.util.*;
+import java.text.*;
+import java.util.Date;
 
 public class Solution{
     public void hello(){
@@ -73,6 +75,7 @@ public class Solution{
         }
     }
     private int goNode(boolean[][] visited, int[][] A, int i, int j, int curr){
+        /*
         if(i<0|| j<0||i>=A.length||j>=A[0].length){
             return 0;
         }
@@ -85,7 +88,7 @@ public class Solution{
             goNode(visited, A, i, j-1, A[i][j]);
             goNode(visited, A, i+1, j, A[i][j]);
             goNode(visited, A, i-1, j, A[i][j]);
-        }
+        }*/
         return 1;
     }
     public int solution4(int[][] A) {
@@ -138,6 +141,66 @@ public class Solution{
             }
         }
         return -1;
+    }
+    public int solution(String E, String L) {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        try{
+            Date enter = sdf.parse(E);
+            Date leave = sdf.parse(L);
+            long diffInSec = (leave.getTime() - enter.getTime())/1000;
+            double h = (double)diffInSec/(double)(60*60);
+            int ceiled = (int) Math.ceil(h);
+            int result = 5;
+            int remain = 0;
+            if(h>1){
+                remain = (ceiled-1)*4;
+            }
+            return result+remain;
+        }catch(Exception e){
+            System.out.println("error!");
+            return 0;
+        }
+    }
+    public int solution_2(String S) {
+        String[] parts = S.split("[0-9]");
+        int longest = -1;
+        for(String part : parts){
+            boolean containsCap = false;
+            for(int i=0; i<part.length(); i++){
+                if(part.charAt(i)>='A'&&part.charAt(i)<='Z'){
+                    containsCap = true;
+                }
+            }
+            if(containsCap){
+                longest = Math.max(longest, part.length());
+            }
+        }
+        return longest;
+    }
+    private int goArray(int[][] A, int startX, int startY, int tmpLen){
+        int down=0,right=0;
+        if(startX<A.length-1 && A[startX][startY] <= A[startX+1][startY]){
+            System.out.println("intoX"+tmpLen);
+            down = goArray(A, startX+1, startY, tmpLen+1);
+        }
+        if(startY<A[0].length-1 && A[startX][startY] <= A[startX][startY+1]){
+            System.out.println("intoY"+tmpLen);
+            right = goArray(A, startX, startY+1, tmpLen+1);
+        }
+        if(down==0&&right==0){
+            return tmpLen;
+        }
+        return Math.max(down, right);
+    }
+    public int solution_3(int[][] A){
+        int result = 0;
+        for(int row=0; row<A.length; row++){
+            for(int col=0; col<A[0].length; col++){
+                int pathLen = goArray(A, row, col, 1);
+                result = Math.max(pathLen, result);
+            }
+        }
+        return result;
     }
 
 }
