@@ -948,5 +948,37 @@ public class Solution{
         }
         return 0;
     }
-
+	//59. Spiral Matrix II
+	public int[][] generateMatrix(int n){
+		int up = 0, right=n-1, left=0, down=n-1;
+		int[][] result = new int[n][n];
+		int seq = 1;
+		while(true){
+			for(int i=left;i<=right;i++){
+				result[up][i] = seq++;
+			}
+			if(++up>down){
+				break;
+			}
+			for(int i=up;i<=down;i++){
+				result[i][right] = seq++;
+			}
+			if(--right<left){
+				break;
+			}
+			for(int i=right;i>=left; i--){
+				result[down][i] = seq++;
+			}
+			if(--down<up){
+				break;
+			}
+			for(int i=down; i>=up; i--){
+				result[i][left] = seq++;
+			}
+			if(++left>right){
+				break;
+			}
+		}
+		return result;
+	}
 }

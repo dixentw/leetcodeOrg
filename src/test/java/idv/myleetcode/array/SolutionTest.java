@@ -300,7 +300,15 @@ public class SolutionTest {
     public void test45(){
         int[] C = {2,3,1,1,4};
         assertEquals(2, s.jump(C));
-        int[] D = {0};
-        assertEquals(1, s.jump(D));
+        //int[] D = {0};
+        //assertEquals(1, s.jump(D));
     }
+	@Test
+    public void test59(){
+		int[][] ra = s.generateMatrix(4);
+		for(int[] t : ra){
+			System.out.println(Arrays.toString(t));
+		}
+    }
+
 }
