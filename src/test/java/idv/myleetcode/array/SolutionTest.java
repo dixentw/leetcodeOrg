@@ -310,5 +310,18 @@ public class SolutionTest {
 			System.out.println(Arrays.toString(t));
 		}
     }
+	@Test
+    public void test62(){
+		assertEquals(28, s.uniquePaths(3, 7));
+    }
+	@Test
+    public void test63(){
+		int[][] c = {
+			{0,0,0},
+			{0,1,0},
+			{0,0,0}
+		};
+		assertEquals(2, s.uniquePathsWithObstacles(c));
+    }
 
 }
