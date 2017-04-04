@@ -323,5 +323,33 @@ public class SolutionTest {
 		};
 		assertEquals(2, s.uniquePathsWithObstacles(c));
     }
+	@Test
+    public void test64(){
+		int[][] c = {
+			{0,1,1},
+			{0,3,0},
+			{0,1,0}
+		};
+		assertEquals(1, s.minPathSum(c));
+    }
+	@Test
+    public void test73(){
+		int[][] c = {
+			{0,1,1},
+			{3,3,3},
+			{5,1,8}
+		};
+		s.setZeroes(c);
+		for(int[] line : c){
+			System.out.println(Arrays.toString(line));
+		}
+		int[][] d = {
+			{1,0,3}
+		};
+		s.setZeroes(d);
+		for(int[] line : d){
+			System.out.println(Arrays.toString(line));
+		}
 
+    }
 }

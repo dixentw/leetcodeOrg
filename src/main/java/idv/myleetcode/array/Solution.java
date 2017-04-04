@@ -1034,4 +1034,50 @@ public class Solution{
 		}
 		return dp[m-1][n-1];
     }
+	//64. Minimum Path Sum
+	public int minPathSum(int[][] grid) {
+		int m = grid.length;
+		int n = grid[0].length;
+		int[][] dp = new int[m][n];
+		for(int i=0; i<m;i++){
+			for(int j=0; j<n;j++){
+				if(i==0&&j==0){
+					dp[i][j] = grid[i][j];
+				}else if(i==0){
+					dp[i][j] = dp[i][j-1] + grid[i][j];
+				}else if(j==0){
+					dp[i][j] = dp[i-1][j] + grid[i][j];
+				}else{
+					int min = Math.min(dp[i-1][j], dp[i][j-1]);
+					dp[i][j] = min + grid[i][j];
+				}
+			}
+		}
+		return dp[m-1][n-1];
+    }
+	//73. Set Matrix Zeroes
+	public void setZeroes(int[][] matrix) {
+		int zeroElm = 1;
+		for(int i=0; i<matrix.length; i++){
+			if(matrix[i][0]==0){
+				zeroElm = 0;
+			}
+			for(int j=1; j<matrix[0].length; j++){
+				if(matrix[i][j]==0){
+					matrix[i][0] = 0;
+					matrix[0][j] = 0;
+				}
+			}
+		}
+		for(int k=matrix.length-1;k>=0; k--){
+			for(int l=matrix[0].length-1; l>=1; l--){
+				if(matrix[k][0]==0||matrix[0][l]==0){
+					matrix[k][l] = 0;
+				}
+			}
+			if(zeroElm==0){
+				matrix[k][0] = 0;
+			}
+		}
+    }
 }
