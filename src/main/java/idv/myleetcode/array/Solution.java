@@ -1080,4 +1080,26 @@ public class Solution{
 			}
 		}
     }
+	//74. Search a 2D Matrix
+	public boolean searchMatrix(int[][] matrix, int target) {
+		int rows = matrix.length;
+		if(rows==0){
+		    return false;
+		}
+		int cols = matrix[0].length;
+		int start = 0;
+		int end = (cols * rows)-1;
+		while(start<=end){
+			int mid = (start+end)/2;
+			int num = matrix[mid/cols][mid%cols];
+			if(num<target){
+				start = mid+1;
+			}else if(num> target){
+				end = mid-1;
+			}else{
+				return true;
+			}
+		}
+		return false;
+    }
 }
