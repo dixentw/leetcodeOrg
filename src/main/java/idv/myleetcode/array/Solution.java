@@ -1102,4 +1102,21 @@ public class Solution{
 		}
 		return false;
     }
+	//75. Sort Colors
+	public void sortColors(int[] nums) {
+		int r=0, w=0, b=0;
+		for(int i=0; i<nums.length;i++){
+			if(nums[i]==0){
+				nums[b++] = 2;
+				nums[w++] = 1;
+				nums[r++] = 0;
+			}else if(nums[i]==1){
+				nums[b++] = 2;
+				nums[w++] = 1;
+			}else if(nums[i]==2){
+				nums[b++] = 2;
+			}
+		}
+    }
+
 }

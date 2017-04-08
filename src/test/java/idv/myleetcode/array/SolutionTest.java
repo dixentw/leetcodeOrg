@@ -362,4 +362,11 @@ public class SolutionTest {
 		assertEquals(true, s.searchMatrix(c, 3));
 
     }
+	@Test
+    public void test75(){
+		int[] c = {0,2,2,2,2,0,0,1,0,0,1,0,1};
+		s.sortColors(c);
+		assertEquals("[0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2]", Arrays.toString(c));
+    }
+
 }
