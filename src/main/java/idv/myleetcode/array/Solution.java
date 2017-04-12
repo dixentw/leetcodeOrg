@@ -510,24 +510,7 @@ public class Solution{
         helper(res, tmp, nums, 0);
         return res;
     }
-    public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        if (nums == null || nums.length == 0) {
-            return result;
-        }
-        Arrays.sort(nums);
-        result.add(new ArrayList<Integer>());
-        for (int n : nums) {
-            int size = result.size();
-            for (int i = 0; i < size; i++) {
-                List<Integer> l = new ArrayList<>(result.get(i));
-                l.add(n);
-                result.add(l);
-            }
-        }
-        return result;
-    }
-    //153 find minimum in rotated sorted array
+	//153 find minimum in rotated sorted array
     public int findMin(int[] nums) {
         int low = 0, high = nums.length - 1;
         while (low < high && nums[low] >= nums[high]) {
@@ -1118,5 +1101,38 @@ public class Solution{
 			}
 		}
     }
+	//78. Subsets
+	public List<List<Integer>> subsets(int[] nums) {
+		List<List<Integer>> result = new ArrayList<>();
+		subHelper(result, nums, new ArrayList<Integer>(), 0);
+		return result;
+    }
+	private void subHelper(List<List<Integer>> result, int[] nums, List<Integer> tmp, int start){
+		result.add(new ArrayList<Integer>(tmp));
+		for(int i=start; i<nums.length;i++){
+			tmp.add(nums[i]);
+			subHelper(result, nums, tmp, i+1);
+			tmp.remove(tmp.size()-1);
+		}
+	}
+	//old code
+	public List<List<Integer>> subsets_old(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (nums == null || nums.length == 0) {
+            return result;
+        }
+        Arrays.sort(nums);
+        result.add(new ArrayList<Integer>());
+        for (int n : nums) {
+            int size = result.size();
+            for (int i = 0; i < size; i++) {
+                List<Integer> l = new ArrayList<>(result.get(i));
+                l.add(n);
+                result.add(l);
+            }
+        }
+        return result;
+    }
+
 
 }
