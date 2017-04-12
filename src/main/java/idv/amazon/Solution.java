@@ -144,4 +144,21 @@ public class Solution{
 			System.out.println(e.getValue());
 		}
 	}
+
+	public List<List<String>> getAllSubString(String s) {
+        List<List<String>> result = new ArrayList<>();
+        find(result, new ArrayList<String>(), s, 0);
+        return result;
+    }
+    private void find(List<List<String>> result, List<String> tmp, String s, int start){
+		if(start==s.length()){
+			result.add(new ArrayList<String>(tmp));
+		}
+        for(int i=start; i<s.length();i++){
+            String sub = s.substring(start, i+1);
+			tmp.add(sub);
+			find(result, tmp, s, i+1);
+			tmp.remove(tmp.size()-1);
+        }
+    }
 }

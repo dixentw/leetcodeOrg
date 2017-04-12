@@ -54,4 +54,12 @@ public class SolutionTest{
     public void testnew(){
         s.testTreeSet();
     }
+	@Test
+    public void testsubString(){
+        List<List<String>> res = s.getAllSubString("abc");
+		for(List<String> ls : res){
+			System.out.println(Arrays.toString(ls.toArray()));
+		}
+    }
+
 }
