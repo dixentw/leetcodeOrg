@@ -368,5 +368,18 @@ public class SolutionTest {
 		s.sortColors(c);
 		assertEquals("[0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2]", Arrays.toString(c));
     }
+	@Test
+    public void test79(){
+		char[][] m = {
+			{'A','B','C','E'},
+			{'S','F','C','S'},
+			{'A','D','E','E'}
+		};
+		assertTrue(s.exist(m, "ABCCE"));
+		char[][] m1 = {
+			{'A','A'}
+		};
+		assertFalse(s.exist(m, "AAA"));
+    }
 
 }
