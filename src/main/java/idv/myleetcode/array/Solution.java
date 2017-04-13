@@ -1172,5 +1172,29 @@ public class Solution{
 			return false;
 		}
 	}
-
+	//80. Remove Duplicates from Sorted Array II
+	public int removeDuplicates2(int[] nums) {
+		if(nums.length<2){
+			return nums.length;
+		}
+		int prev = nums[0];
+		int prev2 = nums[1];
+		int pIdx = 2;
+		for(int i=2; i <nums.length; i++){
+			if(nums[i]!=prev2){
+				prev = prev2;
+				prev2 = nums[i];
+				nums[pIdx] = nums[i];
+				pIdx++;
+			}else{
+				if(prev!=prev2){
+					prev = prev2;
+					prev2 = nums[i];
+					nums[pIdx] = nums[i];
+					pIdx++;
+				}
+			}
+		}
+		return pIdx++;
+	}
 }

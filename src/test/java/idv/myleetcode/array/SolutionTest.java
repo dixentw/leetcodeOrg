@@ -381,5 +381,9 @@ public class SolutionTest {
 		};
 		assertFalse(s.exist(m, "AAA"));
     }
-
+	@Test
+    public void test80(){
+		int[] a = {1,1,1,2,2,3};
+		assertEquals(5, s.removeDuplicates2(a));
+    }
 }
