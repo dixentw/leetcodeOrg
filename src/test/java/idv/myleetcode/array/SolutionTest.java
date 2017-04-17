@@ -389,18 +389,20 @@ public class SolutionTest {
 	@Test
     public void test81(){
 		int[] a = {4 ,5, 6, 7, 0, 1, 2};
-		//assertTrue(s.search_d(a, 6));
-		//assertFalse(s.search_d(a, 10));
-		int[] b = {1,1,3,1};
-		//assertTrue(s.search(b, 3));
-		int[] f = {1,3,1,1,1};
-		assertTrue(s.search_d(f, 3));
+		assertTrue(s.search_d(a, 6));
+		assertFalse(s.search_d(a, 10));
 
 		int[] c = {4,5,6,7,8,1,2,3};
-		//assertTrue(s.search_d(c, 8));
+		assertTrue(s.search_d(c, 8));
 		int[] d = {3,1};
-		//assertTrue(s.search_d(d, 1));
+		assertTrue(s.search_d(d, 1));
 		int[] e = {5,1,3};
-		//assertTrue(s.search_d(e, 3));
+		assertTrue(s.search_d(e, 3));
+
+		//repeat sequence
+		int[] b = {1,1,3,1};
+		assertTrue(s.search_d(b, 3));
+		int[] f = {1,3,1,1,1};
+		assertTrue(s.search_d(f, 3));
     }
 }

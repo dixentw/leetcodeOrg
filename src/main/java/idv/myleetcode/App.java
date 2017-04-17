@@ -44,4 +44,18 @@ public class App{
         }
         return ones;
     }
+
+	public String reverse(String s){
+		char[] buf = s.toCharArray();
+		int start = 0;
+		int end = buf.length-1;
+		while(start <= end){
+			char tmp = buf[start];
+			buf[start] = buf[end];
+			buf[end] = tmp;
+			start++;
+			end--;
+		}
+		return new String(buf);
+	}
 }

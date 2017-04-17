@@ -1205,6 +1205,9 @@ public class Solution{
 			int mid = (start+end) / 2;
 			if(nums[mid]==target){
 				return true;
+			}else if(nums[start]==nums[mid]&&nums[mid]==nums[end]){
+				start++;
+				end--;
 			}else if(target > nums[mid]){
 				if(nums[start]>nums[mid]&&target>=nums[start]){
 					end = mid - 1;
@@ -1212,7 +1215,7 @@ public class Solution{
 					start = mid+1;
 				}
 			}else{
-				if(nums[mid]>=nums[end]&&target<=nums[end]){
+				if(nums[mid]>nums[end]&&target<=nums[end]){
 					start = mid+1;
 				}else{
 					end = mid - 1;
@@ -1221,7 +1224,32 @@ public class Solution{
 		}
 		return false;
     }
-	public boolean search(int[] nums, int target) {
+	//33. Search in Rotated Sorted Array
+	public int search(int[] nums, int target) {
+    	int start = 0;
+		int end = nums.length -1;
+		while(start<=end){
+			int mid = (start+end) / 2;
+			if(nums[mid]==target){
+				return mid;
+			}else if(target > nums[mid]){
+				if(nums[start]>nums[mid]&&target>=nums[start]){
+					end = mid - 1;
+				}else{
+					start = mid+1;
+				}
+			}else{
+				if(nums[mid]>nums[end]&&target<=nums[end]){
+					start = mid+1;
+				}else{
+					end = mid - 1;
+				}
+			}
+		}
+        return -1;
+    }
+	//reference
+	public boolean search_r(int[] nums, int target) {
         int l = 0;
         int r = nums.length - 1;
 
@@ -1248,4 +1276,5 @@ public class Solution{
         }
         return false;
     }
+
 }
