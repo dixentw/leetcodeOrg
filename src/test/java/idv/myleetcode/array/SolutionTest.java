@@ -446,5 +446,14 @@ public class SolutionTest {
 		assertEquals(0, res);
     }
 
+    public void test216(){
+		List<List<Integer>> r = s.combinationSum3(3, 7);
+		for(List<Integer> l : r){
+			for(Integer i : l){
+				System.out.print(i + ",");
+			}
+			System.out.println("");
+		}
+    }
 
 }
