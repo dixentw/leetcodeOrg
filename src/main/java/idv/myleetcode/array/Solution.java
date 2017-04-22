@@ -513,6 +513,7 @@ public class Solution{
 	//153 find minimum in rotated sorted array
     public int findMin(int[] nums) {
         int low = 0, high = nums.length - 1;
+		//if nums[low] < nums[high], we got it, it must be nums[low], since it sorted
         while (low < high && nums[low] >= nums[high]) {
             int mid = (low + high) / 2;
             if (nums[mid] > nums[high])
@@ -1248,33 +1249,103 @@ public class Solution{
 		}
         return -1;
     }
-	//reference
-	public boolean search_r(int[] nums, int target) {
-        int l = 0;
-        int r = nums.length - 1;
-
-        //binary search
-        while(l <= r){
-            int mid = (l + r) / 2;
-            if(nums[mid] == target){
-                return true;
-            }else if(nums[l] <= nums[mid]){
-                //target is in the left part of situation 2
-                if(nums[l] <= target && target <= nums[mid]){
-                    r = mid - 1;
-                }else{
-                    l = mid + 1;
-                }
-            }else{
-                //target is in the right part of situation 3
-                if(nums[mid] <= target && target <= nums[r]){
-                    l = mid + 1;
-                }else{
-                    r = mid - 1;
-                }
-            }
-        }
-        return false;
+	//120. Triangle
+	public int minimumTotal(List<List<Integer>> triangle) {
+		int lowest = triangle.size();
+		int[] dp = new int[triangle.get(lowest-1).size()];
+		for(int i=0; i<triangle.get(lowest-1).size(); i++){
+			dp[i] = triangle.get(lowest-1).get(i);
+		}
+		for(int i=triangle.size()-2; i>=0; i--){
+			for(int j=0; j<triangle.get(i).size(); j++){
+				dp[j] = Math.min(dp[j], dp[j+1])+triangle.get(i).get(j);
+			}
+		}
+		return dp[0];
+	}
+	//152. Maximum Product Subarray
+	public int maxProduct(int[] nums) {
+		int[] dpMax = new int[nums.length];
+		int[] dpMin = new int[nums.length];
+		int answer = dpMax[0] = dpMin[0] = nums[0];
+		for(int i=1; i<nums.length; i++){
+			dpMax[i] = Math.max(Math.max(dpMax[i-1]*nums[i], dpMin[i-1]*nums[i]), nums[i]);
+			dpMin[i] = Math.min(Math.min(dpMax[i-1]*nums[i], dpMin[i-1]*nums[i]), nums[i]);
+			answer = Math.max(dpMax[i], answer);
+		}
+		return answer;
     }
-
+	//162. Find Peak Element
+	public int findPeakElement(int[] nums) {
+		int prev = Integer.MIN_VALUE;
+		int post = Integer.MIN_VALUE;
+		for(int i=0; i<nums.length; i++){
+			if (i-1 <0){
+				prev = Integer.MIN_VALUE;
+			}else{
+				prev = nums[i-1];
+			}
+			if(i+1==nums.length){
+				post = Integer.MIN_VALUE;
+			}else{
+				post = nums[i+1];
+			}
+			if(nums[i]>post&&nums[i]>prev){
+				return i;
+			}
+		}
+		return 0;
+    }
+	public int findPeakElementLog(int[] nums) {
+		int start = 0;
+		int end = nums.length-1;
+		while(start<=end){
+			int mid = (start+end)/2;
+			if(mid==start||mid==end){
+				return nums[start]>nums[end]?start:end;
+			}
+			if(nums[mid]>nums[mid-1]&&nums[mid]>nums[mid+1]){
+				return mid;
+			}else if(nums[mid]>nums[mid+1]){
+				end = mid - 1;
+			}else{
+				start = mid + 1;
+			}
+		}
+		return -1;
+    }
+	//167. Two Sum II - Input array is sorted
+	public int[] twoSum_167(int[] numbers, int target) {
+		int start = 0;
+		int end = numbers.length-1;
+		while(start<end){
+			if(numbers[start]+numbers[end]==target){
+				return new int[]{start+1, end+1};
+			}else if(numbers[start]+numbers[end]<target){
+				start++;
+			}else{
+				end--;
+			}
+		}
+		return new int[]{1};
+    }
+	//209. Minimum Size Subarray Sum
+	public int minSubArrayLen(int s, int[] nums) {
+		if(nums.length==0){
+			return 0;
+		}
+		int i = 0;
+		int j = 0;
+		int sum = 0;
+		int min = Integer.MAX_VALUE;
+		while(i<nums.length){
+			sum += nums[i++];
+			while(sum>=s){
+				System.out.println(i+","+j);
+				min = Math.min(min, i-j);
+				sum -= nums[j++];
+			}
+		}
+		return (min == Integer.MAX_VALUE)? 0: min;
+    }
 }

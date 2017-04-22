@@ -405,4 +405,46 @@ public class SolutionTest {
 		int[] f = {1,3,1,1,1};
 		assertTrue(s.search_d(f, 3));
     }
+	@Test
+    public void test120(){
+		List<List<Integer>> test = new ArrayList<>();
+		test.add(new ArrayList<Integer>(Arrays.asList(2)));
+		test.add(new ArrayList<Integer>(Arrays.asList(3,4)));
+		test.add(new ArrayList<Integer>(Arrays.asList(6,5,7)));
+		test.add(new ArrayList<Integer>(Arrays.asList(4,1,8,3)));
+		assertEquals(11, s.minimumTotal(test));
+    }
+	@Test
+    public void test152(){
+		int[] a = {2,3,-2,4};
+		assertEquals(6, s.maxProduct(a));
+		int[] b = {-2};
+		assertEquals(-2, s.maxProduct(b));
+		int[] c = {-2,3,-4};
+		assertEquals(24, s.maxProduct(c));
+    }
+	@Test
+    public void test162(){
+		int[] a = {1,2,3,1};
+		assertEquals(2, s.findPeakElement(a));
+		int[] b = {3,4,3,2,1};
+		assertEquals(1, s.findPeakElementLog(b));
+    }
+	@Test
+    public void test167(){
+		int[] a = {2,7,11,15};
+		int[] res = s.twoSum_167(a, 9);
+		assertEquals("[1, 2]", Arrays.toString(res));
+    }
+	@Test
+    public void test209(){
+		int[] a = {2,3,1,2,4,3};
+		int res = s.minSubArrayLen(7, a);
+		assertEquals(2, res);
+		int[] b = {7,7,5,2};
+		res = s.minSubArrayLen(6, b);
+		assertEquals(0, res);
+    }
+
+
 }
