@@ -1341,7 +1341,6 @@ public class Solution{
 		while(i<nums.length){
 			sum += nums[i++];
 			while(sum>=s){
-				System.out.println(i+","+j);
 				min = Math.min(min, i-j);
 				sum -= nums[j++];
 			}
@@ -1383,5 +1382,65 @@ public class Solution{
 			combination(ans, comb, k, i+1, n-i);
 			comb.remove(comb.size() - 1);
 		}
+	//228. Summary Ranges
+	public List<String> summaryRanges(int[] nums) {
+		List<String> result = new ArrayList<>();
+		for(int i=0; i<nums.length; i++){
+			int start = nums[i];
+			while(i<nums.length-1&&nums[i+1]-nums[i]==1){
+				i++;
+			}
+			String s = "";
+			if(start==nums[i]){
+				s = String.valueOf(nums[i]);
+			}else{
+				s = String.valueOf(start)+"->"+String.valueOf(nums[i]);
+			}
+			result.add(s);
+		}
+		return result;
+    }
+	//229. Majority Element II
+	public List<Integer> majorityElement2(int[] nums) {
+		if(nums.length==0){
+            return new ArrayList<Integer>();
+        }
+        int count1 = 0;
+		int count2 = 0;
+		int cad1 = 0;
+		int cad2 = 0;
+		for(int i=0; i<nums.length; i++){
+			if(cad1==nums[i]){
+				count1++;
+			}else if(cad2==nums[i]){
+				count2++;
+			}else if(count1==0){
+				cad1 = nums[i];
+				count1 = 1;
+			}else if(count2==0){
+				cad2 = nums[i];
+				count2 = 1;
+			}else{
+				count1--;
+				count2--;
+			}
+		}
+		count1 = 0;
+		count2 = 0;
+		for(int i=0; i<nums.length; i++){
+			if(nums[i]==cad1){
+				count1++;
+			}else if(nums[i]==cad2){
+				count2++;
+			}
+		}
+		List<Integer> result = new ArrayList<>();
+		if(count1>(nums.length/3)){
+			result.add(cad1);
+		}
+		if(count2>(nums.length/3)){
+			result.add(cad2);
+		}
+		return result;
 	}
 }

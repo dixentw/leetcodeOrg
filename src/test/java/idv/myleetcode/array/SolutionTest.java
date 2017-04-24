@@ -443,9 +443,28 @@ public class SolutionTest {
 		assertEquals(2, res);
 		int[] b = {7,7,5,2};
 		res = s.minSubArrayLen(6, b);
-		assertEquals(0, res);
+		assertEquals(1, res);
     }
+	@Test
+	public void test220(){
+		List<String> res = s.summaryRanges(new int[]{0,1,2,4,5,7});
+		assertEquals("0->2", res.get(0));
+		assertEquals("4->5", res.get(1));
+		assertEquals("7", res.get(2));
+	}
+	@Test
+	public void test229(){
+		int[] a = new int[]{8,8,7,7,7};
+		List<Integer> res = s.majorityElement2(a);
+		assertEquals(8, (int)res.get(0));
+		assertEquals(7, (int) res.get(1));
+		int[] b = new int[]{1,2,2,3,2,1,1,3};
+		res = s.majorityElement2(b);
+		for(Integer i : res){
+			System.out.println(i);
+		}
 
+	@Test
     public void test216(){
 		List<List<Integer>> r = s.combinationSum3(3, 7);
 		for(List<Integer> l : r){
@@ -455,5 +474,4 @@ public class SolutionTest {
 			System.out.println("");
 		}
     }
-
 }
