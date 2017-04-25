@@ -1382,6 +1382,7 @@ public class Solution{
 			combination(ans, comb, k, i+1, n-i);
 			comb.remove(comb.size() - 1);
 		}
+	}
 	//228. Summary Ranges
 	public List<String> summaryRanges(int[] nums) {
 		List<String> result = new ArrayList<>();
@@ -1443,4 +1444,70 @@ public class Solution{
 		}
 		return result;
 	}
+	//238. Product of Array Except Self
+	public int[] productExceptSelf(int[] nums) {
+		Map<Integer, Integer> m1 = new HashMap<Integer, Integer>();
+		Map<Integer, Integer> m2 = new HashMap<Integer, Integer>();
+		int product = 1;
+		for(int i=0; i<nums.length; i++){
+			product *= nums[i];
+			m1.put(i, product);
+		}
+		product = 1;
+		for(int i=nums.length-1; i>=0; i--){
+			product *= nums[i];
+			m2.put(i, product);
+		}
+
+		int[] result = new int[nums.length];
+		for(int i=0; i<nums.length; i++){
+			Integer left = m1.get(i-1);
+			Integer right = m2.get(i+1);
+			if(left==null){
+				result[i] = right;
+			}else if(right==null){
+				result[i] = left;
+			}else{
+				result[i] = right*left;
+			}
+		}
+		return result;
+    }
+
+	public int[] productExceptSelf_s1(int[] nums) {
+		int[] result = new int[nums.length];
+		for (int i = 0, tmp = 1; i < nums.length; i++) {
+			result[i] = tmp;
+			tmp *= nums[i];
+		}
+		for (int i = nums.length - 1, tmp = 1; i >= 0; i--) {
+			result[i] *= tmp;
+			tmp *= nums[i];
+		}
+		return result;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

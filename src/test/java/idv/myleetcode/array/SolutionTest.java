@@ -463,15 +463,15 @@ public class SolutionTest {
 		for(Integer i : res){
 			System.out.println(i);
 		}
-
+	}
 	@Test
     public void test216(){
 		List<List<Integer>> r = s.combinationSum3(3, 7);
-		for(List<Integer> l : r){
-			for(Integer i : l){
-				System.out.print(i + ",");
-			}
-			System.out.println("");
-		}
+		assertEquals("[1, 2, 4]", Arrays.toString(r.get(0).toArray()));
+    }
+	@Test
+    public void test238(){
+		int[] res = s.productExceptSelf_s1(new int[]{1,2,3,4});
+		assertEquals("[24, 12, 8, 6]", Arrays.toString(res));
     }
 }
