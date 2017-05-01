@@ -59,5 +59,16 @@ public class SolutionTest{
 	public void test5(){
 		assertEquals("bab", s.longestPalindrome("babad"));
 	}
+	@Test
+	public void test6(){
+		assertEquals("PAHNAPLSIIGYIR", s.convert("PAYPALISHIRING", 3));
+	}
+	@Test
+	public void test17(){
+		List<String> res = s.letterCombinations("2");
+		System.out.println(Arrays.toString(res.toArray()));
+		res = s.letterCombinations("");
+		System.out.println(Arrays.toString(res.toArray()));
+	}
 
 }

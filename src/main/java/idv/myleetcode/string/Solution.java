@@ -135,4 +135,45 @@ public class Solution{
 			maxLen = end-start-1;
 		}
 	}
+	//6. ZigZag Conversion
+	public String convert(String s, int numRows) {
+		StringBuffer[] sbs = new StringBuffer[numRows];
+		for(int k=0; k<numRows; k++){
+			sbs[k] = new StringBuffer();
+		}
+		int i = 0;
+		while(i<s.length()){
+			for(int idx=0; idx<numRows&&i<s.length(); idx++){
+				sbs[idx].append(s.charAt(i++));
+			}
+			for(int idx=numRows-2; idx>=1&&i<s.length(); idx--){
+				sbs[idx].append(s.charAt(i++));
+			}
+		}
+		String result = "";
+		for(i=0; i<sbs.length; i++){
+			result += sbs[i].toString();
+		}
+		return result;
+    }
+	//17. Letter Combinations of a Phone Number
+	public List<String> letterCombinations(String digits) {
+		String[] keyMap = {"","","abc", "def", "ghi","jkl","mno", "pqrs", "tuv", "wxyz"};
+		List<String> result = new ArrayList<>();
+		if(digits.length()==0){
+			return result;
+		}
+		comb(result, "", digits, 0, keyMap);
+		return result;
+	}
+	private void comb(List<String> result, String prefix, String digits, int offset, String[] keyMap){
+		if(offset==digits.length()){
+			result.add(prefix);
+			return;
+		}
+		String letters = keyMap[digits.charAt(offset)-'0'];
+		for(int i=0; i<letters.length(); i++){
+			comb(result, prefix+letters.charAt(i), digits, offset+1, keyMap);
+		}
+	}
 }
