@@ -17,4 +17,47 @@ public class SolutionTest{
 		String res = s.longestCommonPrefix(strs);
 		assertEquals("abc", res);
     }
+	@Test
+	public void test28(){
+		assertEquals(2, s.strStr("abcdef", "cd"));
+		assertEquals(-1, s.strStr("abcdef", "xyz"));
+		assertEquals(-1, s.strStr("mississippi", "issipi"));
+
+	}
+	@Test
+	public void test38(){
+		assertEquals("1", s.countAndSay(1));
+		assertEquals("11", s.countAndSay(2));
+		assertEquals("21", s.countAndSay(3));
+		assertEquals("1211", s.countAndSay(4));
+		assertEquals("111221", s.countAndSay(5));
+		assertEquals("312211", s.countAndSay(6));
+	}
+	@Test
+	public void test58(){
+		assertEquals(5, s.lengthOfLastWord("hello world"));
+	}
+
+	@Test
+	public void test345(){
+		assertEquals("leotcede", s.reverseVowels("leetcode"));
+		assertEquals("aA", s.reverseVowels("Aa"));
+		assertEquals("a.b,.", s.reverseVowels("a.b,."));
+	}
+	@Test
+	public void test434(){
+		assertEquals(5, s.countSegments("Hello, my name is John"));
+		assertEquals(6, s.countSegments(", , , ,        a, eaefa"));
+	}
+	@Test
+	public void test383(){
+		assertFalse(s.canConstruct("a", "b"));
+		assertTrue(s.canConstruct("aa", "aab"));
+		assertFalse(s.canConstruct("aa", "ab"));
+	}
+	@Test
+	public void test5(){
+		assertEquals("bab", s.longestPalindrome("babad"));
+	}
+
 }
