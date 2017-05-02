@@ -224,14 +224,14 @@ public class SolutionTest {
         int[] result = s.searchRange_old(A, 8);
         assertEquals("[3, 4]", Arrays.toString(result));
         int[] B = new int[]{2, 2};
-        result = s.searchRange_old(B, 2);
-        assertEquals("[0, 1]", Arrays.toString(result));
+		result = s.searchRange_old(B, 2);
+		assertEquals("[0, 1]", Arrays.toString(result));
         int[] C = new int[]{1};
         result = s.searchRange_old(C, 1);
         assertEquals("[0, 0]", Arrays.toString(result));
         int[] D = new int[]{1, 4};
-        result = s.searchRange_old(D, 4);
-        assertEquals("[1, 1]", Arrays.toString(result));
+		result = s.searchRange_old(D, 4);
+		assertEquals("[1, 1]", Arrays.toString(result));
     }
     @Test
     public void test35(){

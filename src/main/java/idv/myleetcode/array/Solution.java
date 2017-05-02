@@ -739,27 +739,38 @@ public class Solution{
     }
     //34. Search for a Range
     public int[] searchRange_old(int[] nums, int target) {
+		int[] result = new int[]{-1, -1};
         int start = 0;
         int end = nums.length-1;
+		//find left
         while(start <= end){
-            int mid = start+(end-start)/2;
-            if(target < nums[mid]){
-                end = mid-1;
-            }else if(target > nums[mid]){
-                start = mid+1;
-            }else{ // hit
-                int low = mid;
-                int high = mid;
-                while(low>=0&&nums[low]==nums[mid]){
-                    low--;
-                }
-                while(high<nums.length&&nums[high]==nums[mid]){
-                    high++;
-                }
-                return new int[]{low+1, high-1};
-            }
+			int mid = (start+end)/2;
+			if(nums[mid] < target){
+				start = mid + 1;
+			}else{
+				end = mid - 1;
+			}
         }
-        return new int[]{-1, -1};
+		if(start>nums.length-1||nums[start]!=target){
+			return result;
+		}
+		result[0] = start;
+		//find right
+		end = nums.length-1;
+		while(start<=end){
+			int mid = (start+end)/2;
+			if(nums[mid]>target){
+				end = mid - 1;
+			}else{
+				start = mid + 1;
+			}
+		}
+		if(end<0||nums[end]!=target){
+			result[0] = -1;
+			return result;
+		}
+		result[1] = end;
+		return result;
     }
     //35. Search Insert Position
     public int searchInsert(int[] nums, int target) {
