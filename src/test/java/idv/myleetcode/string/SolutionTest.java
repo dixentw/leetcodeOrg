@@ -66,8 +66,13 @@ public class SolutionTest{
 	@Test
 	public void test17(){
 		List<String> res = s.letterCombinations("2");
-		System.out.println(Arrays.toString(res.toArray()));
+		assertEquals("[a, b, c]", Arrays.toString(res.toArray()));
 		res = s.letterCombinations("");
+		assertEquals("[]", Arrays.toString(res.toArray()));
+	}
+	@Test
+	public void test22(){
+		List<String> res = s.generateParenthesis(4);
 		System.out.println(Arrays.toString(res.toArray()));
 	}
 

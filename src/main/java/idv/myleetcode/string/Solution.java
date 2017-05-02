@@ -176,4 +176,24 @@ public class Solution{
 			comb(result, prefix+letters.charAt(i), digits, offset+1, keyMap);
 		}
 	}
+	//22. Generate Parentheses
+	public List<String> generateParenthesis(int n) {
+		List<String> result = new ArrayList<>();
+		genP(result, "", n, n);
+		return result;
+    }
+	private void genP(List<String> res, String tmp, int left, int right){
+		if(left==0&&right==0){
+			res.add(tmp);
+		}
+		if(left>right){
+			return;
+		}
+		if(left>0){
+			genP(res, tmp+"(", left-1, right);
+		}
+		if(right>0){
+			genP(res, tmp+")", left, right-1);
+		}
+	}
 }
