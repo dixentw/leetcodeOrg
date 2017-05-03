@@ -863,4 +863,27 @@ public class Solution{
         }
         return result;
     }
+	// Geek for geek amazon interview question
+	public boolean isSumTree(TreeNode root){
+		if(root.left==null&&root.right==null){
+			return true;
+		}else if(root.left==null){
+			if(root.left.val == root.val){
+				return true;
+			}else{
+				return false;
+			}
+		}else if(root.right==null){
+			if(root.left.val == root.val){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			if(root.left.val+root.right.val==root.val){
+				return true && isSumTree(root.left) && isSumTree(root.right);
+			}
+			return false;
+		}
+	}
 }

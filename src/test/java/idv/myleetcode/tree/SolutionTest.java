@@ -339,4 +339,17 @@ public class SolutionTest {
         }
 
     }
+	@Test
+	public void testSumTree(){
+		TreeNode root = new TreeNode(3);
+		root.left = new TreeNode(1);
+		root.right = new TreeNode(2);
+		assertTrue(s.isSumTree(root));
+		root = new TreeNode(10);
+		root.left = new TreeNode(20);
+		root.right = new TreeNode(30);
+		root.left.left = new TreeNode(40);
+		root.left.right = new TreeNode(60);
+		assertFalse(s.isSumTree(root));
+	}
 }

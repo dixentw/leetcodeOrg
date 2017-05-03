@@ -495,4 +495,63 @@ public class Solution{
         odd.next = evenDummy.next;
         return oddDummy.next;
     }
+	// add two list not reverseed
+	public ListNode addTwoNumberInorder(ListNode head1, ListNode head2){
+		int size1 = getSize(head1);
+		int size2 = getSize(head2);
+
+		ListNode res= null;
+		List<Integer> carry = new ArrayList<Integer>();
+
+		if(size1 < size2){
+			ListNode tmp = head1.next;
+			head1.next = head2.next;
+			head2.next = tmp;
+			int s = size1;
+			size1 = size2;
+			size2 = s;
+		}
+		//pedding zero
+		for(int i=0;i<size1-size2; i++){
+			ListNode tmp = new ListNode(0);
+			tmp.next = head2;
+			head2 = tmp;
+		}
+		res	= addSameSizeList(head1, head2, carry);
+		if(carry.size()>0){
+			ListNode newHead = new ListNode(carry.get(0));
+			newHead.next = res;
+			res = newHead;
+		}
+		return res;
+
+	}
+	private int getSize(ListNode h){
+		int result = 0;
+		while(h!=null){
+			result++;
+			h = h.next;
+		}
+		return result;
+	}
+	private ListNode addSameSizeList(ListNode h1, ListNode h2, List<Integer> carry){
+		if(h1==null||h2==null){
+			return null;
+		}
+		ListNode res = new ListNode(0);
+		res.next = addSameSizeList(h1.next, h2.next, carry);
+		int sum = 0;
+		if(carry.size()!=0){
+			sum = h1.val+h2.val+carry.get(0);
+			carry.remove(0);
+		}else{
+			sum = h1.val+h2.val;
+		}
+		if(sum>=10){
+			carry.add(sum/10);
+			sum = sum%10;
+		}
+		res.val = sum;
+		return res;
+	}
 }

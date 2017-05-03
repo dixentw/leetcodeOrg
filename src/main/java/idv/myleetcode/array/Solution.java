@@ -739,30 +739,28 @@ public class Solution{
     }
     //34. Search for a Range
     public int[] searchRange_old(int[] nums, int target) {
-		int[] result = new int[]{-1, -1};
-        int start = 0;
-        int end = nums.length-1;
-		//find left
-        while(start <= end){
+		int[] result = new int[]{-1,-1};
+		int start = 0;
+		int end = nums.length-1;
+		while(start<=end){
 			int mid = (start+end)/2;
 			if(nums[mid] < target){
-				start = mid + 1;
+				start = mid+1;
 			}else{
-				end = mid - 1;
+				end = mid;
 			}
-        }
+		}
 		if(start>nums.length-1||nums[start]!=target){
 			return result;
 		}
 		result[0] = start;
-		//find right
 		end = nums.length-1;
 		while(start<=end){
 			int mid = (start+end)/2;
 			if(nums[mid]>target){
-				end = mid - 1;
+				end = mid-1;
 			}else{
-				start = mid + 1;
+				start = mid+1;
 			}
 		}
 		if(end<0||nums[end]!=target){
