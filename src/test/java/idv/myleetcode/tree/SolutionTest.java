@@ -309,7 +309,10 @@ public class SolutionTest {
         root.right = new TreeNode(6);
         root.right.left = new TreeNode(5);
         root.right.right = new TreeNode(8);
-        assertEquals(-1, s.kthSmallest_inorder(root, 2));
+        assertEquals(4, s.kthSmallest_inorder(root, 2));
+        root = new TreeNode(1);
+        root.right = new TreeNode(2);
+        assertEquals(2, s.kthSmallest_inorder(root, 2));
     }
     @Test
     public void test28(){
@@ -366,5 +369,20 @@ public class SolutionTest {
 		root.right.left = new TreeNode(6);
 		root.right.right = new TreeNode(7);
 		s.traverseRound(root);
+	}
+	@Test
+	public void testMergeTree(){
+		TreeNode root = new TreeNode(100);
+		root.left = new TreeNode(50);
+		root.right = new TreeNode(300);
+		root.left.left = new TreeNode(20);
+		root.left.right = new TreeNode(70);
+
+		TreeNode root2 = new TreeNode(80);
+		root2.left = new TreeNode(40);
+		root2.right = new TreeNode(120);
+		TreeNode res = s.mergeTree(root, root2);
+		List<Integer> r = s.inorderTraversal_s(res);
+		assertEquals("[20, 40, 50, 70, 80, 100, 120, 300]", Arrays.toString(r.toArray()));
 	}
 }

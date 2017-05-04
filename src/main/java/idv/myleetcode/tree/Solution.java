@@ -839,18 +839,18 @@ public class Solution{
     }
 	public int kthSmallest_inorder(TreeNode root, int k) {
 		Stack<TreeNode> st = new Stack<TreeNode>();
-		while(st.empty()||root!=null){
-			if(root!=null){
-				st.push(root);
-				root = root.left;
+		TreeNode cur = root;
+		while(!st.empty()||cur!=null){
+			if(cur!=null){
+				st.push(cur);
+				cur = cur.left;
 			}else{
-				root = st.pop();
-				System.out.println(root.val);
-				//k--;
-				//if(k==0){
-				//	return root.val;
-				//}
-				root = root.right;
+				cur = st.pop();
+				k--;
+				if(k==0){
+					return cur.val;
+				}
+				cur = cur.right;
 			}
 		}
 		return -1;
@@ -940,5 +940,42 @@ public class Solution{
 			printLeaves(root.left);
 			printLeaves(root.right);
 		}
+	}
+	public TreeNode mergeTree(TreeNode root1, TreeNode root2){
+		List<Integer> l1 = inorderTraversal_s(root1);
+		List<Integer> l2 = inorderTraversal_s(root2);
+		int i=0;
+		int j=0;
+		int k=0;
+		int[] mergeArray = new int[l1.size()+l2.size()];
+		while(i<l1.size()||j<l2.size()){
+			if(i>=l1.size()){
+				mergeArray[k++] = l2.get(j++);
+				continue;
+			}
+			if(j>=l2.size()){
+				mergeArray[k++] = l1.get(i++);
+				continue;
+			}
+			if(l1.get(i)<l2.get(j)){
+				mergeArray[k++] = l1.get(i++);
+			}else{
+				mergeArray[k++] = l2.get(j++);
+			}
+		}
+		return constPractice(mergeArray, 0, mergeArray.length-1);
+	}
+	private TreeNode constPractice(int[] arr, int start, int end){
+		if(start==end){
+			return new TreeNode(arr[start]);
+		}
+		if(end<start){
+			return null;
+		}
+		int mid = (start+end)/2;
+		TreeNode root = new TreeNode(arr[mid]);
+		root.left = constPractice(arr, start, mid-1);
+		root.right = constPractice(arr, mid+1, end);
+		return root;
 	}
 }
