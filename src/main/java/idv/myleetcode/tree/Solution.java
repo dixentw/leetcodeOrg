@@ -1,9 +1,7 @@
 package idv.myleetcode.tree;
 
 import java.util.*;
-/**
- * Hello world!
- */
+
 public class Solution{
     //226. invert tree
     public TreeNode invertTree(TreeNode root){
@@ -839,6 +837,24 @@ public class Solution{
         }
         return 0;
     }
+	public int kthSmallest_inorder(TreeNode root, int k) {
+		Stack<TreeNode> st = new Stack<TreeNode>();
+		while(st.empty()||root!=null){
+			if(root!=null){
+				st.push(root);
+				root = root.left;
+			}else{
+				root = st.pop();
+				System.out.println(root.val);
+				//k--;
+				//if(k==0){
+				//	return root.val;
+				//}
+				root = root.right;
+			}
+		}
+		return -1;
+	}
     //List all nodes at the same level
     public List<List<TreeNode>> getSameLevelNode(TreeNode root){
         List<List<TreeNode>> result = new ArrayList<>();
@@ -884,6 +900,45 @@ public class Solution{
 				return true && isSumTree(root.left) && isSumTree(root.right);
 			}
 			return false;
+		}
+	}
+	public void traverseRound(TreeNode root){
+		System.out.println(root.val);
+		printLeft(root.left);
+		printLeaves(root.left);
+		printLeaves(root.right);
+		printRight(root.right);
+	}
+	private void printLeft(TreeNode root){
+		if(root!=null){
+			if(root.left!=null){
+				//System.out.println(root.val);
+				printLeft(root.left);
+			}else if(root.right!=null){
+				//System.out.println(root.val);
+				printLeft(root.right);
+			}
+		}
+	}
+	private void printRight(TreeNode root){
+		if(root!=null){
+			if(root.right!=null){
+				printRight(root.right);
+				//System.out.println(root.val);
+			}else if(root.left!=null){
+				printRight(root.left);
+				//System.out.println(root.val);
+			}
+		}
+	}
+	private void printLeaves(TreeNode root){
+		if(root!=null){
+			if(root.left==null&&root.right==null){
+				//System.out.println(root.val);
+				return;
+			}
+			printLeaves(root.left);
+			printLeaves(root.right);
 		}
 	}
 }

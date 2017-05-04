@@ -305,7 +305,11 @@ public class SolutionTest {
     @Test
     public void test27(){
         TreeNode root = new TreeNode(4);
-        assertEquals(4, s.kthSmallest(root, 1));
+        root.left = new TreeNode(1);
+        root.right = new TreeNode(6);
+        root.right.left = new TreeNode(5);
+        root.right.right = new TreeNode(8);
+        assertEquals(-1, s.kthSmallest_inorder(root, 2));
     }
     @Test
     public void test28(){
@@ -351,5 +355,16 @@ public class SolutionTest {
 		root.left.left = new TreeNode(40);
 		root.left.right = new TreeNode(60);
 		assertFalse(s.isSumTree(root));
+	}
+	@Test
+	public void testPrint(){
+		TreeNode root = new TreeNode(1);
+		root.left = new TreeNode(2);
+		root.right = new TreeNode(3);
+		root.left.left = new TreeNode(4);
+		root.left.right = new TreeNode(5);
+		root.right.left = new TreeNode(6);
+		root.right.right = new TreeNode(7);
+		s.traverseRound(root);
 	}
 }
