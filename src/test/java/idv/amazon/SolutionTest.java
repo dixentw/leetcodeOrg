@@ -61,5 +61,16 @@ public class SolutionTest{
 			System.out.println(Arrays.toString(ls.toArray()));
 		}
     }
+	@Test
+	public void testFindNumberOfisland(){
+		int[][] map = new int[][]{
+			{1, 1, 0, 0, 0},
+            {0, 1, 0, 0, 1},
+            {1, 0, 0, 1, 1},
+            {0, 0, 0, 0, 0},
+            {1, 0, 1, 0, 1}
+		};
+		assertEquals(5, s.findNumberOfIsland(map));
+	}
 
 }

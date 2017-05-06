@@ -161,4 +161,37 @@ public class Solution{
 			tmp.remove(tmp.size()-1);
         }
     }
+
+	public int findNumberOfIsland(int[][] map){
+		int result = 0;
+		int len = map.length;
+		for(int i=0; i<len; i++){
+			for(int j=0; j<len; j++){
+				if(map[i][j]==1){
+					result++;
+					tra(map, i, j);
+				}
+			}
+		}
+		return result;
+	}
+	private void tra(int[][] map, int x, int y){
+		if(x<0||x>=map.length||y<0||y>=map.length){
+			return;
+		}
+		if(map[x][y]==0){
+			return;
+		}
+		if(map[x][y]==1){
+			map[x][y]=0;
+		}
+		tra(map, x-1, y);
+		tra(map, x, y-1);
+		tra(map, x+1, y);
+		tra(map, x, y+1);
+		tra(map, x-1, y-1);
+		tra(map, x-1, y+1);
+		tra(map, x+1, y-1);
+		tra(map, x+1, y+1);
+	}
 }

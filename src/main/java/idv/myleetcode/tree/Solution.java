@@ -501,7 +501,7 @@ public class Solution{
         inorder(root.right, rs);
     }
     public boolean isValidBST_1(TreeNode root) {
-        return validBSTHelper(root, Integer.MIN_VALUE, Integer.MIN_VALUE);
+        return validBSTHelper(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
     private boolean validBSTHelper(TreeNode node, int min, int max){
         if(node==null){
@@ -977,5 +977,31 @@ public class Solution{
 		root.left = constPractice(arr, start, mid-1);
 		root.right = constPractice(arr, mid+1, end);
 		return root;
+	}
+	// max consecutive path
+	public int maxConsecutive(TreeNode root){
+		List<Integer> max = new ArrayList<>();
+		max.add(0);
+		consecutiveHelper(root, root.val, 0, max);
+		if(max.get(0)==1){
+			return -1;
+		}
+		return max.get(0);
+	}
+	private void consecutiveHelper(TreeNode root, int expect, int path, List<Integer> max){
+		if(root==null){
+			return;
+		}
+		if(root.val!=expect){
+			path=1;
+		}else{
+			path++;
+		}
+		//update max path
+		Integer curMax = max.get(0);
+		curMax = Math.max(curMax, path);
+		max.add(0, curMax);
+		consecutiveHelper(root.left, root.val+1, path, max);
+		consecutiveHelper(root.right, root.val+1, path, max);
 	}
 }

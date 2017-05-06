@@ -385,4 +385,13 @@ public class SolutionTest {
 		List<Integer> r = s.inorderTraversal_s(res);
 		assertEquals("[20, 40, 50, 70, 80, 100, 120, 300]", Arrays.toString(r.toArray()));
 	}
+	@Test
+	public void testMaxConsecutive(){
+		TreeNode root = new TreeNode(1);
+		root.left = new TreeNode(2);
+		root.right = new TreeNode(3);
+		assertEquals(2, s.maxConsecutive(root));
+
+
+	}
 }
