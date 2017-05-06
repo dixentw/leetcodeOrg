@@ -1496,6 +1496,21 @@ public class Solution{
 		return result;
 	}
 
+	public int findPair(int[] arr, int target){
+		int start = 0;
+		int end = arr.length-1;
+		int result = 0;
+		while(start< end){
+			if(arr[start]+arr[end]<target){
+				result += (end-start);
+				start++;
+			}else{
+				end--;
+			}
+		}
+		return result;
+	}
+
 
 
 

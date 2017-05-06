@@ -474,4 +474,10 @@ public class SolutionTest {
 		int[] res = s.productExceptSelf_s1(new int[]{1,2,3,4});
 		assertEquals("[24, 12, 8, 6]", Arrays.toString(res));
     }
+	@Test
+    public void testPair(){
+		int res = s.findPair(new int[]{1, 2, 3, 4, 5, 6, 7, 8}, 7);
+		System.out.println(res);
+		System.out.println("bbbbbbbbb");
+    }
 }
