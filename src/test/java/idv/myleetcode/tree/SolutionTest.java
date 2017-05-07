@@ -391,7 +391,15 @@ public class SolutionTest {
 		root.left = new TreeNode(2);
 		root.right = new TreeNode(3);
 		assertEquals(2, s.maxConsecutive(root));
-
-
 	}
+	@Test
+	public void testFindMirror(){
+		TreeNode root = new TreeNode(4);
+		root.left = new TreeNode(2);
+		root.right = new TreeNode(5);
+		root.left.left = new TreeNode(1);
+		root.left.right = new TreeNode(3);
+		assertEquals(5, s.findMirror(root, 2));
+	}
+
 }

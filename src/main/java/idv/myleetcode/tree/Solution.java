@@ -1004,4 +1004,28 @@ public class Solution{
 		consecutiveHelper(root.left, root.val+1, path, max);
 		consecutiveHelper(root.right, root.val+1, path, max);
 	}
+
+	public int findMirror(TreeNode root, int find){
+		if(root.val == find){
+			return root.val;
+		}
+		return findMirrorRec(root.left, root.right, find);
+	}
+	private int findMirrorRec(TreeNode left, TreeNode right, int find){
+		if(left==null||right==null){
+			return -1;
+		}
+		if(left.val==find){
+			return right.val;
+		}
+		if(right.val==find){
+			return left.val;
+		}
+		int res = findMirrorRec(left.left, right.right, find);
+		if(res!=-1){
+			return res;
+		}else{
+			return findMirrorRec(left.right, right.left, find);
+		}
+	}
 }
