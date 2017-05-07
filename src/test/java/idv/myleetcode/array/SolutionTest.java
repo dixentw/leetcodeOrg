@@ -87,34 +87,17 @@ public class SolutionTest {
     }
     @Test
     public void test46(){
-        //s.strperm("abca");
         int[] A = new int[]{1,2,3,4};
         List<List<Integer>> r = s.permute(A);
-        /*
-        System.out.println("------------------");
-        for(List<Integer> l : r){
-            System.out.println(Arrays.toString(l.toArray()));
-        }*/
-    }
-    @Test
-    public void test46_2(){
-        //s.strperm("abca");
-        int[] A = new int[]{1,2,3,4};
-        List<List<Integer>> r = s.permute2(A);
-        //System.out.println("------------------");
-        for(List<Integer> l : r){
-            //System.out.println(Arrays.toString(l.toArray()));
-        }
+		assertEquals(24, r.size());
+		List<List<Integer>> r2 = s.permute2(A);
+		assertEquals(24, r2.size());
     }
     @Test
     public void test47(){
         int[] A = new int[]{1,2,2,3};
-        //List<List<Integer>> r = s.permuteUnique(A);
-        //System.out.println("--------------");
-        List<List<Integer>> r = s.permute2(A);
-        for(List<Integer> l : r){
-            //System.out.println(Arrays.toString(l.toArray()));
-        }
+        List<List<Integer>> r = s.permuteUnique(A);
+		assertEquals(12, r.size());
     }
     @Test
     public void test324(){
@@ -147,7 +130,6 @@ public class SolutionTest {
         int[] nums = {1,2,3};
         List<List<Integer>> ret = s.subsets(nums);
         for(List<Integer> sub : ret){
-            //System.out.println(sub);
         }
     }
     @Test
@@ -480,4 +462,10 @@ public class SolutionTest {
 		System.out.println(res);
 		System.out.println("bbbbbbbbb");
     }
+	public void test215(){
+		int[] nums = new int[]{12, 3, 5, 7, 4, 19, 26};
+		assertEquals(12, s.findKthLargest(nums, 3));
+		nums = new int[]{2, 1};
+		assertEquals(2, s.findKthLargest(nums, 1));
+	}
 }

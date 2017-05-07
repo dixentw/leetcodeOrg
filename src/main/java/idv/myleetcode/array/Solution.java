@@ -379,7 +379,7 @@ public class Solution{
         return result;
     }
     //47. Permutations 2
-    public void permuteUniqueHelper(int[] nums, List<Integer> path, List<List<Integer>> result, boolean[] visited){
+    private void permuteUniqueHelper(int[] nums, List<Integer> path, List<List<Integer>> result, boolean[] visited){
         int len = nums.length;
         if(path.size()==len){
             result.add(new ArrayList<Integer>(path));
@@ -747,7 +747,7 @@ public class Solution{
 			if(nums[mid] < target){
 				start = mid+1;
 			}else{
-				end = mid;
+				end = mid-1;
 			}
 		}
 		if(start>nums.length-1||nums[start]!=target){
@@ -1494,6 +1494,40 @@ public class Solution{
 			tmp *= nums[i];
 		}
 		return result;
+	}
+	//215. Kth Largest Element in an Array
+	public int findKthLargest(int[] nums, int k) {
+		k = nums.length - k;
+		System.out.println(k);
+		int start = 0;
+		int end = nums.length-1;
+		while(start<end){
+			int pivot = getPivot(nums, start, end);
+			if(pivot==k){
+				return nums[pivot];
+			}else if(pivot>k){
+				end = pivot-1;
+			}else{
+				start = pivot+1;
+			}
+		}
+		return nums[end]; //or start, whether it start or end, at this place, start  = end
+    }
+	private int getPivot(int[] nums, int start, int end){
+		int p = nums[end];
+		int lessIdx = start;
+		for(int i=start; i<end; i++){
+			if(nums[i]<=p){
+				swap(nums, lessIdx++, i);
+			}
+		}
+		swap(nums, lessIdx, end); // move pivot to it's right place
+		return lessIdx;
+	}
+	private void swap(int[] A, int i, int j){
+		int tmp = A[i];
+		A[i] = A[j];
+		A[j] = tmp;
 	}
 
 	public int findPair(int[] arr, int target){
