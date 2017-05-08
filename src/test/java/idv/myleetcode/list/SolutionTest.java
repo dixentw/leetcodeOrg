@@ -482,4 +482,23 @@ public class SolutionTest {
         }
         assertEquals(Arrays.toString(new int[]{1,3,5,2,4}), Arrays.toString(r));
     }
+	@Test
+	public void testReverseGroup(){
+		ListNode n = new ListNode(1);
+		n.next = new ListNode(2);
+		n.next.next = new ListNode(3);
+		n.next.next.next = new ListNode(4);
+		n.next.next.next.next = new ListNode(5);
+		n.next.next.next.next.next = new ListNode(6);
+		n.next.next.next.next.next.next = new ListNode(7);
+		n.next.next.next.next.next.next.next = new ListNode(8);
+		ListNode ln = s.reverseGroup(n, 4);
+		int[] r = new int[8];
+		int i=0;
+		while(ln!=null){
+			r[i++] = ln.val;
+			ln = ln.next;
+		}
+		assertEquals("[4, 3, 2, 1, 8, 7, 6, 5]", Arrays.toString(r));
+	}
 }

@@ -554,4 +554,24 @@ public class Solution{
 		res.val = sum;
 		return res;
 	}
+	public ListNode reverseGroup(ListNode head, int k){
+		ListNode curr = head;
+		ListNode prev = null;
+		int count = 0;
+		while(count< k && curr!=null){
+			ListNode tmp = curr.next;
+			curr.next = prev;
+			prev = curr;
+			curr = tmp;
+			count++;
+		}
+		System.out.println(prev.val);
+		System.out.println(curr.val);
+		System.out.println("-----------------");
+		if(curr!=null){
+			//head.next is tail of this reverse group, it should attach the head of next reverse group
+			head.next = reverseGroup(curr, k);
+		}
+		return prev;
+	}
 }
