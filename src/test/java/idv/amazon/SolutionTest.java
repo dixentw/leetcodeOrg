@@ -72,5 +72,10 @@ public class SolutionTest{
 		};
 		assertEquals(5, s.findNumberOfIsland(map));
 	}
+	@Test
+	public void testCountInversion(){
+		int[] arr = new int[]{1, 20, 6, 4, 5};
+		assertEquals(5, s.countInvertion(arr));
+	}
 
 }

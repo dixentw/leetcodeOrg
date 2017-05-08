@@ -1028,4 +1028,47 @@ public class Solution{
 			return findMirrorRec(left.right, right.left, find);
 		}
 	}
+	//124. Binary Tree Maximum Path Sum
+	int maxValue = Integer.MIN_VALUE;
+	public int maxPathSum(TreeNode root) {
+		maxValue = Integer.MIN_VALUE;
+		mpsHelper(root);
+		return maxValue;
+    }
+	private int mpsHelper(TreeNode root){
+		if(root==null){
+			return 0;
+		}
+		if(root.left==null&&root.right==null){
+			return root.val;
+		}
+		int l = Math.max(0, mpsHelper(root.left));
+		int r = Math.max(0, mpsHelper(root.right));
+		//try root+left, root+right, root it self and left+right+itselft
+		int ro = root.val;
+		maxValue = Math.max(maxValue, l+r+ro);
+		return root.val+ Math.max(l, r);
+	}
+	public int maxLevelSum(TreeNode root){
+		Queue<TreeNode> q = new LinkedList<TreeNode>();
+		int max = 0;
+		q.add(root);
+		while(!q.isEmpty()){
+			int count = q.size();
+			int sum = 0;
+			while(count>0){
+				TreeNode node  = q.poll();
+				if(node.left!=null){
+					q.add(node.left);
+				}
+				if(node.right!=null){
+					q.add(node.right);
+				}
+				sum += node.val;
+				count--;
+			}
+			max = Math.max(max, sum);
+		}
+		return max;
+	}
 }

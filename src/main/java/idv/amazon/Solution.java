@@ -194,4 +194,49 @@ public class Solution{
 		tra(map, x+1, y-1);
 		tra(map, x+1, y+1);
 	}
+	// Count inversion
+	public int countInvertion(int[] nums){
+		return mergeSort(nums, 0, nums.length-1);
+	}
+	public int mergeSort(int[] nums, int start, int end){
+		if(start==end){
+			return 0;
+		}else if(end-start==1){
+			if(nums[start]> nums[end]){
+				int tmp = nums[start];
+				nums[start] = nums[end];
+				nums[end] = tmp;
+				return 1;
+			}
+		}else{
+			int mid = (start+end)/2;
+			int il = mergeSort(nums, start, mid);
+			int ir = mergeSort(nums, mid+1, end);
+			int mm = mergeHelper(nums, start, mid, end);
+			return il+ir+mm;
+		}
+		return 0;
+	}
+	private int mergeHelper(int[] nums, int start, int mid, int end){
+		int i = start;
+		int j = mid+1;
+		int[] tmp = new int[end-start+1];
+		int c = 0;
+		for(int k=0; k<tmp.length;k++){
+			if(i>mid){
+				tmp[k] = nums[j++];
+			}else if(j>end){
+				tmp[k] = nums[i++];
+			}else if(nums[i]> nums[j]){
+				tmp[k] = nums[j++];
+				c += (mid - i+1);
+			}else{
+				tmp[k] = nums[i++];
+			}
+		}
+		for(i=0; i<tmp.length; i++){
+			nums[start+i] = tmp[i];
+		}
+		return c;
+	}
 }
