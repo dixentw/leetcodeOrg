@@ -422,5 +422,16 @@ public class SolutionTest {
 		root.right.right = new TreeNode(6);
 		assertEquals(6, s.maxLevelSum(root));
 	}
+	@Test
+	public void testSwapTree(){
+		TreeNode root = new TreeNode(10);
+		root.left = new TreeNode(5);
+		root.right = new TreeNode(8);
+		root.left.left = new TreeNode(2);
+		root.left.right = new TreeNode(20);
+		s.swapTree(root);
+		assertEquals(20, root.right.val);
+		assertEquals(8, root.left.right.val);
+	}
 
 }

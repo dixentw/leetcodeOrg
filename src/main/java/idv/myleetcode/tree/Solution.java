@@ -1071,4 +1071,47 @@ public class Solution{
 		}
 		return max;
 	}
+	public void swapTree(TreeNode root){
+		Map<String, TreeNode> ptrs = new HashMap<>();
+		ptrs.put("prev", null);
+		ptrs.put("first", null);
+		ptrs.put("middle", null);
+		ptrs.put("second", null);
+		swapHelper(root, ptrs);
+		TreeNode first = ptrs.get("first");
+		TreeNode middle = ptrs.get("middle");
+		TreeNode second  = ptrs.get("second");
+		if(first!=null&&second!=null){
+			int tmp = first.val;
+			first.val = second.val;
+			second.val = tmp;
+		}else if(first!=null&&middle==null){
+			int tmp = first.val;
+			first.val = middle.val;
+			middle.val = tmp;
+		}
+	}
+	private void swapHelper(TreeNode root, Map<String, TreeNode> ptrs){
+		if(root!=null){
+			swapHelper(root.left, ptrs);
+			TreeNode prev = ptrs.get("prev");
+			TreeNode first = ptrs.get("first");
+			TreeNode middle = ptrs.get("middle");
+			TreeNode second = ptrs.get("second");
+			if(prev!=null&&prev.val > root.val){
+				if(first==null){
+					first = prev;
+					middle = root;
+				}else{
+					second = root;
+				}
+			}
+			ptrs.put("first", first);
+			ptrs.put("middle", middle);
+			ptrs.put("second", second);
+			prev = root;
+			ptrs.put("prev", prev);
+			swapHelper(root.right, ptrs);
+		}
+	}
 }
