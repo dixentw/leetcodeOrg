@@ -442,9 +442,7 @@ public class SolutionTest {
 		assertEquals(7, (int) res.get(1));
 		int[] b = new int[]{1,2,2,3,2,1,1,3};
 		res = s.majorityElement2(b);
-		for(Integer i : res){
-			System.out.println(i);
-		}
+		assertEquals("[1, 2]", Arrays.toString(res.toArray()));
 	}
 	@Test
     public void test216(){
@@ -459,13 +457,19 @@ public class SolutionTest {
 	@Test
     public void testPair(){
 		int res = s.findPair(new int[]{1, 2, 3, 4, 5, 6, 7, 8}, 7);
-		System.out.println(res);
-		System.out.println("bbbbbbbbb");
+		assertEquals(6, res);
     }
+	@Test
 	public void test215(){
 		int[] nums = new int[]{12, 3, 5, 7, 4, 19, 26};
 		assertEquals(12, s.findKthLargest(nums, 3));
 		nums = new int[]{2, 1};
 		assertEquals(2, s.findKthLargest(nums, 1));
+	}
+	@Test
+	public void testFindUniq(){
+		int[] nums = new int[]{1, 2, 1, 3, 4, 2, 3};
+		List<Integer> res = s.findUniqWindow(nums, 4);
+		assertEquals("[3, 4, 4, 3]", Arrays.toString(res.toArray()));
 	}
 }

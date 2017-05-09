@@ -1545,23 +1545,25 @@ public class Solution{
 		return result;
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	public List<Integer> findUniqWindow(int[] arr, int k){
+		List<Integer> result = new ArrayList<>();
+		for(int i=0; i<arr.length; i++){
+			Map<Integer, Integer> table = new HashMap<>();
+			for(int j=0; j<k&&j+i<arr.length; j++){
+				Integer c = table.get(arr[j+i]);
+				if(c==null){
+					table.put(arr[j+i], 1);
+				}else{
+					table.put(arr[j+i], c++);
+				}
+			}
+			if(i==arr.length-k+1){
+				break;
+			}
+			result.add(table.keySet().size());
+		}
+		return result;
+	}
 
 
 

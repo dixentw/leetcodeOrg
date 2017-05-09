@@ -1114,4 +1114,57 @@ public class Solution{
 			swapHelper(root.right, ptrs);
 		}
 	}
+	public void getInorderLeave(TreeNode root){
+		if(root!=null){
+			getInorderLeave(root.left);
+			if(root.left==null&&root.right==null){//is child
+				System.out.print(root.val+" ~~~ ");
+			}
+			getInorderLeave(root.right);
+		}
+	}
+	public int findDistance(TreeNode root, TreeNode p, TreeNode q){
+		TreeNode lca = getLCA(root, p, q);
+		int ro = getDistance(root, lca, 0);
+		int l = getDistance(root, p, 0);
+		int r = getDistance(root, q, 0);
+		return l+r-2*ro;
+	}
+	public TreeNode getLCA(TreeNode root, TreeNode p, TreeNode q){
+		if(root==null){
+			return null;
+		}
+		if(root.val == p.val){
+			return root;
+		}
+		if(root.val == q.val){
+			return root;
+		}
+		TreeNode leftLCA = getLCA(root.left, p, q);
+		TreeNode rightLCA = getLCA(root.right, p, q);
+		if(leftLCA!=null&&rightLCA!=null){
+			return root;
+		}else if(leftLCA!=null){
+			return leftLCA;
+		}else if(rightLCA!=null){
+			return rightLCA;
+		}
+		return null;
+	}
+	public int getDistance(TreeNode root, TreeNode target, int dis){
+		if(root==null){
+			return -1;
+		}
+		if(root.val==target.val){
+			return dis;
+		}else{
+			int l = getDistance(root.left, target, dis+1);
+			int r = getDistance(root.right, target, dis+1);
+			if(l==-1){
+				return r;
+			}else{
+				return l;
+			}
+		}
+	}
 }

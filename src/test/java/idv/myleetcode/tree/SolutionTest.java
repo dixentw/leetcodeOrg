@@ -433,4 +433,24 @@ public class SolutionTest {
 		assertEquals(20, root.right.val);
 		assertEquals(8, root.left.right.val);
 	}
+	@Test
+	public void testGetInorder(){
+		TreeNode root = new TreeNode(10);
+		root.left = new TreeNode(5);
+		root.right = new TreeNode(8);
+		root.left.left = new TreeNode(2);
+		root.left.right = new TreeNode(20);
+		s.getInorderLeave(root);
+	}
+	@Test
+	public void testLCADistance(){
+		TreeNode root = new TreeNode(10);
+		root.left = new TreeNode(5);
+		root.right = new TreeNode(8);
+		root.left.left = new TreeNode(2);
+		root.left.right = new TreeNode(20);
+		int result= s.findDistance(root, root.right, root.left.right);
+		System.out.println(">>> "+result);
+
+	}
 }
