@@ -433,5 +433,4 @@ public class SolutionTest {
 		assertEquals(20, root.right.val);
 		assertEquals(8, root.left.right.val);
 	}
-
 }

@@ -565,9 +565,6 @@ public class Solution{
 			curr = tmp;
 			count++;
 		}
-		System.out.println(prev.val);
-		System.out.println(curr.val);
-		System.out.println("-----------------");
 		if(curr!=null){
 			//head.next is tail of this reverse group, it should attach the head of next reverse group
 			head.next = reverseGroup(curr, k);
