@@ -450,7 +450,40 @@ public class SolutionTest {
 		root.left.left = new TreeNode(2);
 		root.left.right = new TreeNode(20);
 		int result= s.findDistance(root, root.right, root.left.right);
-		System.out.println(">>> "+result);
 
+	}
+	@Test
+	public void testDiagonalTree(){
+		TreeNode root = new TreeNode(8);
+		root.left = new TreeNode(3);
+		root.right = new TreeNode(10);
+		root.left.left = new TreeNode(1);
+		root.left.right = new TreeNode(6);
+		root.left.right.left = new TreeNode(4);
+		root.left.right.right = new TreeNode(7);
+		root.right.right = new TreeNode(14);
+		root.right.right.left = new TreeNode(13);
+
+		List<List<Integer>> list = s.diagonalTree(root);
+		assertEquals("[8, 10, 14]", Arrays.toString(list.get(0).toArray()));
+		assertEquals("[3, 6, 7, 13]", Arrays.toString(list.get(1).toArray()));
+		assertEquals("[1, 4]", Arrays.toString(list.get(2).toArray()));
+
+	}
+	@Test
+	public void testHeight(){
+		TreeNode root = new TreeNode(4);
+		root.left= new TreeNode(4);
+		root.left.left = new TreeNode(4);
+		assertEquals(3, s.height(root));
+	}
+	@Test
+	public void testDiameter(){
+		TreeNode root = new TreeNode(4);
+		root.left= new TreeNode(4);
+		root.left.left = new TreeNode(4);
+		root.right = new TreeNode(4);
+		int[] height = new int[1];
+		assertEquals(4, s.diameter(root, height));
 	}
 }

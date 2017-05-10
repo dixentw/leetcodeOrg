@@ -1118,7 +1118,6 @@ public class Solution{
 		if(root!=null){
 			getInorderLeave(root.left);
 			if(root.left==null&&root.right==null){//is child
-				System.out.print(root.val+" ~~~ ");
 			}
 			getInorderLeave(root.right);
 		}
@@ -1166,5 +1165,42 @@ public class Solution{
 				return l;
 			}
 		}
+	}
+	public List<List<Integer>> diagonalTree(TreeNode root){
+		List<List<Integer>> result = new ArrayList<>();
+		result.add(new ArrayList<Integer>());
+		diagonalHelper(root, result, 0);
+		return result;
+	}
+	private void diagonalHelper(TreeNode root, List<List<Integer>> result, int level){
+		if(root==null){
+			return;
+		}
+		if(result.size()==level){
+			result.add(new ArrayList<Integer>());
+		}
+		result.get(level).add(root.val);
+		diagonalHelper(root.left, result, level+1);
+		diagonalHelper(root.right, result, level);
+		return;
+	}
+	public int height(TreeNode root){
+		if(root==null){
+			return 0;
+		}
+		int max = Math.max(height(root.left), height(root.right));
+		return max+1;
+	}
+	public int diameter(TreeNode root, int[] height){
+		if(root==null){
+			height[0] = 0;
+			return 0;
+		}
+		int[] tmpl = new int[1];
+		int[] tmpr = new int[1];
+		int ld = diameter(root.left, tmpl);
+		int lr = diameter(root.right, tmpr);
+		height[0] = Math.max(tmpl[0], tmpr[0]) + 1;
+		return Math.max(tmpl[0]+tmpr[0]+1, Math.max(ld, lr));
 	}
 }
