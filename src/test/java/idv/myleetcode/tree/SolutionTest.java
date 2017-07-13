@@ -338,6 +338,7 @@ public class SolutionTest {
         root.right.left = new TreeNode(11);
         root.right.right = new TreeNode(13);
         List<List<TreeNode>> result = s.getSameLevelNode(root);
+		System.out.println(">>>>>>>>>>>>>");
         for(List<TreeNode> level : result){
             for(TreeNode node :level){
                 System.out.print(node.val + ", ");

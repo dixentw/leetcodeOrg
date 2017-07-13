@@ -19,11 +19,11 @@ public class SolutionTest{
         s.heapSortMin(unsort);
         int[] expect = new int[]{50,30,23,12,9,2,1};
         assertTrue(Arrays.equals(expect, unsort));
-		int[][] a = new int[]{
+		int[][] a = new int[][]{
 			{1, 3, 5, 7, 9},
 			{0, 2, 4, 6, 8},
 			{2, 3, 5, 7, 11}
-		}
+		};
 		s.smallestRange(a);
     }
 }

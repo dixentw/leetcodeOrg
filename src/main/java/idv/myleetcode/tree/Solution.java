@@ -858,14 +858,16 @@ public class Solution{
     //List all nodes at the same level
     public List<List<TreeNode>> getSameLevelNode(TreeNode root){
         List<List<TreeNode>> result = new ArrayList<>();
+		if(root==null){
+			return result;
+		}
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         while(!queue.isEmpty()){
             List<TreeNode> level = new ArrayList<>();
-            TreeNode node = queue.poll();
-            while(node != null){
+            while(!queue.isEmpty()){
+                TreeNode node = queue.poll();
                 level.add(node);
-                node = queue.poll();
             }
             for(TreeNode n : level){
                 if(n.left!=null){
