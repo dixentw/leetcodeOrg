@@ -77,5 +77,51 @@ public class SolutionTest{
 		int[] arr = new int[]{1, 20, 6, 4, 5};
 		assertEquals(5, s.countInvertion(arr));
 	}
+	@Test
+	public void testCheckWinner(){
+		List<List<String>> codes = new ArrayList<>();
+		codes.add(new ArrayList<>());
+		codes.get(0).add("apple");
+		codes.get(0).add("apple");
+		codes.add(new ArrayList<>());
+		codes.get(1).add("banana");
+		codes.get(1).add("anything");
+		codes.get(1).add("banana");
+		List<String> shopping= new ArrayList<>();
+		shopping.add("orange");
+		shopping.add("apple");
+		shopping.add("apple");
+		shopping.add("banana");
+		shopping.add("orange");
+		shopping.add("banana");
+		assertEquals(1, s.checkWinner(codes, shopping));
+		shopping.clear();
+		shopping.add("apple");
+		shopping.add("banana");
+		shopping.add("apple");
+		shopping.add("banana");
+		shopping.add("orange");
+		shopping.add("banana");
+		System.out.println("--------");
+		assertEquals(0, s.checkWinner(codes, shopping));
+	}
+	@Test
+	public void testFieldTime(){
+		List<Integer> line1 = new ArrayList<Integer>();
+		line1.add(1);
+		line1.add(1);
+		line1.add(0);
+		line1.add(2);
+		List<Integer> line2 = new ArrayList<Integer>();
+		line2.add(3);
+		line2.add(1);
+		line2.add(1);
+		line2.add(1);
+		List<List<Integer>> input = new ArrayList<>();
+		input.add(line1);
+		input.add(line2);
+		assertEquals(14, s.levelFieldTime(2, 4,input));
+
+	}
 
 }

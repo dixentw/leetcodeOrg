@@ -239,4 +239,112 @@ public class Solution{
 		}
 		return c;
 	}
+	public int checkWinner(List<List<String>> codeList, List<String> shoppingCart){
+		int codeIndex = 0;
+		int groupIndex = 0;
+		for(String fruit : shoppingCart){
+			//System.out.println(codeIndex + ";   "+groupIndex);
+			String m = codeList.get(codeIndex).get(groupIndex);
+			if(fruit.equals(m)||m=="anything"){
+				groupIndex++;
+				if(groupIndex==codeList.get(codeIndex).size()){
+					codeIndex++;
+					groupIndex = 0;
+				}
+				if(codeIndex==codeList.size()){
+					return 1;
+				}
+			}else{
+				if(groupIndex!=0){ // if not match, won't win
+					return 0;
+				}
+			}
+		}
+		return 0;
+	}
+	class FieldTree {
+		int height;
+		int x;
+		int y;
+	}
+	public int levelFieldTime(int numRows, int numColumns, List<List<Integer>> field){
+		List<FieldTree> trees = new ArrayList<>();
+		for(int i=0; i<numRows; i++){
+			for(int j=0; j<numColumns; j++){
+				if(field.get(i).get(j)>1){
+					FieldTree ft = new FieldTree();
+					ft.height = field.get(i).get(j);
+					ft.x = i;
+					ft.y = j;
+					trees.add(ft);
+				}
+			}
+		}
+		Collections.sort(trees, new Comparator<FieldTree>(){
+			public int compare(FieldTree t1, FieldTree t2){
+				return t1.height - t2.height;
+			}
+		});
+		int[] DP = new int[trees.size()];
+		FieldTree start = new FieldTree();
+		start.x = 0;
+		start.y = 0;
+		for(int i=0; i<DP.length; i++){
+			if(i==0){
+				DP[i] = findMinPath(numRows, numColumns, start, trees.get(i), field);
+			}else{
+				int init = 0;
+				while(trees.get(init).height<trees.get(i).height){
+					init++;
+				}
+				int minValue = Integer.MAX_VALUE;
+				for(int j=init--; j<i; j++){
+					int tmp = findMinPath(numRows, numColumns, trees.get(j), trees.get(i), field);
+					if(tmp < minValue){
+						minValue = tmp;
+					}
+				}
+				DP[i] = minValue;
+			}
+		}
+		return DP[DP.length-1];
+	}
+	public int findMinPath(int row, int col, FieldTree t1, FieldTree t2, List<List<Integer>> field){
+		if(t2==null){
+			return Integer.MAX_VALUE;
+		}
+		if(t1.x==t2.x&&t1.y==t2.y){
+			return 0;
+		}
+		int x = t2.x;
+		int y = t2.y;
+		System.out.println(t2.x+","+t2.y);
+		FieldTree left = null;
+		FieldTree right = null;
+		FieldTree top = null;
+		FieldTree down = null;
+		if(x-1>=0&&field.get(x-1).get(y)!=0&&field.get(x-1).get(y)<=field.get(x).get(y)){
+			top = new FieldTree();
+			top.x = t2.x-1;
+			top.y = t2.y;
+		}
+		if(x+1<row&&field.get(x+1).get(y)!=0&&field.get(x+1).get(y)<=field.get(x).get(y)){
+			down = new FieldTree();
+			down.x = t2.x+1;
+			down.y = t2.y;
+		}
+		if(y-1>=0&&field.get(x).get(y-1)!=0&&field.get(x).get(y-1)<=field.get(x).get(y)){
+			left = new FieldTree();
+			left.x = t2.x;
+			left.y = t2.y-1;
+		}
+		if(y+1<col&&field.get(x).get(y+1)!=0&&field.get(x).get(y+1)<=field.get(x).get(y)){
+			right = new FieldTree();
+			right.x = t2.x;
+			right.y = t2.y+1;
+		}
+		int minPath1 = Math.min(findMinPath(row, col, t1, left, field), findMinPath(row, col, t1, right, field));
+		int minPath2 = Math.min(findMinPath(row, col, t1, top, field), findMinPath(row, col, t1, down, field));
+		return Math.min(minPath1, minPath2)+1+field.get(t2.x).get(t2.y);
+	}
 }
