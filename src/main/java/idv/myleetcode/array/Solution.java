@@ -1545,29 +1545,41 @@ public class Solution{
 		return result;
 	}
 
-	public List<Integer> findUniqWindow(int[] arr, int k){
-		List<Integer> result = new ArrayList<>();
-		for(int i=0; i<arr.length; i++){
-			Map<Integer, Integer> table = new HashMap<>();
-			for(int j=0; j<k&&j+i<arr.length; j++){
-				Integer c = table.get(arr[j+i]);
-				if(c==null){
-					table.put(arr[j+i], 1);
-				}else{
-					table.put(arr[j+i], c++);
-				}
-			}
-			if(i==arr.length-k+1){
-				break;
-			}
-			result.add(table.keySet().size());
-		}
-		return result;
-	}
-
-
-
-
-
+    public List<Integer> findUniqWindow(int[] arr, int k){
+        List<Integer> result = new ArrayList<>();
+        for(int i=0; i<arr.length; i++){
+            Map<Integer, Integer> table = new HashMap<>();
+            for(int j=0; j<k&&j+i<arr.length; j++){
+                Integer c = table.get(arr[j+i]);
+                if(c==null){
+                    table.put(arr[j+i], 1);
+                }else{
+                    table.put(arr[j+i], c++);
+                }
+            }
+            if(i==arr.length-k+1){
+                break;
+            }
+            result.add(table.keySet().size());
+        }
+        return result;
+    }
+    //77. Combinations
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> result = new ArrayList<>();
+        comb(result, new ArrayList<Integer>(), n, k, 1);
+        return result;
+    }
+    private void comb(List<List<Integer>> result, List<Integer> tmp, int n, int k, int start){
+        if(k==0){
+            result.add(new ArrayList<Integer>(tmp));
+            return;
+        }
+        for(int i=start, max=n-k+1; i<=max; i++){
+            tmp.add(i);
+            comb(result, tmp, n, k-1, start);
+            tmp.remove(tmp.size()-1);
+        }
+    }
 
 }

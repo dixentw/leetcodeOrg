@@ -103,5 +103,16 @@ public class Solution{
 		}
 		return result;
     }
-
+    //461. Hamming Distance
+    public int hammingDistance(int x, int y) {
+        int ones = x^y;
+        int result =0;
+        while(ones>0){
+            if((ones & 1) == 1){
+                result++;
+            }
+            ones = ones >> 1;
+        }
+        return result;
+    }
 }

@@ -30,12 +30,15 @@ public class SolutionTest {
         int[] expect = new int[]{0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4};
         assertTrue(Arrays.equals(expect, result));
     }
-	@Test
+    @Test
     public void test397(){
         assertEquals(3, s.integerReplacement(8));
         assertEquals(4, s.integerReplacement(7));
         assertEquals(3, s.integerReplacement(5));
         assertEquals(4, s.integerReplacement(9));
     }
-
+    @Test
+    public void test461(){
+        assertEquals(2, s.hammingDistance(4, 1));
+    }
 }

@@ -472,4 +472,10 @@ public class SolutionTest {
 		List<Integer> res = s.findUniqWindow(nums, 4);
 		assertEquals("[3, 4, 4, 3]", Arrays.toString(res.toArray()));
 	}
+    @Test
+    public void testCombine(){
+        List<List<Integer>> res = s.combine(2, 1);
+        assertEquals(new Integer(1), res.get(0).get(0));
+        assertEquals(new Integer(2), res.get(1).get(0));
+    }
 }
