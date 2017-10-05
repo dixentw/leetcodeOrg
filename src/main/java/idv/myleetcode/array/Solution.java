@@ -1577,7 +1577,7 @@ public class Solution{
         }
         for(int i=start, max=n-k+1; i<=max; i++){
             tmp.add(i);
-            comb(result, tmp, n, k-1, start);
+            comb(result, tmp, n, k-1, i+1);
             tmp.remove(tmp.size()-1);
         }
     }
