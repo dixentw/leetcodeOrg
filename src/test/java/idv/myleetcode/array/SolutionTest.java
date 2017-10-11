@@ -89,15 +89,15 @@ public class SolutionTest {
     public void test46(){
         int[] A = new int[]{1,2,3,4};
         List<List<Integer>> r = s.permute(A);
-		assertEquals(24, r.size());
-		List<List<Integer>> r2 = s.permute2(A);
-		assertEquals(24, r2.size());
+        assertEquals(24, r.size());
+        List<List<Integer>> r2 = s.permute2(A);
+        assertEquals(24, r2.size());
     }
     @Test
     public void test47(){
         int[] A = new int[]{1,2,2,3};
         List<List<Integer>> r = s.permuteUnique(A);
-		assertEquals(12, r.size());
+        assertEquals(12, r.size());
     }
     @Test
     public void test324(){
@@ -206,14 +206,14 @@ public class SolutionTest {
         int[] result = s.searchRange_old(A, 8);
         assertEquals("[3, 4]", Arrays.toString(result));
         int[] B = new int[]{2, 2};
-		result = s.searchRange_old(B, 2);
-		assertEquals("[0, 1]", Arrays.toString(result));
+        result = s.searchRange_old(B, 2);
+        assertEquals("[0, 1]", Arrays.toString(result));
         int[] C = new int[]{1};
         result = s.searchRange_old(C, 1);
         assertEquals("[0, 0]", Arrays.toString(result));
         int[] D = new int[]{1, 4};
-		result = s.searchRange_old(D, 4);
-		assertEquals("[1, 1]", Arrays.toString(result));
+        result = s.searchRange_old(D, 4);
+        assertEquals("[1, 1]", Arrays.toString(result));
     }
     @Test
     public void test35(){
@@ -285,197 +285,203 @@ public class SolutionTest {
         //int[] D = {0};
         //assertEquals(1, s.jump(D));
     }
-	@Test
+    @Test
     public void test59(){
-		int[][] ra = s.generateMatrix(4);
-		for(int[] t : ra){
-			System.out.println(Arrays.toString(t));
-		}
+        int[][] ra = s.generateMatrix(4);
+        for(int[] t : ra){
+            System.out.println(Arrays.toString(t));
+        }
     }
-	@Test
+    @Test
     public void test62(){
-		assertEquals(28, s.uniquePaths(3, 7));
+        assertEquals(28, s.uniquePaths(3, 7));
     }
-	@Test
+    @Test
     public void test63(){
-		int[][] c = {
-			{0,0,0},
-			{0,1,0},
-			{0,0,0}
-		};
-		assertEquals(2, s.uniquePathsWithObstacles(c));
+        int[][] c = {
+            {0,0,0},
+            {0,1,0},
+            {0,0,0}
+        };
+        assertEquals(2, s.uniquePathsWithObstacles(c));
     }
-	@Test
+    @Test
     public void test64(){
-		int[][] c = {
-			{0,1,1},
-			{0,3,0},
-			{0,1,0}
-		};
-		assertEquals(1, s.minPathSum(c));
+        int[][] c = {
+            {0,1,1},
+            {0,3,0},
+            {0,1,0}
+        };
+        assertEquals(1, s.minPathSum(c));
     }
-	@Test
+    @Test
     public void test73(){
-		int[][] c = {
-			{0,1,1},
-			{3,3,3},
-			{5,1,8}
-		};
-		s.setZeroes(c);
-		for(int[] line : c){
-			System.out.println(Arrays.toString(line));
-		}
-		int[][] d = {
-			{1,0,3}
-		};
-		s.setZeroes(d);
-		for(int[] line : d){
-			System.out.println(Arrays.toString(line));
-		}
+        int[][] c = {
+            {0,1,1},
+            {3,3,3},
+            {5,1,8}
+        };
+        s.setZeroes(c);
+        for(int[] line : c){
+            System.out.println(Arrays.toString(line));
+        }
+        int[][] d = {
+            {1,0,3}
+        };
+        s.setZeroes(d);
+        for(int[] line : d){
+            System.out.println(Arrays.toString(line));
+        }
 
     }
-	@Test
+    @Test
     public void test74(){
-		int[][] c = {
-			{1,3,5,7},
-			{10,11,16,20},
-			{23,30,34,50}
-		};
-		assertEquals(true, s.searchMatrix(c, 3));
+        int[][] c = {
+            {1,3,5,7},
+            {10,11,16,20},
+            {23,30,34,50}
+        };
+        assertEquals(true, s.searchMatrix(c, 3));
 
     }
-	@Test
+    @Test
     public void test75(){
-		int[] c = {0,2,2,2,2,0,0,1,0,0,1,0,1};
-		s.sortColors(c);
-		assertEquals("[0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2]", Arrays.toString(c));
+        int[] c = {0,2,2,2,2,0,0,1,0,0,1,0,1};
+        s.sortColors(c);
+        assertEquals("[0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2]", Arrays.toString(c));
     }
-	@Test
+    @Test
     public void test79(){
-		char[][] m = {
-			{'A','B','C','E'},
-			{'S','F','C','S'},
-			{'A','D','E','E'}
-		};
-		assertTrue(s.exist(m, "ABCCE"));
-		char[][] m1 = {
-			{'A','A'}
-		};
-		assertFalse(s.exist(m, "AAA"));
+        char[][] m = {
+            {'A','B','C','E'},
+            {'S','F','C','S'},
+            {'A','D','E','E'}
+        };
+        assertTrue(s.exist(m, "ABCCE"));
+        char[][] m1 = {
+            {'A','A'}
+        };
+        assertFalse(s.exist(m, "AAA"));
     }
-	@Test
+    @Test
     public void test80(){
-		int[] a = {1,1,1,2,2,3};
-		assertEquals(5, s.removeDuplicates2(a));
+        int[] a = {1,1,1,2,2,3};
+        assertEquals(5, s.removeDuplicates2(a));
     }
-	@Test
+    @Test
     public void test81(){
-		int[] a = {4 ,5, 6, 7, 0, 1, 2};
-		assertTrue(s.search_d(a, 6));
-		assertFalse(s.search_d(a, 10));
+        int[] a = {4 ,5, 6, 7, 0, 1, 2};
+        assertTrue(s.search_d(a, 6));
+        assertFalse(s.search_d(a, 10));
 
-		int[] c = {4,5,6,7,8,1,2,3};
-		assertTrue(s.search_d(c, 8));
-		int[] d = {3,1};
-		assertTrue(s.search_d(d, 1));
-		int[] e = {5,1,3};
-		assertTrue(s.search_d(e, 3));
+        int[] c = {4,5,6,7,8,1,2,3};
+        assertTrue(s.search_d(c, 8));
+        int[] d = {3,1};
+        assertTrue(s.search_d(d, 1));
+        int[] e = {5,1,3};
+        assertTrue(s.search_d(e, 3));
 
-		//repeat sequence
-		int[] b = {1,1,3,1};
-		assertTrue(s.search_d(b, 3));
-		int[] f = {1,3,1,1,1};
-		assertTrue(s.search_d(f, 3));
+        //repeat sequence
+        int[] b = {1,1,3,1};
+        assertTrue(s.search_d(b, 3));
+        int[] f = {1,3,1,1,1};
+        assertTrue(s.search_d(f, 3));
     }
-	@Test
+    @Test
     public void test120(){
-		List<List<Integer>> test = new ArrayList<>();
-		test.add(new ArrayList<Integer>(Arrays.asList(2)));
-		test.add(new ArrayList<Integer>(Arrays.asList(3,4)));
-		test.add(new ArrayList<Integer>(Arrays.asList(6,5,7)));
-		test.add(new ArrayList<Integer>(Arrays.asList(4,1,8,3)));
-		assertEquals(11, s.minimumTotal(test));
+        List<List<Integer>> test = new ArrayList<>();
+        test.add(new ArrayList<Integer>(Arrays.asList(2)));
+        test.add(new ArrayList<Integer>(Arrays.asList(3,4)));
+        test.add(new ArrayList<Integer>(Arrays.asList(6,5,7)));
+        test.add(new ArrayList<Integer>(Arrays.asList(4,1,8,3)));
+        assertEquals(11, s.minimumTotal(test));
     }
-	@Test
+    @Test
     public void test152(){
-		int[] a = {2,3,-2,4};
-		assertEquals(6, s.maxProduct(a));
-		int[] b = {-2};
-		assertEquals(-2, s.maxProduct(b));
-		int[] c = {-2,3,-4};
-		assertEquals(24, s.maxProduct(c));
+        int[] a = {2,3,-2,4};
+        assertEquals(6, s.maxProduct(a));
+        int[] b = {-2};
+        assertEquals(-2, s.maxProduct(b));
+        int[] c = {-2,3,-4};
+        assertEquals(24, s.maxProduct(c));
     }
-	@Test
+    @Test
     public void test162(){
-		int[] a = {1,2,3,1};
-		assertEquals(2, s.findPeakElement(a));
-		int[] b = {3,4,3,2,1};
-		assertEquals(1, s.findPeakElementLog(b));
+        int[] a = {1,2,3,1};
+        assertEquals(2, s.findPeakElement(a));
+        int[] b = {3,4,3,2,1};
+        assertEquals(1, s.findPeakElementLog(b));
     }
-	@Test
+    @Test
     public void test167(){
-		int[] a = {2,7,11,15};
-		int[] res = s.twoSum_167(a, 9);
-		assertEquals("[1, 2]", Arrays.toString(res));
+        int[] a = {2,7,11,15};
+        int[] res = s.twoSum_167(a, 9);
+        assertEquals("[1, 2]", Arrays.toString(res));
     }
-	@Test
+    @Test
     public void test209(){
-		int[] a = {2,3,1,2,4,3};
-		int res = s.minSubArrayLen(7, a);
-		assertEquals(2, res);
-		int[] b = {7,7,5,2};
-		res = s.minSubArrayLen(6, b);
-		assertEquals(1, res);
+        int[] a = {2,3,1,2,4,3};
+        int res = s.minSubArrayLen(7, a);
+        assertEquals(2, res);
+        int[] b = {7,7,5,2};
+        res = s.minSubArrayLen(6, b);
+        assertEquals(1, res);
     }
-	@Test
-	public void test220(){
-		List<String> res = s.summaryRanges(new int[]{0,1,2,4,5,7});
-		assertEquals("0->2", res.get(0));
-		assertEquals("4->5", res.get(1));
-		assertEquals("7", res.get(2));
-	}
-	@Test
-	public void test229(){
-		int[] a = new int[]{8,8,7,7,7};
-		List<Integer> res = s.majorityElement2(a);
-		assertEquals(8, (int)res.get(0));
-		assertEquals(7, (int) res.get(1));
-		int[] b = new int[]{1,2,2,3,2,1,1,3};
-		res = s.majorityElement2(b);
-		assertEquals("[1, 2]", Arrays.toString(res.toArray()));
-	}
-	@Test
+    @Test
+    public void test220(){
+        List<String> res = s.summaryRanges(new int[]{0,1,2,4,5,7});
+        assertEquals("0->2", res.get(0));
+        assertEquals("4->5", res.get(1));
+        assertEquals("7", res.get(2));
+    }
+    @Test
+    public void test229(){
+        int[] a = new int[]{8,8,7,7,7};
+        List<Integer> res = s.majorityElement2(a);
+        assertEquals(8, (int)res.get(0));
+        assertEquals(7, (int) res.get(1));
+        int[] b = new int[]{1,2,2,3,2,1,1,3};
+        res = s.majorityElement2(b);
+        assertEquals("[1, 2]", Arrays.toString(res.toArray()));
+    }
+    @Test
     public void test216(){
-		List<List<Integer>> r = s.combinationSum3(3, 7);
-		assertEquals("[1, 2, 4]", Arrays.toString(r.get(0).toArray()));
+        List<List<Integer>> r = s.combinationSum3(3, 7);
+        assertEquals("[1, 2, 4]", Arrays.toString(r.get(0).toArray()));
     }
-	@Test
+    @Test
     public void test238(){
-		int[] res = s.productExceptSelf_s1(new int[]{1,2,3,4});
-		assertEquals("[24, 12, 8, 6]", Arrays.toString(res));
+        int[] res = s.productExceptSelf_s1(new int[]{1,2,3,4});
+        assertEquals("[24, 12, 8, 6]", Arrays.toString(res));
     }
-	@Test
+    @Test
     public void testPair(){
-		int res = s.findPair(new int[]{1, 2, 3, 4, 5, 6, 7, 8}, 7);
-		assertEquals(6, res);
+        int res = s.findPair(new int[]{1, 2, 3, 4, 5, 6, 7, 8}, 7);
+        assertEquals(6, res);
     }
-	@Test
-	public void test215(){
-		int[] nums = new int[]{12, 3, 5, 7, 4, 19, 26};
-		assertEquals(12, s.findKthLargest(nums, 3));
-		nums = new int[]{2, 1};
-		assertEquals(2, s.findKthLargest(nums, 1));
-	}
-	@Test
-	public void testFindUniq(){
-		int[] nums = new int[]{1, 2, 1, 3, 4, 2, 3};
-		List<Integer> res = s.findUniqWindow(nums, 4);
-		assertEquals("[3, 4, 4, 3]", Arrays.toString(res.toArray()));
-	}
+    @Test
+    public void test215(){
+        int[] nums = new int[]{12, 3, 5, 7, 4, 19, 26};
+        assertEquals(12, s.findKthLargest(nums, 3));
+        nums = new int[]{2, 1};
+        assertEquals(2, s.findKthLargest(nums, 1));
+    }
+    @Test
+    public void testFindUniq(){
+        int[] nums = new int[]{1, 2, 1, 3, 4, 2, 3};
+        List<Integer> res = s.findUniqWindow(nums, 4);
+        assertEquals("[3, 4, 4, 3]", Arrays.toString(res.toArray()));
+    }
     @Test
     public void testCombine(){
         List<List<Integer>> res = s.combine(2, 1);
         assertEquals(new Integer(1), res.get(0).get(0));
         assertEquals(new Integer(2), res.get(1).get(0));
+    }
+    @Test
+    public void testFindPairs(){
+        assertEquals(2, s.findPairs(new int[]{3,1,4,1,5}, 2));
+        assertEquals(4, s.findPairs(new int[]{1,2,3,4,5}, 1));
+        assertEquals(1, s.findPairs(new int[]{1,3,1,5,4}, 0));
     }
 }
