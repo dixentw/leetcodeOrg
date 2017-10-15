@@ -100,4 +100,10 @@ public class SolutionTest{
         assertEquals(0, s.compareVersion("2.5", "2.5"));
         assertEquals(1, s.compareVersion("2.5.1", "2.5"));
     }
+    @Test
+    public void test227(){
+        assertEquals(7, s.calculate("3+2*2"));
+        assertEquals(1, s.calculate(" 3/2 "));
+        assertEquals(5, s.calculate(" 3+5 / 2 "));
+    }
 }

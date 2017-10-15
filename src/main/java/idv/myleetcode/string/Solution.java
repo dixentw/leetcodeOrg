@@ -315,4 +315,37 @@ public class Solution{
         }
         return 0;
     }
+    //227. Basic Calculator II
+    // I need to delay the operator for get next num, so I need tmp variable outside
+    public int calculate(String s) {
+        if(s.length()==0) return 0;
+        s = s.replace(" ", "");
+        s += "$";
+        Stack<Integer> numbers = new Stack<>();
+        int num = 0;
+        char sign = '+';
+        for(char c : s.toCharArray()){
+            if(Character.isDigit(c)){
+                num = num*10+ (c-'0');
+            }else{
+                if(sign=='+'){
+                    numbers.push(num);
+                }else if(sign=='-'){
+                    numbers.push(-num);
+                }else if(sign=='*'){
+                    numbers.push(numbers.pop()*num);
+                }else if(sign=='/'){
+                    numbers.push(numbers.pop()/num);
+                }
+                num = 0;
+                sign = c;
+                System.out.println(sign);
+            }
+        }
+        num = 0;
+        for(Integer i : numbers){
+            num += i;
+        }
+        return num;
+    }
 }
