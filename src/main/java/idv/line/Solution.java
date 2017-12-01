@@ -20,5 +20,8 @@ public class Solution{
 		}
 		return b;
 	}
-
+    public int solution(int M, int N) {
+        int modM = M % 4;
+        return M^N;
+    }
 }
